@@ -1,0 +1,39 @@
+{
+  "run_id": "checkpoint-500",
+  "updated_at": "2026-09-30T05:56:41+00:00",
+  "input_rows": 500,
+  "status_counts": {
+    "completed": 500,
+    "quarantined": 0,
+    "pending": 0
+  },
+  "accounting_ok": true,
+  "completed_after_retry": 2,
+  "needs_review_true": 111,
+  "records_with_warnings": 13,
+  "stale_cache_entries_ignored": 0,
+  "enricher_model": "claude-haiku-4-5",
+  "prompt_version": "enricher_v1@b18d1d8d",
+  "api_calls_ok": 502,
+  "api_errors_retried": 0,
+  "tokens": {
+    "input_tokens": 32433,
+    "cache_creation_input_tokens": 257895,
+    "cache_read_input_tokens": 2095983,
+    "output_tokens": 54974
+  },
+  "enrich_cost_usd": 0.4263,
+  "cost_per_completed_record_usd": 0.000853,
+  "cost_is": "computed from API-reported token usage x list prices in config/settings.json",
+  "elapsed_s_total": 6682.4,
+  "sessions": [
+    {
+      "ended_at": "2026-09-30T05:56:41+00:00",
+      "elapsed_s": 6682.4,
+      "stop_reason": "complete",
+      "completed": 500,
+      "quarantined": 0,
+      "retried_after_invalid": 2
+    }
+  ]
+}

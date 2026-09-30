@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-09-30T05:57:00+00:00",
+  "based_on_run": "checkpoint-500",
+  "completed_records": 500,
+  "enrichment_observed": {
+    "cost_usd": 0.4263,
+    "cost_per_completed_record_usd": 0.000853,
+    "batch_calls_ok": 500,
+    "sync_calls_ok (retries/fallbacks)": 2,
+    "sync_calls_per_record": 0.004,
+    "tokens": {
+      "input_tokens": 32433,
+      "cache_creation_input_tokens": 257895,
+      "cache_read_input_tokens": 2095983,
+      "output_tokens": 54974
+    },
+    "cache_read_share_of_input": 0.878
+  },
+  "verifier_observed_cost_per_record_usd": 0.002321,
+  "projection_10000": {
+    "enrichment_usd": 8.53,
+    "verification_usd": 0.93,
+    "grouping_usd_bound": 1.0,
+    "memo_usd_bound": 0.2,
+    "total_usd": 10.66
+  },
+  "projection_full_corpus_660622": {
+    "enrichment_usd": 563.26
+  },
+  "assumptions": [
+    "Per-record enrichment cost scales linearly; review length mix in the sample matches the target set (the 10,000 are a uniform sample of the full file).",
+    "Batch price = 50% of list; cache reads = 0.1x input; retries at full sync price are included because they are in the observed per-record cost.",
+    "Grouping and memo are bounded by design (fixed example counts, batched assignment), so they are given as upper bounds, not scaled with record count.",
+    "Full-corpus projection is enrichment only; it is not planned (not required by the brief)."
+  ]
+}
