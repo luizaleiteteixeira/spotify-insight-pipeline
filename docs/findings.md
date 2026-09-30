@@ -40,7 +40,12 @@ No prompt or taxonomy change was made in response to these results. If one is ma
 
 ### 1c. Quote-support check (human)
 
-Code confirms every quote is an exact substring. Whether each quote supports the chosen label needs a human read: fill in the `quote_supports_label_human_check` column in `golden_per_case.csv` (y/n) for at least the 16 disagreement rows.
+Code confirms that every quote is an exact substring. The author then read each model quote next to the model's label and judged whether it *supports* that label ([`evals/check_quotes.py`](../evals/check_quotes.py) → [`quote_support_human.csv`](../evals/golden/quote_support_human.csv)):
+
+- **49 of 50 quotes support the model's label**: 34/34 where the model agreed with the human, and 15/16 where it disagreed.
+- The one "no" is `723f07de`: the quote ("it keeps crashing every time") supports the topic, but the model's `mixed` intent does not follow from it (author note: "intent is complain").
+- So in 15 of the 16 disagreements the model's label is internally grounded. The disagreement comes from reading the review differently, not from invented evidence. Grounding is not correctness, though: a real quote can support a debatable label.
+- **Anchoring caveat [to discuss]:** this check happened after the author had seen the model's answers, and the author noted agreeing with the model's quotes more than expected. Reviewing a proposed answer with its justification highlighted invites automation/anchoring bias. For that reason the original golden labels were **not** edited after this review.
 
 ## 2. System tests
 
