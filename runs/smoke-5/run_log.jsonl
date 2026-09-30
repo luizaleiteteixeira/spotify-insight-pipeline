@@ -1,0 +1,2 @@
+{"ts": "2026-09-30T04:04:59+00:00", "stage": "enrich", "event": "start", "run_id": "smoke-5", "input_rows": 5, "already_completed": 0, "already_quarantined": 0, "stale_cache_entries": 0, "pending": 5, "workers": 1, "spend_so_far": 0, "cap": 5.0}
+{"ts": "2026-09-30T04:05:08+00:00", "stage": "enrich", "event": "done", "reason": "all_records_processed", "completed_this_session": 5, "quarantined_this_session": 0, "total_completed": 5, "total_quarantined": 0, "total_pending": 0, "spend_total": 0.0106}

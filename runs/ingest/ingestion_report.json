@@ -1,0 +1,167 @@
+{
+  "generated_at": "2026-09-30T03:28:11+00:00",
+  "source_file": "spotify_reviews_18months.csv",
+  "bytes": 97400616,
+  "sha256": "1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6",
+  "profile": {
+    "records": 660622,
+    "physical_lines_including_header": 660792,
+    "note_physical_lines": "Physical lines exceed records because review_text contains embedded line breaks.",
+    "reviews_with_embedded_newlines": 68,
+    "header": [
+      "review_id",
+      "review_text",
+      "review_rating",
+      "review_likes",
+      "app_version",
+      "review_timestamp"
+    ],
+    "duplicate_review_ids": 0,
+    "empty_review_text": 13,
+    "empty_review_text_ids": [
+      "5d085a1f-1737-45a6-a3fb-5211b327ec27",
+      "be032618-08ae-4dde-b0b2-d2ddcd8ea5a6",
+      "f7c94991-0fc2-49a5-b47e-510e97a1632c",
+      "f5b40f1f-6621-456f-b1f2-0b3a9361c793",
+      "7121867d-b162-4b15-a45f-6352dcff92c1",
+      "f0df3892-1cfd-44f6-b3bb-a2eef7e69f6e",
+      "a3b536ac-b508-4e02-8550-ff7ea0bf79c2",
+      "b9587209-7961-4fd2-903c-fcd0fa924721",
+      "1687e070-9c26-4657-9ecc-0141405bcd4b",
+      "34bf6347-1625-46cd-b6fa-82913e2f665d",
+      "e4a05a09-be34-40a3-9b4a-e3976dea1b82",
+      "1bbad718-5df1-4669-841d-d1d6a040945a",
+      "7c26b1a0-8e0b-426d-976c-15b526f94e30"
+    ],
+    "missing_values_by_field": {
+      "review_id": 0,
+      "review_text": 13,
+      "review_rating": 0,
+      "review_likes": 0,
+      "app_version": 159701,
+      "review_timestamp": 0
+    },
+    "missing_app_version": 159701,
+    "invalid_rating": 0,
+    "invalid_timestamp": 0,
+    "date_range": {
+      "first": "2022-05-17 00:01:07",
+      "last": "2023-11-15 23:16:10",
+      "timezone": "unspecified in source"
+    },
+    "reviews_by_month": {
+      "2022-05": 15461,
+      "2022-06": 30338,
+      "2022-07": 32784,
+      "2022-08": 30732,
+      "2022-09": 26933,
+      "2022-10": 27572,
+      "2022-11": 27349,
+      "2022-12": 31744,
+      "2023-01": 28609,
+      "2023-02": 20889,
+      "2023-03": 27238,
+      "2023-04": 25014,
+      "2023-05": 28062,
+      "2023-06": 27117,
+      "2023-07": 85079,
+      "2023-08": 30438,
+      "2023-09": 41634,
+      "2023-10": 89104,
+      "2023-11": 34525
+    },
+    "partial_months": [
+      "2022-05 (starts 05-17)",
+      "2023-11 (ends 11-15)"
+    ],
+    "reviews_by_rating": {
+      "1": 242620,
+      "2": 31034,
+      "3": 33268,
+      "4": 54140,
+      "5": 299560
+    },
+    "review_likes_total": 1259196,
+    "text_length_chars": {
+      "min": 0,
+      "p10": 6.0,
+      "p25": 12.0,
+      "median": 32.0,
+      "mean": 74.8,
+      "p75": 92.0,
+      "p90": 207.0,
+      "p99": 490.0,
+      "max": 1693
+    },
+    "top_app_versions_major_minor_patch": {
+      "8.8.80": 31496,
+      "8.8.76": 24582,
+      "8.7.92": 21249,
+      "8.8.66": 12981,
+      "8.8.28": 12626,
+      "8.7.44": 12598,
+      "8.7.48": 12527,
+      "8.8.36": 10781,
+      "8.7.78": 10586,
+      "8.8.78": 10463
+    }
+  },
+  "manifest_checks": {
+    "sha256_matches_manifest": true,
+    "bytes_match_manifest": true,
+    "records_match_manifest": true,
+    "empty_text_matches_manifest": true,
+    "missing_app_version_matches_manifest": true,
+    "no_duplicate_ids": true,
+    "months_match_manifest": true,
+    "ratings_match_manifest": true,
+    "sqlite_row_count_matches": true
+  },
+  "samples": {
+    "golden": {
+      "file": "golden_50_to_label.csv",
+      "rows": 50,
+      "sha256": "1a125c3e509f58b0246ba16d0ea332675a53ffadb1928be4338a0bd7053a11c7",
+      "sha256_matches_manifest": true,
+      "all_ids_in_full_file": true,
+      "unique_ids": true,
+      "empty_texts": 0
+    },
+    "checkpoint": {
+      "file": "checkpoint_500.csv",
+      "rows": 500,
+      "sha256": "a94e31663ee7b7eaa77e23b7a8425b530cc0c866ed5e714953172a0afef6a12f",
+      "sha256_matches_manifest": true,
+      "all_ids_in_full_file": true,
+      "unique_ids": true,
+      "empty_texts": 0
+    },
+    "analysis": {
+      "file": "analysis_10000.csv",
+      "rows": 10000,
+      "sha256": "eaa62ca6d44d717302904a9c922e99b0b4584d174309cb45295ecbc2ba2a91b5",
+      "sha256_matches_manifest": true,
+      "all_ids_in_full_file": true,
+      "unique_ids": true,
+      "empty_texts": 0
+    }
+  },
+  "sample_checks": {
+    "checkpoint_subset_of_analysis": true,
+    "golden_disjoint_from_analysis": true,
+    "golden_disjoint_from_checkpoint": true
+  },
+  "record_accounting": {
+    "full_file_records": 660622,
+    "declared_for_model_analysis": 10000,
+    "sampled_out_not_sent_to_model": 650572,
+    "golden_eval_only": 50,
+    "excluded_from_analysis_before_model": 0,
+    "note": "The course sampler drew analysis/golden from unique nonempty valid-rating reviews, so the 13 empty-text rows are in 'sampled_out'. Missing app_version does not exclude a record."
+  },
+  "database": {
+    "rows_in_db": 660622,
+    "sample_ids_missing_from_full": 0,
+    "path": "data/reviews.db"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "file": "evals/golden_labeled.csv",
+  "sha256": "95f67820d450bc224723655b74b878d9809ea9e40d4ee96f1aa77afa79e5fdbc",
+  "frozen_at_utc": "2026-09-30T03:59:57+00:00",
+  "labeler": "human (course student), labeled with evals/label_golden.py",
+  "model_outputs_seen_before_labeling": false,
+  "n": 50
+}

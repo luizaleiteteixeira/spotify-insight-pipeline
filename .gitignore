@@ -1,0 +1,10 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+.DS_Store
+# The 97.4 MB source CSV is not committed; see README for download + checksum.
+data/raw/spotify_reviews_18months.csv
+*.tmp
+data/reviews.db
+runs/*/analysis.db

@@ -1,0 +1,39 @@
+{
+  "run_id": "golden-eval",
+  "updated_at": "2026-09-30T04:06:41+00:00",
+  "input_rows": 50,
+  "status_counts": {
+    "completed": 50,
+    "quarantined": 0,
+    "pending": 0
+  },
+  "accounting_ok": true,
+  "completed_after_retry": 1,
+  "needs_review_true": 11,
+  "records_with_warnings": 2,
+  "stale_cache_entries_ignored": 0,
+  "enricher_model": "claude-haiku-4-5",
+  "prompt_version": "enricher_v1@b18d1d8d",
+  "api_calls_ok": 51,
+  "api_errors_retried": 0,
+  "tokens": {
+    "input_tokens": 3370,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 239139,
+    "output_tokens": 5554
+  },
+  "enrich_cost_usd": 0.0551,
+  "cost_per_completed_record_usd": 0.001101,
+  "cost_is": "computed from API-reported token usage x list prices in config/settings.json",
+  "elapsed_s_total": 10.4,
+  "sessions": [
+    {
+      "ended_at": "2026-09-30T04:06:41+00:00",
+      "elapsed_s": 10.4,
+      "stop_reason": "complete",
+      "completed": 50,
+      "quarantined": 0,
+      "retried_after_invalid": 1
+    }
+  ]
+}

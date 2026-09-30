@@ -1,0 +1,39 @@
+{
+  "run_id": "synthetic-tests",
+  "updated_at": "2026-09-30T04:06:14+00:00",
+  "input_rows": 8,
+  "status_counts": {
+    "completed": 6,
+    "quarantined": 2,
+    "pending": 0
+  },
+  "accounting_ok": true,
+  "completed_after_retry": 0,
+  "needs_review_true": 3,
+  "records_with_warnings": 0,
+  "stale_cache_entries_ignored": 0,
+  "enricher_model": "claude-haiku-4-5",
+  "prompt_version": "enricher_v1@b18d1d8d",
+  "api_calls_ok": 16,
+  "api_errors_retried": 0,
+  "tokens": {
+    "input_tokens": 1610,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 75024,
+    "output_tokens": 1490
+  },
+  "enrich_cost_usd": 0.0166,
+  "cost_per_completed_record_usd": 0.00276,
+  "cost_is": "computed from API-reported token usage x list prices in config/settings.json",
+  "elapsed_s_total": 3.8,
+  "sessions": [
+    {
+      "ended_at": "2026-09-30T04:06:14+00:00",
+      "elapsed_s": 3.8,
+      "stop_reason": "complete",
+      "completed": 6,
+      "quarantined": 2,
+      "retried_after_invalid": 0
+    }
+  ]
+}

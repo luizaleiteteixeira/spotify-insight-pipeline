@@ -1,0 +1,4 @@
+{"ts": "2026-09-30T04:06:31+00:00", "stage": "enrich", "event": "start", "run_id": "golden-eval", "input_rows": 50, "already_completed": 0, "already_quarantined": 0, "stale_cache_entries": 0, "pending": 50, "workers": 8, "spend_so_far": 0.0272, "cap": 5.0}
+{"ts": "2026-09-30T04:06:41+00:00", "stage": "enrich", "event": "done", "reason": "all_records_processed", "completed_this_session": 50, "quarantined_this_session": 0, "total_completed": 50, "total_quarantined": 0, "total_pending": 0, "spend_total": 0.0823}
+{"ts": "2026-09-30T04:06:41+00:00", "stage": "verify_golden", "event": "start", "sample": 50, "already_verified": 0, "pending": 50, "model": "claude-sonnet-5", "prompt_version": "verifier_v1@710dc49e"}
+{"ts": "2026-09-30T04:07:15+00:00", "stage": "verify_golden", "event": "done", "verified": 50, "reason": "complete"}

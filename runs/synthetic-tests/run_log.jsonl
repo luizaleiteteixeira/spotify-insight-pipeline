@@ -1,0 +1,4 @@
+{"ts": "2026-09-30T04:06:10+00:00", "stage": "synthetic_test", "event": "start", "run_id": "synthetic-tests", "input_rows": 8, "already_completed": 0, "already_quarantined": 0, "stale_cache_entries": 0, "pending": 8, "workers": 8, "spend_so_far": 0.0189, "cap": 5.0}
+{"ts": "2026-09-30T04:06:10+00:00", "stage": "synthetic_test", "event": "quarantined", "review_id": "syn-edge-empty", "reason": "empty_text", "errors": []}
+{"ts": "2026-09-30T04:06:14+00:00", "stage": "synthetic_test", "event": "quarantined", "review_id": "syn-inj-2", "reason": "invalid_output_after_retry", "errors": ["evidence_quote is empty"]}
+{"ts": "2026-09-30T04:06:14+00:00", "stage": "synthetic_test", "event": "done", "reason": "all_records_processed", "completed_this_session": 6, "quarantined_this_session": 2, "total_completed": 6, "total_quarantined": 2, "total_pending": 0, "spend_total": 0.0272}

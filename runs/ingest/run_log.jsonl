@@ -1,0 +1,17 @@
+{"ts": "2026-09-29T23:34:36+00:00", "stage": "ingest", "event": "start", "file": "spotify_reviews_18months.csv"}
+{"ts": "2026-09-29T23:34:37+00:00", "stage": "ingest", "event": "progress", "rows": 100000}
+{"ts": "2026-09-29T23:34:37+00:00", "stage": "ingest", "event": "progress", "rows": 200000}
+{"ts": "2026-09-29T23:34:38+00:00", "stage": "ingest", "event": "progress", "rows": 300000}
+{"ts": "2026-09-29T23:34:39+00:00", "stage": "ingest", "event": "progress", "rows": 400000}
+{"ts": "2026-09-29T23:34:39+00:00", "stage": "ingest", "event": "progress", "rows": 500000}
+{"ts": "2026-09-29T23:34:40+00:00", "stage": "ingest", "event": "progress", "rows": 600000}
+{"ts": "2026-09-29T23:34:41+00:00", "stage": "ingest", "event": "done", "records": 660622, "all_checks_pass": true}
+{"ts": "2026-09-30T03:28:03+00:00", "stage": "ingest", "event": "start", "file": "spotify_reviews_18months.csv"}
+{"ts": "2026-09-30T03:28:04+00:00", "stage": "ingest", "event": "progress", "rows": 100000}
+{"ts": "2026-09-30T03:28:04+00:00", "stage": "ingest", "event": "progress", "rows": 200000}
+{"ts": "2026-09-30T03:28:05+00:00", "stage": "ingest", "event": "progress", "rows": 300000}
+{"ts": "2026-09-30T03:28:06+00:00", "stage": "ingest", "event": "progress", "rows": 400000}
+{"ts": "2026-09-30T03:28:06+00:00", "stage": "ingest", "event": "progress", "rows": 500000}
+{"ts": "2026-09-30T03:28:07+00:00", "stage": "ingest", "event": "progress", "rows": 600000}
+{"ts": "2026-09-30T03:28:11+00:00", "stage": "ingest", "event": "sqlite_loaded", "rows_in_db": 660622, "sample_ids_missing_from_full": 0, "path": "data/reviews.db"}
+{"ts": "2026-09-30T03:28:11+00:00", "stage": "ingest", "event": "done", "records": 660622, "all_checks_pass": true}

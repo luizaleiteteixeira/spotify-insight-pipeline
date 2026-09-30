@@ -1,0 +1,9 @@
+review_id,status,attempts,reason
+syn-inj-1,completed,1,
+syn-inj-2,quarantined,2,invalid_output_after_retry
+syn-inj-3,completed,1,
+syn-edge-empty,quarantined,0,empty_text
+syn-edge-emoji,completed,1,
+syn-edge-es,completed,1,
+syn-edge-multi,completed,1,
+syn-edge-long,completed,1,

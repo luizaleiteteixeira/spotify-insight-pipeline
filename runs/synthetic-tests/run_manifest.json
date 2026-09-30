@@ -1,0 +1,28 @@
+{
+  "run_id": "synthetic-tests",
+  "input_file": "synthetic",
+  "input_rows": 8,
+  "code_version": "uncommitted-dirty",
+  "enricher": {
+    "prompt_version": "enricher_v1@b18d1d8d",
+    "rendered_prompt_sha": "aab6da00d0cf",
+    "model": "claude-haiku-4-5",
+    "schema_version": "enrich-schema-v1",
+    "taxonomy_version": "tax-v1",
+    "cache_key_suffix": "claude-haiku-4-5|enricher_v1@b18d1d8d|aab6da00d0cf|enrich-schema-v1"
+  },
+  "model_settings": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 600
+  },
+  "retry_policy": {
+    "api_max_attempts": 5,
+    "api_backoff_base_seconds": 2.0,
+    "api_backoff_max_seconds": 60.0,
+    "invalid_output_retries": 1,
+    "note": "API errors (429, 5xx, timeouts, connection) get bounded exponential backoff with jitter. An invalid model answer (schema, label, quote not in source) gets exactly one retry with the validation error fed back, then the record is quarantined."
+  },
+  "workers": 8,
+  "spend_cap_usd": 5.0,
+  "updated_at": "2026-09-30T04:06:10+00:00"
+}

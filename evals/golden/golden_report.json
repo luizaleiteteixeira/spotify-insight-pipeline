@@ -1,0 +1,114 @@
+{
+  "generated_at": "2026-09-30T04:07:15+00:00",
+  "frozen_labels": {
+    "labels_sha256": "95f67820d450bc224723655b74b878d9809ea9e40d4ee96f1aa77afa79e5fdbc",
+    "labels_file_mtime_utc": "2026-09-30T03:59:24.316317+00:00",
+    "eval_started_utc": "2026-09-30T04:06:31+00:00"
+  },
+  "n_golden": 50,
+  "n_completed": 50,
+  "n_quarantined": 0,
+  "n_human_ambiguous": 8,
+  "enricher": {
+    "model": "claude-haiku-4-5",
+    "prompt_version": "enricher_v1@b18d1d8d",
+    "topic_accuracy": 0.78,
+    "topic_accuracy_lenient_secondary": 0.9,
+    "topic_accuracy_on_clear_cases": 0.81,
+    "topic_accuracy_on_ambiguous_cases": 0.625,
+    "intent_accuracy": 0.88,
+    "severity_exact": 0.82,
+    "severity_mae": 0.2,
+    "severity_within_1": 0.98,
+    "sentiment_mae": 0.194,
+    "sentiment_within_tolerance": 0.92,
+    "sentiment_tolerance": 0.4,
+    "cancel_intent_agreement": 0.98,
+    "evidence_quote_exact_substring_rate": 1.0,
+    "records_with_unsupported_entities": 1,
+    "needs_review_vs_human_ambiguous": {
+      "tp": 5,
+      "fp": 6,
+      "fn": 3,
+      "precision": 0.455,
+      "recall": 0.625
+    },
+    "per_topic": {
+      "access_account": {
+        "human_count": 0,
+        "pred_count": 1,
+        "correct": 0
+      },
+      "usability_ui": {
+        "human_count": 4,
+        "pred_count": 2,
+        "correct": 1
+      },
+      "playback_performance": {
+        "human_count": 4,
+        "pred_count": 4,
+        "correct": 1
+      },
+      "downloads_offline": {
+        "human_count": 1,
+        "pred_count": 1,
+        "correct": 1
+      },
+      "catalog_recommendations": {
+        "human_count": 4,
+        "pred_count": 3,
+        "correct": 2
+      },
+      "free_tier_limits_ads": {
+        "human_count": 6,
+        "pred_count": 9,
+        "correct": 6
+      },
+      "customer_support": {
+        "human_count": 2,
+        "pred_count": 0,
+        "correct": 0
+      },
+      "general_other": {
+        "human_count": 29,
+        "pred_count": 30,
+        "correct": 28
+      }
+    },
+    "topic_confusion_human_to_pred": {
+      "catalog_recommendations -> catalog_recommendations": 2,
+      "catalog_recommendations -> general_other": 2,
+      "customer_support -> playback_performance": 2,
+      "downloads_offline -> downloads_offline": 1,
+      "free_tier_limits_ads -> free_tier_limits_ads": 6,
+      "general_other -> free_tier_limits_ads": 1,
+      "general_other -> general_other": 28,
+      "playback_performance -> access_account": 1,
+      "playback_performance -> free_tier_limits_ads": 1,
+      "playback_performance -> playback_performance": 1,
+      "playback_performance -> usability_ui": 1,
+      "usability_ui -> catalog_recommendations": 1,
+      "usability_ui -> free_tier_limits_ads": 1,
+      "usability_ui -> playback_performance": 1,
+      "usability_ui -> usability_ui": 1
+    },
+    "intent_confusion_human_to_pred": {
+      "complaint -> complaint": 21,
+      "complaint -> mixed": 1,
+      "complaint -> suggestion": 1,
+      "complaint -> unclear": 2,
+      "mixed -> mixed": 1,
+      "praise -> praise": 21,
+      "praise -> suggestion": 1,
+      "praise -> unclear": 1,
+      "unclear -> unclear": 1
+    }
+  },
+  "verifier_vs_human": {
+    "n": 50,
+    "topic_accuracy": 0.78,
+    "intent_accuracy": 0.86,
+    "severity_mae": 0.36
+  },
+  "caveat": "50 cases is a small diagnostic sample, not a precise population accuracy estimate."
+}
