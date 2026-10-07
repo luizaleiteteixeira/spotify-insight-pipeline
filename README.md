@@ -145,6 +145,35 @@ Running this checker surfaced two export details, both now handled:
 - **Calls logged twice.** After an interrupted batch collection, 259 calls were logged twice; the providers billed them once. Readers (`pipeline.common.ledger_calls`) now drop the duplicate lines, and the collector no longer re-logs.
 - **Per-item outcomes.** Some reviews failed validation inside an otherwise successful call and were completed later by the capped fallback. The export lists those items as a separate `failed` entry (`request_id#invalid-items`), with usage kept on the parent call. Every ID sent still appears in the log.
 
+### 3.8 Awkward paths: actual outcomes
+
+Every path the brief lists was exercised, with real outcomes recorded (counts from [`run_summary.json`](runs/full/run_summary.json) and the ledger):
+
+| Awkward path | What actually happened | Handling and record counts |
+|---|---|---|
+| Malformed / incomplete model output | 127 enrichment responses in the full run came back `incomplete` (output cut off); thousands of items returned invalid quotes | the single validation retry, then quarantine; 1,583 first-pass failures → capped fallback rescued 1,499 → **84 remain** quarantined |
+| Missing text | 13 empty reviews | quarantined by code as `empty_review_text`, no model call |
+| Ambiguous labels | the enricher set `needs_review` on uncertain cases; the author marked 8 of 50 golden cases ambiguous | flag kept on the record; evaluated as a prediction (precision 0.44 / recall 0.50) |
+| Temporary API failure | 3 real API errors during the full run (plus a 180 s memo timeout in a dev run) | bounded backoff with jitter → succeeded; every failed attempt logged with `outcome: failed` |
+| Injected instruction | 3 synthetic injection reviews | 3/3 not followed and flagged (§3.4) |
+| Deliberately wrong label | 30 planted errors in a test copy | 30/30 detected (§3.3) |
+| Interrupted run | 3 Ctrl-C interruptions (recorded) + an unplanned laptop freeze + a deliberate stop mid-batch | completed 0 → 84,022 → 94,186 → 101,851 → 160,805 → 659,026 → 660,525 across sessions; no completed ID was re-sent ([Run evidence](#run-evidence-and-resume)) |
+
+### 3.9 Where the brief's "Save Your Results" artifacts are
+
+| Brief asks for | File |
+|---|---|
+| `data_manifest.json`, `ingestion_report.json` | [`runs/ingest/data_manifest.json`](runs/ingest/data_manifest.json), [`runs/ingest/ingestion_report.json`](runs/ingest/ingestion_report.json) |
+| enriched table | `runs/full/enriched.jsonl.gz` (660,525 completed records; release asset, 73 MB) · the same records are in [`grading/records.jsonl.gz`](grading/records.jsonl.gz) |
+| `quarantine.jsonl` | [`runs/full/quarantine.jsonl`](runs/full/quarantine.jsonl) (97 records, with reason, attempts and errors) |
+| `issues.json` | [`runs/full/group/issues.json`](runs/full/group/issues.json) + [`membership.csv`](runs/full/group/membership.csv) |
+| `aggregates.csv`, `ranking.csv` | [`runs/full/rank/aggregates.csv`](runs/full/rank/aggregates.csv), [`runs/full/rank/ranking.csv`](runs/full/rank/ranking.csv) |
+| `run_log.jsonl`, `run_summary.json` | [`runs/full/run_log.jsonl`](runs/full/run_log.jsonl), [`runs/full/run_summary.json`](runs/full/run_summary.json) (source checksum, code version, prompts, models/settings, stage timing, statuses, attempts, failures, usage, cost, cap, sessions, batches, outputs) |
+| `cost/` | [`cost/`](cost/) (calculator, pilot records/calls, rates, usage, report, scale checkpoints, actuals) |
+| `evals/` | [`evals/`](evals/) |
+| memo | [`runs/full/memo/memo.md`](runs/full/memo/memo.md) |
+| `grading/` | [`grading/`](grading/) (+ `grading.zip` in the release) |
+
 ---
 
 ## 4. Architecture

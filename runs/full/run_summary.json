@@ -1,0 +1,347 @@
+{
+  "run_id": "full",
+  "generated_at": "2026-10-07T06:47:52+00:00",
+  "code_version": "3fecbf3-dirty",
+  "source": {
+    "file": "spotify_reviews_18months.csv",
+    "bytes": 97400616,
+    "sha256": "1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6",
+    "records": 660622,
+    "manifest_checks_passed": true
+  },
+  "scope": {
+    "input_rows": 660622,
+    "distinct_nonempty_texts": 484189,
+    "status_counts": {
+      "completed": 660525,
+      "quarantined": 97
+    },
+    "completed_nonempty_fraction": 0.999873,
+    "quarantine_reasons": {
+      "invalid_output_after_retry+fallback_failed": 84,
+      "empty_review_text": 13
+    },
+    "attempts_histogram": {
+      "0": 176431,
+      "1": 428508,
+      "2": 54100,
+      "3": 1171,
+      "4": 412
+    }
+  },
+  "roles": {
+    "enrich": {
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "effort": "none",
+      "batch_size": 50,
+      "label_config": "openai/gpt-6-luna/effort=none|enricher_v2@aa674cb6|enrich-schema-v2|labels-v2@0241cb18",
+      "prompt": "prompts/enricher_v2.md"
+    },
+    "enrich_fallback": {
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "batch_size": 10,
+      "label_config": "openai/gpt-6-luna/effort=low/fallback|enricher_v2_fallback@2d9fb24e|enrich-schema-v2|labels-v2@0241cb18",
+      "cap": 2000
+    },
+    "verify": {
+      "provider": "anthropic",
+      "model": "claude-haiku-4-5",
+      "batch_size": 20,
+      "prompt": "prompts/verifier_v2.md",
+      "sample": 2000
+    },
+    "adjudicate": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5",
+      "thinking": "disabled",
+      "prompt": "prompts/adjudicator_v2.md",
+      "cap": 200
+    },
+    "evidence_check": {
+      "provider": "anthropic",
+      "model": "claude-haiku-4-5",
+      "prompt": "prompts/evidence_checker_v1.md"
+    },
+    "group": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5",
+      "thinking": "disabled",
+      "prompt": "prompts/grouper_v2.md",
+      "note": "model names issues only; membership by code"
+    },
+    "memo": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5",
+      "thinking": "disabled",
+      "prompt": "prompts/memo_v4.md"
+    }
+  },
+  "settings": {
+    "retry_policy": {
+      "api_max_attempts": 5,
+      "api_backoff_base_seconds": 2.0,
+      "api_backoff_max_seconds": 60.0,
+      "invalid_output_retries": 1,
+      "note": "API errors (429, 5xx, timeouts, connection) get bounded exponential backoff with jitter. An invalid model answer (schema, label, quote not in source) gets exactly one retry with the validation error fed back, then the record is quarantined."
+    },
+    "spend_cap_usd": 15.0,
+    "rates_file": "config/rates.csv"
+  },
+  "stage_timing": {
+    "enrichment_sessions": [
+      {
+        "session": 1,
+        "phase": "initial",
+        "started_at": "2026-10-07T01:20:42+00:00",
+        "ended_at": "2026-10-07T01:22:16+00:00",
+        "stop_reason": "interrupted_by_user",
+        "completed_before": 0,
+        "completed_after": 84022
+      },
+      {
+        "session": 2,
+        "phase": "resume",
+        "started_at": "2026-10-07T01:27:44+00:00",
+        "ended_at": "2026-10-07T01:29:04+00:00",
+        "stop_reason": "interrupted_by_user",
+        "completed_before": 84022,
+        "completed_after": 94186
+      },
+      {
+        "session": 3,
+        "phase": "resume",
+        "started_at": "2026-10-07T01:29:28+00:00",
+        "ended_at": "2026-10-07T01:30:46+00:00",
+        "stop_reason": "interrupted_by_user",
+        "completed_before": 94186,
+        "completed_after": 101851
+      },
+      {
+        "session": 4,
+        "phase": "resume",
+        "started_at": "2026-10-07T01:32:03+00:00",
+        "ended_at": "2026-10-07T02:29:39+00:00",
+        "stop_reason": "interrupted_by_user (open batches keep running server-side; rerun to collect)",
+        "completed_before": 101851,
+        "completed_after": 160805
+      },
+      {
+        "session": 5,
+        "phase": "resume",
+        "started_at": "2026-10-07T02:30:04+00:00",
+        "ended_at": "2026-10-07T04:23:23+00:00",
+        "stop_reason": "complete",
+        "completed_before": 160805,
+        "completed_after": 659026
+      },
+      {
+        "session": 6,
+        "phase": "resume",
+        "started_at": "2026-10-07T06:15:16+00:00",
+        "ended_at": "2026-10-07T06:15:31+00:00",
+        "stop_reason": "fallback_complete",
+        "completed_before": 659026,
+        "completed_after": 659035
+      },
+      {
+        "session": 7,
+        "phase": "resume",
+        "started_at": "2026-10-07T06:15:38+00:00",
+        "ended_at": "2026-10-07T06:25:40+00:00",
+        "stop_reason": "fallback_complete",
+        "completed_before": 659035,
+        "completed_after": 660525
+      }
+    ],
+    "downstream_first_pass_s": {
+      "verify": 1333.2,
+      "group": 34.0,
+      "rank": 8.9,
+      "memo": 27.1
+    },
+    "downstream_after_improvements_s": {
+      "verify": 29.2,
+      "group": 31.2,
+      "rank": 5.6,
+      "memo": 58.4,
+      "rank_check": 14.3
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "batch_6ac5a117d1248190a70b0cda313a4919",
+      "session": 4,
+      "phase": "resume",
+      "submitted_at": "2026-10-07T01:32:08+00:00",
+      "n_requests": 1000,
+      "status": "completed",
+      "collected_at": "2026-10-07T02:47:20+00:00"
+    },
+    {
+      "batch_id": "batch_6ac5a11aa2008190bb91dcf5a53614d5",
+      "session": 4,
+      "phase": "resume",
+      "submitted_at": "2026-10-07T01:32:10+00:00",
+      "n_requests": 1000,
+      "status": "completed",
+      "collected_at": "2026-10-07T02:31:52+00:00"
+    },
+    {
+      "batch_id": "batch_6ac5af1ddee881909e7463264e70ee57",
+      "session": 5,
+      "phase": "resume",
+      "submitted_at": "2026-10-07T02:31:58+00:00",
+      "n_requests": 1000,
+      "status": "completed",
+      "collected_at": "2026-10-07T03:32:49+00:00"
+    },
+    {
+      "batch_id": "batch_6ac5af21ad7881908714c193f4574b5b",
+      "session": 5,
+      "phase": "resume",
+      "submitted_at": "2026-10-07T02:32:01+00:00",
+      "n_requests": 1000,
+      "status": "completed",
+      "collected_at": "2026-10-07T03:41:06+00:00"
+    },
+    {
+      "batch_id": "batch_6ac5af249a908190aca30cb4566b25f3",
+      "session": 5,
+      "phase": "resume",
+      "submitted_at": "2026-10-07T02:32:04+00:00",
+      "n_requests": 1000,
+      "status": "completed",
+      "collected_at": "2026-10-07T03:49:12+00:00"
+    },
+    {
+      "batch_id": "batch_6ac5b2be20ec81908c226aecb31bd937",
+      "session": 5,
+      "phase": "resume",
+      "submitted_at": "2026-10-07T02:47:26+00:00",
+      "n_requests": 1000,
+      "status": "completed",
+      "collected_at": "2026-10-07T03:05:29+00:00"
+    },
+    {
+      "batch_id": "batch_6ac5b6fe8c408190bc0eacf52ef6aceb",
+      "session": 5,
+      "phase": "resume",
+      "submitted_at": "2026-10-07T03:05:34+00:00",
+      "n_requests": 1000,
+      "status": "completed",
+      "collected_at": "2026-10-07T03:22:23+00:00"
+    },
+    {
+      "batch_id": "batch_6ac5baf4dde08190a8f215a2eb202484",
+      "session": 5,
+      "phase": "resume",
+      "submitted_at": "2026-10-07T03:22:28+00:00",
+      "n_requests": 1000,
+      "status": "completed",
+      "collected_at": "2026-10-07T04:00:01+00:00"
+    },
+    {
+      "batch_id": "batch_6ac5c3c4d6e08190b597e684d3a11a71",
+      "session": 5,
+      "phase": "resume",
+      "submitted_at": "2026-10-07T04:00:05+00:00",
+      "n_requests": 1000,
+      "status": "completed",
+      "collected_at": "2026-10-07T04:17:51+00:00"
+    },
+    {
+      "batch_id": "batch_6ac5c3c7c704819093381f2552829fa0",
+      "session": 5,
+      "phase": "resume",
+      "submitted_at": "2026-10-07T04:00:07+00:00",
+      "n_requests": 608,
+      "status": "completed",
+      "collected_at": "2026-10-07T04:23:21+00:00"
+    }
+  ],
+  "usage_and_cost_by_stage": {
+    "adjudicate": {
+      "attempts": 249,
+      "succeeded": 202,
+      "status:ok": 202,
+      "input_tokens": 661957,
+      "output_tokens": 76689,
+      "status:incomplete": 47,
+      "cost_usd": 0.9658
+    },
+    "enrich": {
+      "attempts": 18963,
+      "succeeded": 18833,
+      "status:ok": 18833,
+      "input_tokens": 70186259,
+      "output_tokens": 20186138,
+      "status:incomplete": 127,
+      "status:api_error_retry": 3,
+      "cost_usd": 7.6076
+    },
+    "enrich (fallback)": {
+      "attempts": 288,
+      "succeeded": 279,
+      "status:ok": 279,
+      "input_tokens": 957189,
+      "output_tokens": 238334,
+      "status:incomplete": 9,
+      "cost_usd": 0.1473
+    },
+    "evidence_check": {
+      "attempts": 6,
+      "succeeded": 6,
+      "status:ok": 6,
+      "input_tokens": 8436,
+      "output_tokens": 2063,
+      "cost_usd": 0.0188
+    },
+    "group": {
+      "attempts": 2,
+      "succeeded": 2,
+      "status:ok": 2,
+      "input_tokens": 43372,
+      "output_tokens": 5600,
+      "cost_usd": 0.1427
+    },
+    "memo": {
+      "attempts": 10,
+      "succeeded": 10,
+      "status:ok": 10,
+      "input_tokens": 83711,
+      "output_tokens": 22400,
+      "cost_usd": 0.3803
+    },
+    "verify": {
+      "attempts": 101,
+      "succeeded": 101,
+      "status:ok": 101,
+      "input_tokens": 270070,
+      "output_tokens": 70296,
+      "cost_usd": 0.6216
+    }
+  },
+  "total_api_usd": 9.884,
+  "cost_basis": "API-reported token usage x list prices in config/rates.csv (usage x price; provider dashboards are the billing source of truth)",
+  "resume_evidence": {
+    "checkpoint_before": "grading/checkpoint_before.json (end of session 1)",
+    "checkpoint_after": "grading/checkpoint_after.json",
+    "recordings": "GitHub release v1.0-final"
+  },
+  "outputs": {
+    "enriched": "runs/full/enriched.jsonl.gz",
+    "quarantine": "runs/full/quarantine.jsonl",
+    "issues": "runs/full/group/issues.json",
+    "membership": "runs/full/group/membership.csv",
+    "aggregates": "runs/full/rank/aggregates.csv",
+    "ranking": "runs/full/rank/ranking.csv",
+    "verify": "runs/full/verify/verify_report.json",
+    "memo": "runs/full/memo/memo.md",
+    "claims": "runs/full/memo/claims.csv",
+    "grading_export": "grading/",
+    "log": "runs/full/run_log.jsonl"
+  }
+}

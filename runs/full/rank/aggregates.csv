@@ -1,0 +1,34 @@
+rank,issue_id,title,topic,area,complaint_count,severity_sum,mean_severity,priority_score,complaints,cancellations,severity_1,severity_2,severity_3,severity_4,severity_5,needs_review
+1,ISS-BILLING-PREMIUM_ONLY_CONTROLS,Core features locked behind Premium,billing,billing_support,59334,175269,2.953939,175269,47657,11677,10,3729,54579,1016,0,3136
+2,ISS-OTHER-GENERAL,General dissatisfaction with the app,other,none,73802,147684,2.001084,147684,67385,6417,588,72788,289,32,105,17131
+3,ISS-USABILITY-ADS,Excessive and frequent ads,usability,usability,37507,85570,2.281441,85570,34750,2757,9,27090,10257,145,6,2954
+4,ISS-PLAYBACK-STOPS_SKIPS,Playback randomly stops or fails to start,playback,playback,13916,44320,3.184823,44320,12438,1478,0,65,11218,2629,4,614
+5,ISS-USABILITY-LAYOUT_REDESIGN,Disliked app redesign and interface changes,usability,usability,18975,40196,2.118366,40196,16353,2622,3,16843,2009,120,0,6467
+6,ISS-PLAYBACK-CRASHES_FREEZES,App crashes and freezes during use,playback,playback,9845,32683,3.319756,32683,9126,719,2,861,4984,3983,15,935
+7,ISS-ACCESS-LOGIN,Login failures,access,access,8073,31486,3.900161,31486,7595,478,3,28,770,7243,29,319
+8,ISS-USABILITY-LIBRARY_QUEUE,Playlist and library management problems,usability,usability,8920,26589,2.980830,26589,8285,635,4,900,7301,693,22,370
+9,ISS-USABILITY-CONTROLS_NAVIGATION,Playback controls not working as expected,usability,usability,8134,22246,2.734940,22246,7423,711,7,2248,5774,104,1,630
+10,ISS-PLAYBACK-DEVICES,Device and connectivity playback problems,playback,playback,5914,17891,3.025194,17891,5180,734,1,420,4936,543,14,251
+11,ISS-CATALOG-MISSING_CONTENT,Songs and content missing from catalog,catalog,content,6053,17361,2.868165,17361,5578,475,4,941,4957,151,0,607
+12,ISS-CATALOG-RECOMMENDATIONS,Poor shuffle and recommendation quality,catalog,content,5659,15132,2.673971,15132,5124,535,15,1842,3778,21,3,249
+13,ISS-CATALOG-LYRICS,Lyrics missing or not displaying,catalog,content,4696,13710,2.919506,13710,4578,118,0,383,4308,5,0,229
+14,ISS-PLAYBACK-CONNECTION,False offline/no-internet errors,playback,playback,3718,13239,3.560785,13239,3509,209,0,67,1500,2150,1,223
+15,ISS-ACCESS-APP_WONT_OPEN,App fails to open or launch,access,access,3206,12235,3.816282,12235,2986,220,3,97,388,2716,2,517
+16,ISS-DOWNLOADS-FAIL_DISAPPEAR,Downloaded content disappearing,downloads,playback,2958,9095,3.074713,9095,2778,180,1,48,2649,249,11,263
+17,ISS-DOWNLOADS-OFFLINE_MODE,Offline playback not working,downloads,playback,2568,8374,3.260903,8374,2402,166,1,38,1822,704,3,108
+18,ISS-BILLING-SUBSCRIPTION_MANAGEMENT,Premium subscription not activating or recognized,billing,billing_support,2732,8259,3.023060,8259,2310,422,53,438,1674,527,40,383
+19,ISS-BILLING-PRICE,Subscription price too high,billing,billing_support,3776,7891,2.089778,7891,3388,388,10,3428,330,5,3,675
+20,ISS-BILLING-CHARGES_REFUNDS,Unwanted or duplicate charges,billing,billing_support,1823,6807,3.733955,6807,1664,159,0,85,948,157,633,290
+21,ISS-BILLING-OTHER,General billing and monetization complaints,billing,billing_support,3071,6328,2.060567,6328,2906,165,13,2864,190,3,1,872
+22,ISS-PLAYBACK-OTHER,Music won't play,playback,playback,1822,6242,3.425906,6242,1717,105,0,159,729,933,1,604
+23,ISS-CATALOG-SEARCH_DISCOVERY,Search function not working,catalog,content,1945,5613,2.885861,5613,1797,148,4,311,1533,97,0,177
+24,ISS-PLAYBACK-AUDIO_QUALITY,Poor audio quality,playback,playback,2070,5548,2.680193,5548,1911,159,10,729,1245,85,1,197
+25,ISS-USABILITY-OTHER,Miscellaneous usability complaints,usability,usability,2010,4457,2.217413,4457,1837,173,1,1585,410,14,0,744
+26,ISS-PLAYBACK-RESOURCE_USE,"Excessive battery, data, and storage use",playback,playback,1381,4041,2.926140,4041,1229,152,0,255,1019,61,46,203
+27,ISS-ACCESS-SIGNUP_EMAIL,Sign-up and phone/email verification issues,access,access,692,2402,3.471098,2402,660,32,0,36,296,358,2,113
+28,ISS-CATALOG-OTHER,Other content and feature gaps,catalog,content,953,2357,2.473242,2357,900,53,3,508,431,10,1,219
+29,ISS-ACCESS-ACCOUNT_COMPROMISED,Account hacking and security breaches,access,access,476,1898,3.987395,1898,420,56,1,7,87,283,98,101
+30,ISS-SUPPORT-UNHELPFUL,Lack of live customer support,support,billing_support,477,1394,2.922432,1394,402,75,0,87,347,36,7,29
+31,ISS-DOWNLOADS-OTHER,Download feature limitations,downloads,playback,498,1367,2.744980,1367,480,18,2,124,371,1,0,114
+32,ISS-ACCESS-OTHER,Other access and regional restrictions,access,access,364,1165,3.200549,1165,330,34,3,50,184,125,2,182
+33,ISS-SUPPORT-OTHER,Difficulty reaching customer support,support,billing_support,76,178,2.342105,178,72,4,0,53,21,1,1,33
