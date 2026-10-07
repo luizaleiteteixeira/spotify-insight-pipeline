@@ -367,6 +367,20 @@ CLAIM = re.compile(r"\bC\d{3}\b")
 ISS = re.compile(r"ISS-[A-Z0-9_-]+")
 
 
+def top_issue_monthly(recs, members, iid) -> list[dict]:
+    """Per calendar month: completed reviews (denominator), top-issue complaints, share in percent (2 dp)."""
+    from collections import Counter
+    den, num = Counter(), Counter()
+    for r in recs.values():
+        if r["status"] == "completed":
+            den[r["source"]["review_timestamp"][:7]] += 1
+    for i in members[iid]:
+        num[recs[i]["source"]["review_timestamp"][:7]] += 1
+    return [{"month": m, "completed_reviews": den[m], "top_issue_complaints": num[m],
+             "share_pct": str((Decimal(100 * num[m]) / Decimal(den[m])).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)),
+             "partial_month": m in ("2022-05", "2023-11")} for m in sorted(den)]
+
+
 def label_reliability(run_dir, recs, top) -> dict:
     """Code-computed reliability facts the memo must disclose (golden set + independent verifier)."""
     out = {}
@@ -390,7 +404,15 @@ def label_reliability(run_dir, recs, top) -> dict:
     return out
 
 
-def memo(run_id: str, budget: Budget, top_n: int = 8, prompt: str = "memo_v3") -> dict:
+def review_status(run_dir) -> str:
+    p = run_dir / "memo" / "human_review.json"
+    if not p.exists():
+        return "PENDING"
+    r = json.loads(p.read_text())
+    return f"{r['decision']} by {r['reviewer']} on {r['date']} (see docs/memo_review.md)"
+
+
+def memo(run_id: str, budget: Budget, top_n: int = 8, prompt: str = "memo_v4") -> dict:
     run_dir, man, recs = load_run(run_id)
     log = RunLog(run_dir, "memo")
     out = run_dir / "memo"
@@ -411,7 +433,8 @@ def memo(run_id: str, budget: Budget, top_n: int = 8, prompt: str = "memo_v3") -
             cl[metric] = {"claim_id": cid, "value": row[metric]}
         ex = sorted(members[iid], key=lambda i: (-recs[i]["severity"], -int(recs[i]["source"]["review_likes"] or 0), i))
         ex = [i for i in ex if not recs[i]["cache_source_id"]][:3]
-        top.append({"rank": int(row["rank"]), "issue_id": iid, "title": issues[iid]["title"], "area": issues[iid]["area"],
+        canc = sum(1 for i in members[iid] if recs[i]["intent"] == "cancellation")
+        top.append({"rank": int(row["rank"]), "issue_id": iid, "cancellation_intent_count": canc, "title": issues[iid]["title"], "area": issues[iid]["area"],
                     "topic": issues[iid]["topic"], "claims": cl,
                     "examples": [{"review_id": i, "severity": recs[i]["severity"], "intent": recs[i]["intent"],
                                   "quote": recs[i]["evidence_quote"][:180]} for i in ex]})
@@ -426,7 +449,8 @@ def memo(run_id: str, budget: Budget, top_n: int = 8, prompt: str = "memo_v3") -
             "areas": overview["areas"], "top_issues": top,
             "issue_definitions": {t["issue_id"]: LABELS["subtopics"][t["issue_id"][4:].lower().replace("-", ".", 1)]
                                   for t in top if t["issue_id"][4:].lower().replace("-", ".", 1) in LABELS["subtopics"]},
-            "label_reliability": label_reliability(run_dir, recs, top)}
+            "label_reliability": label_reliability(run_dir, recs, top),
+            "top_issue_monthly": top_issue_monthly(recs, members, top[0]["issue_id"]) if top else []}
     write_json(out / "evidence_pack.json", pack)
     m = settings()["models"]["memo_v2"]
     system, ver = load_prompt(prompt)
@@ -467,6 +491,8 @@ def memo(run_id: str, budget: Budget, top_n: int = 8, prompt: str = "memo_v3") -
         for x in NUM.findall(stripped):
             nn = x.replace(",", "")
             nn = nn.rstrip("0").rstrip(".") if "." in nn else nn
+            if nn.startswith("-") and nn[1:] in allowed_nums:
+                continue                      # a range dash ("3.28%-4.76%"), not a negative number
             if nn in allowed_nums or nn in ("2022", "2023") or (nn.lstrip("-").isdigit() and 0 <= int(nn) <= 10):
                 continue
             bad_n.append(x)
@@ -484,13 +510,19 @@ def memo(run_id: str, budget: Budget, top_n: int = 8, prompt: str = "memo_v3") -
                 quotes_ok.append(x)
         strings(pack)
         bad_q = []
-        for q in re.findall(r'["\u201c]([^"\u201d]{8,})["\u201d]', text):
+        found = re.findall(r'"([^"\n]{8,300}?)"', text) + re.findall(r'\u201c([^\u201d\n]{8,300}?)\u201d', text)
+        for q in found:
+            q = q.rstrip(",.;:")              # US style puts trailing punctuation inside quotation marks
             if "..." in q or "[" in q or "\u2026" in q or not any(q in src for src in quotes_ok):
                 bad_q.append(q[:80])
         res = {"unknown_claim_ids": bad_c, "unknown_review_ids": bad_r, "unknown_issue_ids": bad_i,
                "unsupported_numbers": sorted(set(bad_n)), "inexact_quotes": bad_q,
                "cites_claims": bool(CLAIM.findall(text)), "cites_reviews": bool(UUID.findall(text))}
-        res["passed"] = not (bad_c or bad_r or bad_i or bad_n or bad_q) and res["cites_claims"] and res["cites_reviews"]
+        md = val.get("memo_markdown", "").strip()
+        res["memo_words"] = len(md.split())
+        res["looks_truncated"] = res["memo_words"] < 350 or not md.endswith((".", ")", "*", "]"))
+        res["passed"] = (not (bad_c or bad_r or bad_i or bad_n or bad_q) and res["cites_claims"] and res["cites_reviews"]
+                         and not res["looks_truncated"])
         return res
 
     def do():
@@ -509,10 +541,13 @@ def memo(run_id: str, budget: Budget, top_n: int = 8, prompt: str = "memo_v3") -
             user += "\n\nYour previous answer failed the automatic checks:\n" + json.dumps(chk) + "\nFix every item."
         return {"output": val, "attempts": attempts}
     val, was = cached_artifact("memo", {"pack": pack, "cfg": ver, "model": m["model"]}, do)
-    final = check(val["output"])
-    o = val["output"]
+    o = dict(val["output"])
+    for k in ("recommendation", "memo_markdown", "recommendation_title"):   # formatting only: literal escapes -> chars
+        if isinstance(o.get(k), str):
+            o[k] = o[k].replace("\\u2014", "\u2014").replace("\\u2013", "\u2013")
+    final = check(o)
     header = (f"<!-- run {run_id} | model {m['model']} | prompt {ver} | automatic check passed: {final['passed']} | "
-              f"human review: PENDING -->\n\n")
+              f"human review: {review_status(run_dir)} -->\n\n")
     (out / "memo.md").write_text(header + o.get("memo_markdown", "").strip() + "\n", encoding="utf-8")
     write_json(out / "recommendation.json", {"generated_at": now(), "model": m["model"], "prompt_version": ver,
                                              "model_call_cached": was, "check": final, "attempts": val["attempts"],

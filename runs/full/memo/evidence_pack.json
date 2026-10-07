@@ -63,6 +63,7 @@
     {
       "rank": 1,
       "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "cancellation_intent_count": 11558,
       "title": "Features locked behind Premium subscription",
       "area": "billing_support",
       "topic": "billing",
@@ -108,6 +109,7 @@
     {
       "rank": 2,
       "issue_id": "ISS-OTHER-GENERAL",
+      "cancellation_intent_count": 6408,
       "title": "General app dissatisfaction",
       "area": "none",
       "topic": "other",
@@ -153,6 +155,7 @@
     {
       "rank": 3,
       "issue_id": "ISS-USABILITY-ADS",
+      "cancellation_intent_count": 2737,
       "title": "Too many and too frequent ads",
       "area": "usability",
       "topic": "usability",
@@ -198,6 +201,7 @@
     {
       "rank": 4,
       "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "cancellation_intent_count": 1458,
       "title": "Music stops or skips unexpectedly",
       "area": "playback",
       "topic": "playback",
@@ -243,6 +247,7 @@
     {
       "rank": 5,
       "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "cancellation_intent_count": 2613,
       "title": "Disliked app redesign and new UI",
       "area": "usability",
       "topic": "usability",
@@ -288,6 +293,7 @@
     {
       "rank": 6,
       "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
+      "cancellation_intent_count": 715,
       "title": "App crashes and freezes",
       "area": "playback",
       "topic": "playback",
@@ -333,6 +339,7 @@
     {
       "rank": 7,
       "issue_id": "ISS-ACCESS-LOGIN",
+      "cancellation_intent_count": 472,
       "title": "Login failures",
       "area": "access",
       "topic": "access",
@@ -378,6 +385,7 @@
     {
       "rank": 8,
       "issue_id": "ISS-USABILITY-LIBRARY_QUEUE",
+      "cancellation_intent_count": 623,
       "title": "Playlist and library management problems",
       "area": "usability",
       "topic": "usability",
@@ -446,5 +454,140 @@
       "top_issue_verified": 252,
       "top_issue_verifier_same_topic": 194
     }
-  }
+  },
+  "top_issue_monthly": [
+    {
+      "month": "2022-05",
+      "completed_reviews": 15439,
+      "top_issue_complaints": 540,
+      "share_pct": "3.50",
+      "partial_month": true
+    },
+    {
+      "month": "2022-06",
+      "completed_reviews": 30275,
+      "top_issue_complaints": 1211,
+      "share_pct": "4.00",
+      "partial_month": false
+    },
+    {
+      "month": "2022-07",
+      "completed_reviews": 32717,
+      "top_issue_complaints": 1281,
+      "share_pct": "3.92",
+      "partial_month": false
+    },
+    {
+      "month": "2022-08",
+      "completed_reviews": 30634,
+      "top_issue_complaints": 1106,
+      "share_pct": "3.61",
+      "partial_month": false
+    },
+    {
+      "month": "2022-09",
+      "completed_reviews": 26885,
+      "top_issue_complaints": 974,
+      "share_pct": "3.62",
+      "partial_month": false
+    },
+    {
+      "month": "2022-10",
+      "completed_reviews": 27528,
+      "top_issue_complaints": 991,
+      "share_pct": "3.60",
+      "partial_month": false
+    },
+    {
+      "month": "2022-11",
+      "completed_reviews": 27290,
+      "top_issue_complaints": 1262,
+      "share_pct": "4.62",
+      "partial_month": false
+    },
+    {
+      "month": "2022-12",
+      "completed_reviews": 31648,
+      "top_issue_complaints": 1269,
+      "share_pct": "4.01",
+      "partial_month": false
+    },
+    {
+      "month": "2023-01",
+      "completed_reviews": 28556,
+      "top_issue_complaints": 981,
+      "share_pct": "3.44",
+      "partial_month": false
+    },
+    {
+      "month": "2023-02",
+      "completed_reviews": 20837,
+      "top_issue_complaints": 761,
+      "share_pct": "3.65",
+      "partial_month": false
+    },
+    {
+      "month": "2023-03",
+      "completed_reviews": 27168,
+      "top_issue_complaints": 907,
+      "share_pct": "3.34",
+      "partial_month": false
+    },
+    {
+      "month": "2023-04",
+      "completed_reviews": 24895,
+      "top_issue_complaints": 817,
+      "share_pct": "3.28",
+      "partial_month": false
+    },
+    {
+      "month": "2023-05",
+      "completed_reviews": 27986,
+      "top_issue_complaints": 1333,
+      "share_pct": "4.76",
+      "partial_month": false
+    },
+    {
+      "month": "2023-06",
+      "completed_reviews": 27046,
+      "top_issue_complaints": 2155,
+      "share_pct": "7.97",
+      "partial_month": false
+    },
+    {
+      "month": "2023-07",
+      "completed_reviews": 85005,
+      "top_issue_complaints": 1829,
+      "share_pct": "2.15",
+      "partial_month": false
+    },
+    {
+      "month": "2023-08",
+      "completed_reviews": 30347,
+      "top_issue_complaints": 1347,
+      "share_pct": "4.44",
+      "partial_month": false
+    },
+    {
+      "month": "2023-09",
+      "completed_reviews": 41505,
+      "top_issue_complaints": 7073,
+      "share_pct": "17.04",
+      "partial_month": false
+    },
+    {
+      "month": "2023-10",
+      "completed_reviews": 88828,
+      "top_issue_complaints": 25956,
+      "share_pct": "29.22",
+      "partial_month": false
+    },
+    {
+      "month": "2023-11",
+      "completed_reviews": 34437,
+      "top_issue_complaints": 7147,
+      "share_pct": "20.75",
+      "partial_month": true
+    }
+  ]
 }
