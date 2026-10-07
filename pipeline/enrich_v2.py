@@ -315,11 +315,14 @@ def run(input_path: Path, run_id: str, workers: int | None = None, stop_after_re
 
     def apply_cache():
         nonlocal cache_hits
+        cached = {t: (o, l) for t, o, l in cdb.execute(
+            "SELECT text_sha, origin_review_id, labels FROM cache WHERE label_config=?", (cfg["label_config"],))}
+        if not cached:
+            return
         pend = state.q("SELECT review_id, text_sha FROM records WHERE status='pending' ORDER BY row_idx")
         upd = []
         for rid, tsha in pend:
-            hit = cdb.execute("SELECT origin_review_id, labels FROM cache WHERE text_sha=? AND label_config=?",
-                              (tsha, cfg["label_config"])).fetchone()
+            hit = cached.get(tsha)
             if hit:
                 origin, labels = hit
                 src = None if origin == rid else origin
