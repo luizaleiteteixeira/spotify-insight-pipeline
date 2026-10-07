@@ -1,5 +1,11 @@
 # Spotify Insight Pipeline: from 660,622 reviews to a traceable product decision
 
+<p align="center">
+  <a href="https://spotify-insight-luiza.vercel.app"><img alt="Open the live dashboard" src="https://img.shields.io/badge/%E2%96%B6%20Open%20the%20live%20dashboard-spotify--insight--luiza.vercel.app-1f6f4a?style=for-the-badge"></a>
+</p>
+
+<p align="center"><b>Live dashboard:</b> <a href="https://spotify-insight-luiza.vercel.app">https://spotify-insight-luiza.vercel.app</a>, public with no login. Every number is served from the database at request time.</p>
+
 **Question:** at the end of May 2022 – Nov 2023, where should Spotify put the next quarter of product effort: access, usability, playback, or billing/support?
 
 **Answer (memo, human-reviewed):** fix the **free-tier experience around Premium-only controls** (song choice, skips, rewind, playing in order). It is the #1 issue by the course's baseline priority (`priority = complaint_count × mean_severity`): **58,940 complaints, severity sum 174,087** (claims C001–C004). Its share of monthly reviews rose from 3.28–4.76% (Jun 2022 – May 2023) to **29.22% in Oct 2023**. Under the course's shared labels it is filed as *billing*, but it is a free-tier packaging decision, not a payment or support failure. → [`runs/full/memo/memo.md`](runs/full/memo/memo.md)
