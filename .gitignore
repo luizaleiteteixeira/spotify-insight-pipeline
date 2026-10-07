@@ -10,3 +10,9 @@ data/raw/spotify_reviews_18months.csv
 *.tmp
 data/reviews.db
 runs/*/analysis.db
+
+# Large / rebuildable state (full-run DB and caches are published as release assets)
+runs/full/state.db
+runs/result_cache_main.db
+*.db-wal
+*.db-shm
