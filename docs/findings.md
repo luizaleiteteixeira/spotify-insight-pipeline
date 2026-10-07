@@ -1,3 +1,5 @@
+> **Superseded (Class 6 checkpoint, v1 labels).** This file documents the v1 taxonomy/Haiku checkpoint. The final submission uses the course common labels (v2); its evaluation is in the [README](../README.md#3-testing--evaluation) and `evals/golden_v2/`. Kept for history: the v1 injection failure and the v1->v2 label conversion are referenced from the README.
+
 # Evaluation findings (living document → feeds the README)
 
 Status: checkpoint phase (Class 6 → Class 7). Numbers below are copied from saved files; the source file is linked for each. Interpretation marked **[to discuss]** is a draft for the author to confirm in her own words.

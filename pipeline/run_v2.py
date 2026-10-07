@@ -42,7 +42,10 @@ def main():
     stages_v2.set_cache_namespace(a.cache_ns)
     run_dir = RUNS / a.run_id
     if a.offline:
-        print(json.dumps(stages_v2.rank(a.run_id), indent=1))
+        out = stages_v2.rank_check(a.run_id)
+        print(json.dumps(out, indent=1))
+        if not (out["rebuilds_identical"] and out["sql_matches_python"]):
+            raise SystemExit("ranking check FAILED")
         return
     log = RunLog(run_dir, "orchestrator")
     times, t_all = {}, time.time()

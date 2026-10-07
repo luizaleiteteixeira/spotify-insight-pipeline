@@ -555,3 +555,32 @@ def memo(run_id: str, budget: Budget, top_n: int = 8, prompt: str = "memo_v4") -
                                                                       "alternatives")}})
     log.event("done", passed=final["passed"], cached=was, claims=len(claims))
     return final
+
+
+def rank_check(run_id: str) -> dict:
+    """Reproducibility check (no model): rebuild the ranking twice (byte-identical files) and recompute it
+    independently in SQL from state.db + membership.csv; all three must agree."""
+    import hashlib
+    run_dir = RUNS / run_id
+    path = run_dir / "rank" / "ranking.csv"
+    rank(run_id)
+    h1 = hashlib.sha256(path.read_bytes()).hexdigest()
+    rank(run_id)
+    h2 = hashlib.sha256(path.read_bytes()).hexdigest()
+    con = sqlite3.connect(":memory:")
+    con.execute(f"ATTACH DATABASE '{run_dir / 'state.db'}' AS s")
+    con.execute("CREATE TABLE m (issue_id TEXT, review_id TEXT)")
+    con.executemany("INSERT INTO m VALUES (?,?)", [(p["issue_id"], p["review_id"]) for p in
+                                                   csv.DictReader(open(run_dir / "group" / "membership.csv", newline=""))])
+    sql_rows = con.execute("""
+        SELECT m.issue_id, COUNT(*) AS n, SUM(json_extract(r.labels, '$.severity')) AS s
+        FROM (SELECT DISTINCT issue_id, review_id FROM m) m JOIN s.records r ON r.review_id = m.review_id
+        WHERE r.status = 'completed' AND json_extract(r.labels, '$.intent') IN ('complaint', 'cancellation')
+        GROUP BY m.issue_id ORDER BY s DESC, m.issue_id ASC""").fetchall()
+    sql = [{"rank": str(i), "issue_id": iid, "complaint_count": str(n), "severity_sum": str(s),
+            "mean_severity": mean6(s, n), "priority_score": str(s)} for i, (iid, n, s) in enumerate(sql_rows, 1)]
+    py = list(csv.DictReader(open(path, newline="")))
+    out = {"run_id": run_id, "checked_at": now(), "rebuild_sha256": [h1, h2], "rebuilds_identical": h1 == h2,
+           "sql_matches_python": sql == py, "issues": len(py)}
+    write_json(run_dir / "rank" / "ranking_check.json", out)
+    return out

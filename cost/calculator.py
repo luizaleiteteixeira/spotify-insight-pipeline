@@ -209,6 +209,17 @@ def write_report(out, runs, rates, calls):
           "Local compute (orchestration, SQLite on a laptop) is not metered: **unknown**, excluded from API spend.", "",
           "Replay: `python3 cost/calculator.py` · Change `rates.csv` or `assumptions.json` and rerun; doubling all rates "
           "doubles every API figure while measured times are unchanged."]
+    fa = HERE / "full_run_actuals.json"
+    if fa.exists():
+        a = json.loads(fa.read_text())
+        L += ["", "## Actual full run vs projection (measured after the run)", "",
+              f"Projected (pilot-based, batch scenario): ${a['projection_from_pilot_batch_scenario_usd']} · "
+              f"**Actual: ${a['total_api_usd']}** for {a['rows']:,} rows ({a['completed']:,} completed, "
+              f"{a['quarantined']:,} quarantined). {a['enrichment_wall_clock']}.", "",
+              "| Stage / model / tier | Calls | Succeeded | Input tok | Output tok | Cost USD |", "|---|---|---|---|---|---|"]
+        for k, v in a["by_stage"].items():
+            L.append(f"| {k.replace(chr(124), ' · ')} | {v['calls']:,} | {v['succeeded']:,} | {v['input_tokens']:,} | {v['output_tokens']:,} | {v['cost_usd']} |")
+        L += ["", "Why actual differs from the projection:"] + [f"- {w}" for w in a["why_actual_differs"]]
     (HERE / "report.md").write_text("\n".join(L) + "\n")
     body = "\n".join(f"<p>{html.escape(l)}</p>" if not l.startswith("|") else f"<pre>{html.escape(l)}</pre>" for l in L)
     (HERE / "report.html").write_text(f"<!doctype html><meta charset=utf-8><title>Cost report</title>"

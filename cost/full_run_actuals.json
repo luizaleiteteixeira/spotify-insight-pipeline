@@ -1,0 +1,66 @@
+{
+  "run_id": "full",
+  "source": "runs/ledger.jsonl via pipeline.common.ledger_calls (259 re-logged batch lines removed)",
+  "rows": 660622,
+  "completed": 659026,
+  "quarantined": 1596,
+  "distinct_texts_classified_first_pass": 484189,
+  "by_stage": {
+    "adjudicate|anthropic/claude-sonnet-5|standard": {
+      "calls": 245,
+      "succeeded": 198,
+      "input_tokens": 651210,
+      "output_tokens": 75094,
+      "cost_usd": 0.9408
+    },
+    "enrich|openai/gpt-6-luna|batch": {
+      "calls": 9608,
+      "succeeded": 9559,
+      "input_tokens": 40681283,
+      "output_tokens": 16861514,
+      "cost_usd": 5.141
+    },
+    "enrich|openai/gpt-6-luna|standard": {
+      "calls": 9355,
+      "succeeded": 9274,
+      "input_tokens": 29504976,
+      "output_tokens": 3324624,
+      "cost_usd": 2.4666
+    },
+    "group|anthropic/claude-sonnet-5|standard": {
+      "calls": 1,
+      "succeeded": 1,
+      "input_tokens": 21687,
+      "output_tokens": 2744,
+      "cost_usd": 0.0708
+    },
+    "memo|anthropic/claude-sonnet-5|standard": {
+      "calls": 9,
+      "succeeded": 9,
+      "input_tokens": 74778,
+      "output_tokens": 20053,
+      "cost_usd": 0.338
+    },
+    "verify|anthropic/claude-haiku-4-5|standard": {
+      "calls": 100,
+      "succeeded": 100,
+      "input_tokens": 267582,
+      "output_tokens": 70066,
+      "cost_usd": 0.6179
+    }
+  },
+  "total_api_usd": 9.5752,
+  "enrichment_wall_clock": "sessions 1-5: 2026-10-07 01:20:42 -> 04:23:23 UTC (3h03m incl. 5 min recorded pauses)",
+  "downstream_wall_clock_s": {
+    "verify+adjudicate": 1333.2,
+    "group": 34.0,
+    "rank": 8.9,
+    "memo": 27.1
+  },
+  "projection_from_pilot_batch_scenario_usd": 7.08,
+  "why_actual_differs": [
+    "~9-16% of items per batch needed the one validation retry, run at STANDARD price (sync): 9,355 sync calls cost $2.47 vs a modeled retry rate of 0.09 at batch price",
+    "adjudication capped at 200 cases (pilot cost per case $0.0045); 45 first attempts truncated and retried",
+    "memo regenerated v2->v3->v4 after human review (9 calls, $0.34)"
+  ]
+}

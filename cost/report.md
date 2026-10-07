@@ -1,6 +1,6 @@
 # 100-review cost & runtime report
 
-Generated 2026-10-07T00:20:28+00:00 by `python3 cost/calculator.py` (offline replay; no API calls).
+Generated 2026-10-07T05:41:30+00:00 by `python3 cost/calculator.py` (offline replay; no API calls).
 
 Input `data/raw/cost_100.csv` · SHA-256 `c884ac3b9be5066995d5063f96ad9af6e5e082975788c1684c4f6b6ea661dd0e` · 100 rows · 100 distinct texts · pilot run on 2026-10-07T00:20:22+00:00
 
@@ -67,3 +67,21 @@ Projection method: measured per-review token usage of the cold enrichment calls 
 Local compute (orchestration, SQLite on a laptop) is not metered: **unknown**, excluded from API spend.
 
 Replay: `python3 cost/calculator.py` · Change `rates.csv` or `assumptions.json` and rerun; doubling all rates doubles every API figure while measured times are unchanged.
+
+## Actual full run vs projection (measured after the run)
+
+Projected (pilot-based, batch scenario): $7.08 · **Actual: $9.5752** for 660,622 rows (659,026 completed, 1,596 quarantined). sessions 1-5: 2026-10-07 01:20:42 -> 04:23:23 UTC (3h03m incl. 5 min recorded pauses).
+
+| Stage / model / tier | Calls | Succeeded | Input tok | Output tok | Cost USD |
+|---|---|---|---|---|---|
+| adjudicate · anthropic/claude-sonnet-5 · standard | 245 | 198 | 651,210 | 75,094 | 0.9408 |
+| enrich · openai/gpt-6-luna · batch | 9,608 | 9,559 | 40,681,283 | 16,861,514 | 5.141 |
+| enrich · openai/gpt-6-luna · standard | 9,355 | 9,274 | 29,504,976 | 3,324,624 | 2.4666 |
+| group · anthropic/claude-sonnet-5 · standard | 1 | 1 | 21,687 | 2,744 | 0.0708 |
+| memo · anthropic/claude-sonnet-5 · standard | 9 | 9 | 74,778 | 20,053 | 0.338 |
+| verify · anthropic/claude-haiku-4-5 · standard | 100 | 100 | 267,582 | 70,066 | 0.6179 |
+
+Why actual differs from the projection:
+- ~9-16% of items per batch needed the one validation retry, run at STANDARD price (sync): 9,355 sync calls cost $2.47 vs a modeled retry rate of 0.09 at batch price
+- adjudication capped at 200 cases (pilot cost per case $0.0045); 45 first attempts truncated and retried
+- memo regenerated v2->v3->v4 after human review (9 calls, $0.34)
