@@ -1,3 +1,5 @@
+> **Superseded (Class 6 checkpoint, v1 taxonomy).** This describes the original 9-topic taxonomy and the Claude-Haiku design used before the course published common labels. The final system uses the common labels in `config/labels_v2.json` and the architecture in the [README](../README.md#4-architecture). Kept for history.
+
 # Design: labels, schema, and control
 
 Source of truth for labels: [`config/taxonomy.json`](../config/taxonomy.json) (`tax-v1`). Prompts render the taxonomy from that file, so the labeler, the verifier, and the human labeling tool always see the same definitions.

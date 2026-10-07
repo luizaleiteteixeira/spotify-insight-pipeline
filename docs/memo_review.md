@@ -28,4 +28,8 @@ While building v4, the checks rejected real defects: rounded shares ("3.3-4.8%")
 
 One formatting-only post-processing step: the model twice wrote the em dash as the literal escape `—`. The writer converts it to the character. The content is unchanged.
 
-**Final status: APPROVED by the author on 2026-10-07** (`runs/full/memo/human_review.json`).
+**Status of the pre-iteration v4: APPROVED by the author on 2026-10-07.**
+
+## Regeneration after the improvement iteration (2026-10-07)
+
+After the author approved v4, the improvement iteration changed the inputs. The capped fallback added 1,499 classified records, so the top issue now has 59,334 complaints. A new evidence-checker agent screened the memo examples: 48 candidates, 8 rejected, including the paying-user review `d8be33b8`. The memo was regenerated with the same `memo_v4` prompt, so the author's A-D decisions are kept. It passes all automatic checks. **Status: PENDING the author's re-read of the regenerated version** (`runs/full/memo/human_review.json`).
