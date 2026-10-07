@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-10-07T00:12:03+00:00",
+  "model_call_cached": false,
+  "issues": [
+    {
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "code": "billing.premium_only_controls",
+      "topic": "billing",
+      "area": "billing_support",
+      "title": "Premium upsell blocks app usage",
+      "summary": "A reviewer reports that after an update, basic app functions are blocked by a repeated \"try premium\" prompt.",
+      "named_by": "model",
+      "member_count": 1
+    },
+    {
+      "issue_id": "ISS-OTHER-GENERAL",
+      "code": "other.general",
+      "topic": "other",
+      "area": "none",
+      "title": "General dissatisfaction with the app",
+      "summary": "Reviewers express strong dislike of the app without specifying a particular problem.",
+      "named_by": "model",
+      "member_count": 3
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "code": "playback.stops_skips",
+      "topic": "playback",
+      "area": "playback",
+      "title": "Playback stops after subscribing to Premium",
+      "summary": "A reviewer reports that playback stopped working immediately after signing up for Premium, leading them to cancel.",
+      "named_by": "model",
+      "member_count": 1
+    },
+    {
+      "issue_id": "ISS-USABILITY-ADS",
+      "code": "usability.ads",
+      "topic": "usability",
+      "area": "usability",
+      "title": "Too many ads interrupt listening",
+      "summary": "A reviewer says the app is good overall but shows too many ads, which detracts from the experience.",
+      "named_by": "model",
+      "member_count": 1
+    }
+  ],
+  "note": "Membership is assigned by code from the enriched subtopic; the model only names issues."
+}

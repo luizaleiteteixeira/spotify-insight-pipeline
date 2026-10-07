@@ -55,12 +55,12 @@ def client(provider: str):
             if not os.environ.get("OPENAI_API_KEY"):
                 raise SystemExit("OPENAI_API_KEY is not set (see .env.example).")
             from openai import OpenAI
-            _clients[provider] = OpenAI(max_retries=0, timeout=180.0, base_url="https://api.openai.com/v1")
+            _clients[provider] = OpenAI(max_retries=0, timeout=300.0, base_url="https://api.openai.com/v1")
         else:
             if not os.environ.get("ANTHROPIC_API_KEY"):
                 raise SystemExit("ANTHROPIC_API_KEY is not set (see .env.example).")
             import anthropic
-            _clients[provider] = anthropic.Anthropic(max_retries=0, timeout=180.0, base_url="https://api.anthropic.com")
+            _clients[provider] = anthropic.Anthropic(max_retries=0, timeout=300.0, base_url="https://api.anthropic.com")
     return _clients[provider]
 
 

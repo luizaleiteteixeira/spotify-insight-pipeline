@@ -1,0 +1,15 @@
+{
+  "_note": "Editable. Changing these changes only the projections, never the measured pilot results.",
+  "budget_usd": 15.0,
+  "max_workers": 4,
+  "output_token_cap_per_review": 60,
+  "full_run_verify_sample": 2000,
+  "max_adjudications": 500,
+  "fallback_fraction_base": 0.05,
+  "fallback_fraction_conservative": 0.25,
+  "conservative_retry_multiplier": 3.0,
+  "conservative_min_retry_rate": 0.05,
+  "group_cost_multiplier_full_vs_pilot": 1.0,
+  "memo_cost_multiplier_full_vs_pilot": 1.0,
+  "adjudication_cost_per_case_if_unmeasured_usd": 0.01
+}

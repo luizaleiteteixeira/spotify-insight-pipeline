@@ -1,0 +1,9 @@
+{
+  "name": "spotify-insight-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Dashboard + serverless API over the processed Spotify review data (Neon Postgres).",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0"
+  }
+}

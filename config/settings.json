@@ -1,7 +1,7 @@
 {
   "budget": {
-    "total_spend_cap_usd": 5.0,
-    "note": "Hard cap across all runs in runs/ (summed from ledger.jsonl). A stage stops dispatching new calls once the projected spend would exceed the cap, and saves progress."
+    "total_spend_cap_usd": 15.0,
+    "note": "Hard cap across all providers and runs (summed from runs/ledger.jsonl). Account credits at time of the full run: OpenAI $10 (classification), Anthropic ~$4.4 remaining (verification/grouping/memo). Stops dispatch and saves progress when reached."
   },
   "concurrency": {
     "enrich_workers": 8,

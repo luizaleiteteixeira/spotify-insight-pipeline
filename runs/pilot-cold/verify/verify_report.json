@@ -1,0 +1,31 @@
+{
+  "run_id": "pilot-cold",
+  "generated_at": "2026-10-07T00:19:49+00:00",
+  "sample_declared": 20,
+  "sample_seed": "verify-v2",
+  "sample_method": "lowest SHA-256('verify-v2:'+review_id) among completed original (non-cache) records",
+  "verifier": "anthropic/claude-haiku-4-5|verifier_v2@18fbd7f7",
+  "adjudicator": "anthropic/claude-sonnet-5|adjudicator_v2@e63eb3b0",
+  "verified": 20,
+  "verifier_failed": 0,
+  "verifier_calls": 5,
+  "verifier_cache_hits": 0,
+  "topic_agreement": 0.8,
+  "subtopic_agreement": 0.8,
+  "intent_agreement": 1.0,
+  "severity_exact": 0.8,
+  "severity_mae": 0.25,
+  "sentiment_mae": 0.077,
+  "disagreements": 4,
+  "adjudicated": 4,
+  "adjudication_cap": 5,
+  "enricher_upheld_by_majority_topic": 3,
+  "enricher_upheld_by_majority_intent": 4,
+  "topic_confusion_enricher_to_verifier": {
+    "other -> usability": 1,
+    "billing -> playback": 1,
+    "usability -> other": 1,
+    "access -> playback": 1
+  },
+  "note": "Enricher labels are not overwritten; consensus is reported as evidence of label reliability."
+}

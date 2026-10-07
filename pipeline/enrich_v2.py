@@ -29,7 +29,13 @@ from .common import (CONFIG, PROMPTS, RUNS, Budget, BudgetExceeded, ModelCallFai
 FIELDS = ("review_id", "review_text", "review_rating", "review_likes", "app_version", "review_timestamp")
 SCHEMA_VERSION = "enrich-schema-v2"
 SHORT_TEXT = 200          # reviews this short use the whole text as evidence_quote (deterministic)
-CACHE_DB = RUNS / "result_cache.db"
+CACHE_DB = RUNS / "result_cache_main.db"
+
+
+def set_cache_namespace(ns: str):
+    """Separate saved-result caches per experiment (e.g. the pilot starts from an EMPTY cache)."""
+    global CACHE_DB
+    CACHE_DB = RUNS / f"result_cache_{ns}.db"
 
 LABELS = load_json(CONFIG / "labels_v2.json")
 CODES = list(LABELS["subtopics"])
@@ -87,8 +93,8 @@ def item_schema() -> dict:
         "required": ["results"], "additionalProperties": False}
 
 
-def render_system() -> tuple[str, str]:
-    tpl = (PROMPTS / "enricher_v2.md").read_text(encoding="utf-8")
+def render_system(name: str = "enricher_v2") -> tuple[str, str]:
+    tpl = (PROMPTS / f"{name}.md").read_text(encoding="utf-8")
     codes = "\n".join(f"- {c}: {d}" for c, d in LABELS["subtopics"].items())
     topic_rules = "\n".join(f"- {t}: {d}" for t, d in LABELS["topics"].items()) + "\n" + \
         "\n".join(f"- {r}" for r in LABELS["rules"])
@@ -96,7 +102,7 @@ def render_system() -> tuple[str, str]:
     sev = "\n".join(f"- {k}: {v}" for k, v in LABELS["severity"].items())
     system = (tpl.replace("{CODES}", codes).replace("{RULES}", topic_rules).replace("{INTENTS}", intents)
               .replace("{SEVERITY}", sev))
-    return system, f"enricher_v2@{sha256_text(system)[:8]}"
+    return system, f"{name}@{sha256_text(system)[:8]}"
 
 
 def role_config() -> dict:

@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {"name": "dashboard", "runtimeExecutable": "node", "runtimeArgs": ["dashboard/dev-server.js"], "port": 3017}
+  ]
+}

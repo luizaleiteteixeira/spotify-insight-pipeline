@@ -1,0 +1,13 @@
+{
+  "run_id": "devbatch-100",
+  "session": 1,
+  "phase": "initial",
+  "mode": "batch",
+  "stop_reason": "complete",
+  "status_counts": {
+    "completed": 100
+  },
+  "batches_submitted_this_session": 1,
+  "wall_clock_s": 417.2,
+  "accounting_ok": true
+}

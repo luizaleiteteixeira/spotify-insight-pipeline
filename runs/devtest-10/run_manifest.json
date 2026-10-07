@@ -1,0 +1,33 @@
+{
+  "run_id": "devtest-10",
+  "input_file": "/private/tmp/claude-501/-Users-luizateixeira-Desktop-MBA-networking-tracker/49dc4830-a566-44d5-af21-7dc2ba72e4a8/scratchpad/dev10.csv",
+  "input_rows": 10,
+  "code_version": "20ce48e-dirty",
+  "label_config": "openai/gpt-6-luna/effort=none|enricher_v2@aa674cb6|enrich-schema-v2|labels-v2@0241cb18",
+  "enricher": {
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "effort": "none",
+    "batch_size": 50,
+    "workers": 1,
+    "max_output_tokens_per_review": 60,
+    "max_output_tokens_cap": 4000,
+    "reserve_usd_per_review": 0.0001,
+    "note": "<=50 reviews per request (course limit). Effort 'none' = cheapest supported setting; raise only if evals justify it.",
+    "prompt_version": "enricher_v2@aa674cb6",
+    "label_config": "openai/gpt-6-luna/effort=none|enricher_v2@aa674cb6|enrich-schema-v2|labels-v2@0241cb18"
+  },
+  "retry_policy": {
+    "api_max_attempts": 5,
+    "api_backoff_base_seconds": 2.0,
+    "api_backoff_max_seconds": 60.0,
+    "invalid_output_retries": 1,
+    "note": "API errors (429, 5xx, timeouts, connection) get bounded exponential backoff with jitter. An invalid model answer (schema, label, quote not in source) gets exactly one retry with the validation error fed back, then the record is quarantined."
+  },
+  "spend_cap_usd": 5.0,
+  "distinct_nonempty_texts": 10,
+  "classification_input_fields": [
+    "review_text"
+  ],
+  "updated_at": "2026-10-07T00:11:50+00:00"
+}

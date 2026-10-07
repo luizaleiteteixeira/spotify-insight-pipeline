@@ -1,0 +1,5 @@
+review_id,code_agree,disagree,enricher_code,enricher_intent,enricher_severity,enricher_topic,intent_agree,sentiment_abs_diff,severity_abs_diff,text,topic_agree,verifier_code,verifier_intent,verifier_severity,verifier_status,verifier_topic
+e85a31f6-786e-4673-94b8-010fea8ce464,True,False,catalog.recommendations,praise,1,catalog,True,0.1,0,I love the mixes,True,catalog.recommendations,praise,1,completed,catalog
+5e42046c-b29b-4035-ba83-a8e222789e98,True,False,usability.ads,complaint,2,usability,True,0.1,0,"Listen to my music almost everyday,this app is great. But the bad thing is that it gives too many ads, i would have hiven it 5 stars. Apart from that this app is great",True,usability.ads,complaint,2,completed,usability
+7a8b5434-66b4-4b13-aa91-5ad62a86ec04,True,False,other.general,praise,1,other,True,0.05,0,I love sportify. This is number one music app for me and others.,True,other.general,praise,1,completed,other
+8e9a5751-c1e8-4d7a-afbe-5239c98a08d0,True,False,other.general,unclear,1,other,True,0.1,0,Shame on you 😡 😡😠😠😡,True,other.general,unclear,1,completed,other

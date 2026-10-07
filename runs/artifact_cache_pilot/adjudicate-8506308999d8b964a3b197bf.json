@@ -1,0 +1,1 @@
+{"role": "adjudicate", "key": "8506308999d8b964a3b197bf", "created_at": "2026-10-07T00:19:40+00:00", "value": {"code": "other.general", "intent": "cancellation", "severity": 2, "reason": "The review only states the update made the app 'useless' and says 'Uninstall', with no specific defect named, matching the generic 'bad app' rule for other.general at severity 2."}}

@@ -1,0 +1,192 @@
+{
+  "question": "Where should Spotify put the next quarter of product effort: access, usability, playback, or billing/support?",
+  "scope": {
+    "source_rows": 10,
+    "completed": 10,
+    "quarantined": 0,
+    "pending": 0,
+    "complaint_or_cancellation": 6,
+    "window": "2022-05-17 to 2023-11-15 (first and last months partial)"
+  },
+  "ranking_rule": "priority_score = complaint_count x mean_severity = severity_sum; ties by issue_id",
+  "areas": [
+    {
+      "area": "none",
+      "complaint_count": 3,
+      "severity_sum": 6,
+      "sev4plus": 0,
+      "cancellation": 0,
+      "mean_severity": "2.000000"
+    },
+    {
+      "area": "playback",
+      "complaint_count": 1,
+      "severity_sum": 4,
+      "sev4plus": 1,
+      "cancellation": 1,
+      "mean_severity": "4.000000"
+    },
+    {
+      "area": "billing_support",
+      "complaint_count": 1,
+      "severity_sum": 3,
+      "sev4plus": 0,
+      "cancellation": 0,
+      "mean_severity": "3.000000"
+    },
+    {
+      "area": "usability",
+      "complaint_count": 1,
+      "severity_sum": 2,
+      "sev4plus": 0,
+      "cancellation": 0,
+      "mean_severity": "2.000000"
+    }
+  ],
+  "top_issues": [
+    {
+      "rank": 1,
+      "issue_id": "ISS-OTHER-GENERAL",
+      "title": "General dissatisfaction with the app",
+      "area": "none",
+      "topic": "other",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C001",
+          "value": "3"
+        },
+        "severity_sum": {
+          "claim_id": "C002",
+          "value": "6"
+        },
+        "mean_severity": {
+          "claim_id": "C003",
+          "value": "2.000000"
+        },
+        "priority_score": {
+          "claim_id": "C004",
+          "value": "6"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "0575ce08-ab04-46f0-aa8a-fbf9cd27e8da",
+          "severity": 2,
+          "intent": "complaint",
+          "quote": "I hate this application .. 👎"
+        },
+        {
+          "review_id": "f1532a7d-a47c-40eb-b41f-da17a379f9fb",
+          "severity": 2,
+          "intent": "complaint",
+          "quote": "Hateful app Waste of time"
+        },
+        {
+          "review_id": "f7cc1aa7-c306-4f5b-a5e9-911cca07fa60",
+          "severity": 2,
+          "intent": "complaint",
+          "quote": "Hate this application 😡😡😡bakwas"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "title": "Playback stops after subscribing to Premium",
+      "area": "playback",
+      "topic": "playback",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C005",
+          "value": "1"
+        },
+        "severity_sum": {
+          "claim_id": "C006",
+          "value": "4"
+        },
+        "mean_severity": {
+          "claim_id": "C007",
+          "value": "4.000000"
+        },
+        "priority_score": {
+          "claim_id": "C008",
+          "value": "4"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "a7b7539a-c8d3-4f4e-9edd-d46cd1b1fd12",
+          "severity": 4,
+          "intent": "cancellation",
+          "quote": "The very second I signed up for premium it stopped letting me play anything.. lol . Fastest cancelation of a service I've done, ever. Bye bye Spotify. Hello old friend, Bittorrent"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "title": "Premium upsell blocks app usage",
+      "area": "billing_support",
+      "topic": "billing",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C009",
+          "value": "1"
+        },
+        "severity_sum": {
+          "claim_id": "C010",
+          "value": "3"
+        },
+        "mean_severity": {
+          "claim_id": "C011",
+          "value": "3.000000"
+        },
+        "priority_score": {
+          "claim_id": "C012",
+          "value": "3"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "2313bd8e-43bd-4777-bff9-3ae753288f0e",
+          "severity": 3,
+          "intent": "complaint",
+          "quote": "It is absolutely useless after the latest update. There's nothing I can do without the \"try premium\" option popping up every damn time."
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "issue_id": "ISS-USABILITY-ADS",
+      "title": "Too many ads interrupt listening",
+      "area": "usability",
+      "topic": "usability",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C013",
+          "value": "1"
+        },
+        "severity_sum": {
+          "claim_id": "C014",
+          "value": "2"
+        },
+        "mean_severity": {
+          "claim_id": "C015",
+          "value": "2.000000"
+        },
+        "priority_score": {
+          "claim_id": "C016",
+          "value": "2"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "5e42046c-b29b-4035-ba83-a8e222789e98",
+          "severity": 2,
+          "intent": "complaint",
+          "quote": "Listen to my music almost everyday,this app is great. But the bad thing is that it gives too many ads, i would have hiven it 5 stars. Apart from that this app is great"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "generated_at": "2026-10-07T00:18:44+00:00",
+  "frozen_labels": {
+    "labels_sha256": "804efe575312f64c6394e1bc7ab1b7131f71157da61d1fbaa425a25330b8b2d3",
+    "eval_started": "2026-10-07T00:18:10+00:00"
+  },
+  "label_config": "openai/gpt-6-luna/effort=none|enricher_v2@aa674cb6|enrich-schema-v2|labels-v2@0241cb18",
+  "n": 50,
+  "completed": 50,
+  "quarantined_or_missing_count_as_wrong": 0,
+  "human_ambiguous": 8,
+  "topic_accuracy": 0.7,
+  "topic_accuracy_clear_cases": 0.738,
+  "topic_accuracy_ambiguous_cases": 0.5,
+  "topic_macro_f1": 0.519,
+  "intent_accuracy": 0.88,
+  "intent_macro_f1": 0.697,
+  "severity_exact": 0.78,
+  "severity_mae": 0.28,
+  "severity_within_1": 0.96,
+  "sentiment_mae": 0.198,
+  "sentiment_within_0.4": 0.88,
+  "quote_exact_substring_rate": 1.0,
+  "needs_review_vs_human_ambiguous": {
+    "tp": 4,
+    "fp": 5,
+    "fn": 4,
+    "precision": 0.444,
+    "recall": 0.5
+  },
+  "per_topic": {
+    "access": {
+      "support": 0,
+      "predicted": 1,
+      "correct": 0,
+      "f1": 0.0
+    },
+    "usability": {
+      "support": 10,
+      "predicted": 7,
+      "correct": 5,
+      "f1": 0.588
+    },
+    "playback": {
+      "support": 4,
+      "predicted": 3,
+      "correct": 0,
+      "f1": 0.0
+    },
+    "downloads": {
+      "support": 1,
+      "predicted": 1,
+      "correct": 1,
+      "f1": 1.0
+    },
+    "catalog": {
+      "support": 5,
+      "predicted": 5,
+      "correct": 3,
+      "f1": 0.6
+    },
+    "billing": {
+      "support": 0,
+      "predicted": 5,
+      "correct": 0,
+      "f1": 0.0
+    },
+    "support": {
+      "support": 2,
+      "predicted": 0,
+      "correct": 0,
+      "f1": 0.0
+    },
+    "other": {
+      "support": 28,
+      "predicted": 28,
+      "correct": 26,
+      "f1": 0.929
+    }
+  },
+  "per_intent": {
+    "cancellation": {
+      "support": 3,
+      "predicted": 1,
+      "correct": 1,
+      "f1": 0.5
+    },
+    "complaint": {
+      "support": 23,
+      "predicted": 21,
+      "correct": 20,
+      "f1": 0.909
+    },
+    "request": {
+      "support": 0,
+      "predicted": 2,
+      "correct": 0,
+      "f1": 0.0
+    },
+    "praise": {
+      "support": 23,
+      "predicted": 22,
+      "correct": 22,
+      "f1": 0.978
+    },
+    "unclear": {
+      "support": 1,
+      "predicted": 4,
+      "correct": 1,
+      "f1": 0.4
+    }
+  },
+  "topic_confusion_human_to_pred": {
+    "usability -> billing": 3,
+    "catalog -> other": 2,
+    "support -> playback": 2,
+    "playback -> billing": 2,
+    "other -> usability": 2,
+    "usability -> catalog": 1,
+    "usability -> playback": 1,
+    "playback -> access": 1,
+    "playback -> catalog": 1
+  },
+  "intent_confusion_human_to_pred": {
+    "complaint -> unclear": 2,
+    "cancellation -> unclear": 1,
+    "complaint -> request": 1,
+    "praise -> request": 1,
+    "cancellation -> complaint": 1
+  },
+  "verifier_vs_human": {
+    "n": 49,
+    "topic_accuracy": 0.653,
+    "intent_accuracy": 0.857,
+    "severity_mae": 0.286
+  },
+  "caveat": "50 cases: a small diagnostic sample, not a population accuracy estimate."
+}

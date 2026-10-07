@@ -1,0 +1,5 @@
+rank,issue_id,complaint_count,severity_sum,mean_severity,priority_score
+1,ISS-OTHER-GENERAL,3,6,2.000000,6
+2,ISS-PLAYBACK-STOPS_SKIPS,1,4,4.000000,4
+3,ISS-BILLING-PREMIUM_ONLY_CONTROLS,1,3,3.000000,3
+4,ISS-USABILITY-ADS,1,2,2.000000,2

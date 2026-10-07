@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spotify Review Insight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f6f3ee;--panel:#fffdf9;--ink:#1d1b18;--muted:#6b645a;--line:#e3ddd3;--accent:#1f6f4a;--accent-soft:#dcebe2;
+--warn:#a4472c;--bar:#c9b48a;--hero:#2b2620;--hero-ink:#f6f1e7;--hero-muted:#c9bfae;--chip:#3a332b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15130f;--panel:#1e1b17;--ink:#ece6db;--muted:#a59c8e;
+--line:#2f2a24;--accent:#5bbf8c;--accent-soft:#1f3a2c;--warn:#e08c6f;--bar:#8c7a55;--hero:#262119;--hero-ink:#f6f1e7;--hero-muted:#b7ad9c;--chip:#3a332b}}
+:root[data-theme="dark"]{--bg:#15130f;--panel:#1e1b17;--ink:#ece6db;--muted:#a59c8e;--line:#2f2a24;--accent:#5bbf8c;--accent-soft:#1f3a2c;
+--warn:#e08c6f;--bar:#8c7a55;--hero:#262119;--hero-ink:#f6f1e7;--hero-muted:#b7ad9c;--chip:#3a332b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 16px 64px}
+header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:650;letter-spacing:-.01em;margin:0}
+h1{font-size:28px}h2{font-size:24px;margin-bottom:6px}h3{font-size:18px}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+.muted{color:var(--muted)}.small{font-size:13px}
+.grid{display:grid;grid-template-columns:1.25fr 1fr;gap:20px}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+.hero{background:var(--hero);color:var(--hero-ink);border:none}
+.hero .eyebrow,.hero .muted{color:var(--hero-muted)}
+.hero h2{font-size:30px;line-height:1.15;margin:4px 0 10px}
+.hero p{margin:10px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{background:var(--chip);color:var(--hero-ink);border-radius:999px;padding:5px 11px;font-size:12.5px;border:1px solid #4a4237;cursor:pointer}
+.chip.light{background:var(--accent-soft);color:var(--ink);border-color:var(--line)}
+.claim{font-variant-numeric:tabular-nums;background:rgba(255,255,255,.08);border-radius:5px;padding:0 4px;font-size:.92em}
+.bars .row{display:grid;grid-template-columns:96px 1fr 76px;align-items:center;gap:10px;margin:7px 0}
+.bar{height:9px;background:var(--line);border-radius:6px;overflow:hidden}.bar>i{display:block;height:100%;background:var(--bar)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+@media (max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.kpi b{display:block;font:650 24px Fraunces,Georgia,serif;font-variant-numeric:tabular-nums}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right}
+tbody tr{cursor:pointer}tbody tr:hover{background:var(--accent-soft)}
+.tablewrap{overflow-x:auto}
+.pill{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--ink)}
+.sev{display:inline-block;min-width:22px;text-align:center;border-radius:6px;padding:1px 6px;font-weight:600;background:var(--line)}
+.sev.s4,.sev.s5{background:var(--warn);color:#fff}
+dialog{border:none;border-radius:14px;max-width:780px;width:calc(100% - 32px);padding:0;background:var(--panel);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.dlg{padding:22px}.close{float:right;background:none;border:1px solid var(--line);border-radius:8px;padding:4px 10px;cursor:pointer;color:var(--ink)}
+.quote{border-left:3px solid var(--bar);padding:4px 10px;margin:8px 0;font-size:14px}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+section{margin-top:26px}
+.trace{display:flex;gap:8px;flex-wrap:wrap}.trace input{flex:1;min-width:220px;padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+button.go{padding:9px 14px;border-radius:9px;border:none;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}@media (max-width:860px){.two{grid-template-columns:1fr}}
+.err{color:var(--warn)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div><div class="eyebrow">Spotify review insight · Google Play, May 2022 – Nov 2023</div>
+      <h1>Where should next quarter's product effort go?</h1></div>
+    <div class="small muted" id="runinfo">Loading…</div>
+  </header>
+
+  <div class="grid">
+    <div class="card hero" id="rec"><div class="eyebrow">01 · AI recommendation (saved output)</div><h2>Loading…</h2></div>
+    <div class="card">
+      <div class="eyebrow">The review mix</div><h2>What people talk about</h2>
+      <div class="small muted">All classified reviews, including praise and requests</div>
+      <div class="bars" id="topics"></div>
+      <div class="small muted" id="intents" style="margin-top:12px"></div>
+    </div>
+  </div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section class="card">
+    <div class="eyebrow">02 · Reproducible priorities</div>
+    <h2>Where the friction adds up</h2>
+    <div class="small muted">priority = complaint count × mean severity (= severity sum) over complaint and cancellation records; ties by issue ID. Click an issue for its evidence.</div>
+    <div class="tablewrap"><table id="rank"><thead><tr><th>#</th><th>Issue</th><th>Area</th><th class="num">Complaints</th>
+      <th class="num">Mean sev.</th><th class="num">Priority</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="two">
+    <div class="card"><div class="eyebrow">03 · By product area</div><h3>Complaint load per decision area</h3><div class="bars" id="areas"></div></div>
+    <div class="card"><div class="eyebrow">04 · Can you trust the labels?</div><h3>Evaluation &amp; run evidence</h3><div id="evals" class="small"></div></div>
+  </section>
+
+  <section class="card">
+    <div class="eyebrow">05 · Trace a review</div><h3>Look up any review_id</h3>
+    <div class="trace"><input id="rid" placeholder="paste a review_id, e.g. from an evidence quote"><button class="go" id="go">Trace</button></div>
+    <div id="traceout" class="small" style="margin-top:12px"></div>
+  </section>
+  <p class="small muted" style="margin-top:26px">Every number on this page is read from the database by the API at request time. Opening this page makes no model calls; the recommendation is a saved model output whose claim IDs and numbers were checked by code before loading. Reviews are self-selected public feedback: counts describe reviews, not users, revenue or churn.</p>
+</div>
+
+<dialog id="dlg"><div class="dlg" id="dlgbody"></div></dialog>
+
+<script>
+const $ = s => document.querySelector(s);
+const fmt = n => Number(n).toLocaleString("en-US");
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const AREA = {access:"Access", usability:"Usability", playback:"Playback", billing_support:"Billing / support", content:"Catalog (context)", none:"Other (context)"};
+async function j(u){ const r = await fetch(u); if(!r.ok) throw new Error((await r.json()).error || r.status); return r.json(); }
+function bars(el, rows, key, label){
+  const max = Math.max(...rows.map(r => r[key]), 1), tot = rows.reduce((a,r)=>a+r[key],0);
+  el.innerHTML = rows.map(r => `<div class="row"><span>${esc(label(r))}</span><div class="bar"><i style="width:${(100*r[key]/max).toFixed(1)}%"></i></div>
+    <span class="small muted" style="text-align:right">${fmt(r[key])}</span></div>`).join("");
+}
+function linkify(t){
+  return esc(t).replace(/\[(C\d{3})\]/g,'<span class="claim">$1</span>')
+    .replace(/`?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})`?/g,'<a href="#" class="rv mono" data-id="$1" style="color:inherit">$1</a>')
+    .replace(/(ISS-[A-Z0-9_-]+)/g,'<a href="#" class="iss" data-id="$1" style="color:inherit">$1</a>');
+}
+async function openIssue(id){
+  const d = await j(`/api/issues?id=${encodeURIComponent(id)}`), i = d.issue;
+  $("#dlgbody").innerHTML = `<button class="close" onclick="dlg.close()">Close</button>
+    <div class="eyebrow">Rank ${i.rank} · ${esc(AREA[i.area]||i.area)} · <span class="mono">${esc(i.issue_id)}</span></div>
+    <h2>${esc(i.title)}</h2><p class="muted">${esc(i.summary)}</p>
+    <p><b>${fmt(i.complaint_count)}</b> complaints · mean severity <b>${i.mean_severity}</b> · priority <b>${fmt(i.priority_score)}</b></p>
+    ${d.claims.length ? `<p class="small">Memo claims: ${d.claims.map(c=>`<span class="pill">${c.claim_id} ${c.metric} = ${c.value}</span>`).join(" ")}</p>`:""}
+    <p class="small muted">Severity × intent mix: ${d.mix.map(m=>`sev ${m.severity} ${m.intent}: ${fmt(m.n)}`).join(" · ")}</p>
+    <h3 style="margin-top:14px">Evidence (most severe first)</h3>
+    ${d.evidence.map(e=>`<div class="quote">“${esc(e.evidence_quote)}”<div class="small muted"><span class="sev s${e.severity}">${e.severity}</span> ${esc(e.intent)} · ${esc(String(e.review_date).slice(0,10))} · <a href="#" class="rv mono" data-id="${e.review_id}" style="color:inherit">${e.review_id}</a></div></div>`).join("")}`;
+  dlg.showModal();
+}
+async function trace(id){
+  const out = $("#traceout");
+  try{
+    const r = (await j(`/api/review?id=${encodeURIComponent(id.trim())}`)).review;
+    out.innerHTML = `<table><tbody style="cursor:default">
+      <tr><th>review_id</th><td class="mono">${esc(r.review_id)}</td></tr>
+      <tr><th>status</th><td>${esc(r.status)} ${r.reason?`(${esc(r.reason)})`:""}</td></tr>
+      <tr><th>labels</th><td>${esc(r.topic)} · ${esc(r.subtopic)} · ${esc(r.intent)} · severity ${r.severity ?? "–"} · sentiment ${r.sentiment ?? "–"} ${r.needs_review?'· <span class="pill">needs review</span>':""}</td></tr>
+      <tr><th>evidence</th><td>${r.evidence_quote?`“${esc(r.evidence_quote)}”`:"–"}</td></tr>
+      <tr><th>source</th><td>${esc(String(r.review_date||"").slice(0,10))} · ${r.review_rating??"–"}★ · app ${esc(r.app_version||"missing")}</td></tr>
+      <tr><th>cache</th><td>${r.cache_source_id?`labels reused from identical text <span class="mono">${esc(r.cache_source_id)}</span>`:"own model result"}</td></tr>
+      <tr><th>issue</th><td>${r.issue_id?`<a href="#" class="iss" data-id="${esc(r.issue_id)}">${esc(r.issue_id)}</a> (rank ${r.issue_rank}: ${esc(r.issue_title)})`:"not in ranking (not a complaint/cancellation)"}</td></tr>
+    </tbody></table>`;
+  }catch(e){ out.innerHTML = `<span class="err">${esc(e.message)}</span>`; }
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest(".rv,.iss"); if(!a) return; e.preventDefault();
+  if(a.classList.contains("iss")) openIssue(a.dataset.id);
+  else { if(dlg.open) dlg.close(); $("#rid").value = a.dataset.id; trace(a.dataset.id); $("#traceout").scrollIntoView({behavior:"smooth"}); }
+});
+$("#go").onclick = () => trace($("#rid").value);
+$("#rid").addEventListener("keydown", e => { if(e.key==="Enter") trace($("#rid").value); });
+
+(async () => {
+  try{
+    const [s, r] = await Promise.all([j("/api/summary"), j("/api/issues")]);
+    const st = Object.fromEntries(s.status.map(x=>[x.status,x.n])), total = s.status.reduce((a,x)=>a+x.n,0);
+    const m = s.meta || {}, prov = m.provenance || {}, v = m.verification || {}, g = m.golden || {}, c = m.cost || {};
+    $("#runinfo").innerHTML = `run <span class="mono">${esc(s.run_id)}</span> · ${fmt(total)} source rows · loaded ${esc(String(m.loaded_at||"").slice(0,10))}`;
+    const rec = s.recommendation;
+    $("#rec").innerHTML = rec ? `<div class="eyebrow">01 · AI recommendation (saved output)</div><h2>${esc(rec.title)}</h2>
+      <p>${linkify(rec.recommendation)}</p>
+      <div class="eyebrow" style="margin-top:14px">Alternatives considered</div>
+      ${(rec.alternatives||[]).map(a=>`<p class="small"><b>${esc(a.title)}</b> — ${linkify(a.why_not_first)}</p>`).join("")}
+      <div class="small muted" style="margin-top:12px">Generated by ${esc(rec.model)} (${esc(rec.prompt_version)}) from saved aggregates only · automatic claim/number check: <b>${rec.check_result && rec.check_result.passed ? "passed" : "FAILED"}</b> · claim IDs refer to claims.csv</div>`
+      : `<h2>No recommendation saved</h2>`;
+    const tn = s.topics.reduce((a,x)=>a+x.n,0);
+    bars($("#topics"), s.topics, "n", x => x.topic[0].toUpperCase()+x.topic.slice(1));
+    $("#intents").textContent = s.intents.map(x=>`${x.intent}: ${fmt(x.n)}`).join(" · ");
+    $("#kpis").innerHTML = [
+      ["Source rows accounted", fmt(total), "every review_id has a status"],
+      ["Classified", fmt(st.completed||0), `${(100*(st.completed||0)/total).toFixed(2)}% of rows`],
+      ["Quarantined / pending", `${fmt(st.quarantined||0)} / ${fmt(st.pending||0)}`, "empty texts + unresolved failures"],
+      ["Labels reused (exact text)", fmt(m.cache_reuse||0), "identical text, same config"],
+    ].map(k=>`<div class="kpi"><div class="small muted">${k[0]}</div><b>${k[1]}</b><div class="small muted">${k[2]}</div></div>`).join("");
+    $("#rank tbody").innerHTML = r.issues.map(i=>`<tr data-id="${esc(i.issue_id)}"><td>${i.rank}</td><td><b>${esc(i.title)}</b><div class="small muted mono">${esc(i.issue_id)}</div></td>
+      <td><span class="pill">${esc(AREA[i.area]||i.area)}</span></td><td class="num">${fmt(i.complaint_count)}</td><td class="num">${Number(i.mean_severity).toFixed(2)}</td>
+      <td class="num"><b>${fmt(i.priority_score)}</b></td></tr>`).join("");
+    document.querySelectorAll("#rank tbody tr").forEach(tr => tr.onclick = () => openIssue(tr.dataset.id));
+    bars($("#areas"), s.areas, "severity_sum", x => (AREA[x.area]||x.area));
+    $("#areas").insertAdjacentHTML("beforeend", `<div class="small muted">Bar = severity sum (priority) of all complaint/cancellation records in the area; ${s.areas.map(a=>`${AREA[a.area]||a.area}: ${fmt(a.complaint_count)} complaints`).join(" · ")}</div>`);
+    $("#evals").innerHTML = `
+      <p><b>Human golden set (${g.n||"–"} reviews):</b> topic ${pct(g.topic_accuracy)} · intent ${pct(g.intent_accuracy)} · severity exact ${pct(g.severity_exact)} (MAE ${g.severity_mae??"–"})</p>
+      <p><b>Independent verifier (${esc(v.verifier||"")}):</b> ${fmt(v.verified||0)} sampled reviews · topic agreement ${pct(v.topic_agreement)} · intent ${pct(v.intent_agreement)} · ${fmt(v.disagreements||0)} disagreements, ${fmt(v.adjudicated||0)} adjudicated by a third model (majority vote)</p>
+      <p><b>API cost of this run:</b> $${(c.run_api_usd_total??0).toFixed(2)} over ${fmt(c.run_calls||0)} logged calls ${c.pilot?`· 100-review pilot: cold $${c.pilot.cold_usd.toFixed(3)} in ${c.pilot.cold_wall_s}s, warm $${c.pilot.warm_usd.toFixed(3)} in ${c.pilot.warm_wall_s}s`:""}</p>
+      <p class="muted">Classifier: <span class="mono">${esc(prov.label_config||"")}</span></p>`;
+  }catch(e){ $("#rec").innerHTML = `<h2 class="err">Could not load data</h2><p>${esc(e.message)}</p>`; }
+})();
+function pct(x){ return x==null ? "–" : (100*x).toFixed(0)+"%"; }
+</script>
+</body>
+</html>

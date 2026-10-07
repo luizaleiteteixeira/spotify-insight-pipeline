@@ -1,0 +1,400 @@
+{
+  "question": "Where should Spotify put the next quarter of product effort: access, usability, playback, or billing/support?",
+  "scope": {
+    "source_rows": 100,
+    "completed": 100,
+    "quarantined": 0,
+    "pending": 0,
+    "complaint_or_cancellation": 52,
+    "window": "2022-05-17 to 2023-11-15 (first and last months partial)"
+  },
+  "ranking_rule": "priority_score = complaint_count x mean_severity = severity_sum; ties by issue_id",
+  "areas": [
+    {
+      "area": "billing_support",
+      "complaint_count": 13,
+      "severity_sum": 38,
+      "sev4plus": 0,
+      "cancellation": 3,
+      "mean_severity": "2.923077"
+    },
+    {
+      "area": "usability",
+      "complaint_count": 11,
+      "severity_sum": 26,
+      "sev4plus": 0,
+      "cancellation": 1,
+      "mean_severity": "2.363636"
+    },
+    {
+      "area": "none",
+      "complaint_count": 12,
+      "severity_sum": 24,
+      "sev4plus": 0,
+      "cancellation": 3,
+      "mean_severity": "2.000000"
+    },
+    {
+      "area": "playback",
+      "complaint_count": 6,
+      "severity_sum": 18,
+      "sev4plus": 0,
+      "cancellation": 1,
+      "mean_severity": "3.000000"
+    },
+    {
+      "area": "content",
+      "complaint_count": 6,
+      "severity_sum": 17,
+      "sev4plus": 0,
+      "cancellation": 1,
+      "mean_severity": "2.833333"
+    },
+    {
+      "area": "access",
+      "complaint_count": 4,
+      "severity_sum": 16,
+      "sev4plus": 4,
+      "cancellation": 0,
+      "mean_severity": "4.000000"
+    }
+  ],
+  "top_issues": [
+    {
+      "rank": 1,
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "title": "Free users can't control playback",
+      "area": "billing_support",
+      "topic": "billing",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C001",
+          "value": "12"
+        },
+        "severity_sum": {
+          "claim_id": "C002",
+          "value": "36"
+        },
+        "mean_severity": {
+          "claim_id": "C003",
+          "value": "3.000000"
+        },
+        "priority_score": {
+          "claim_id": "C004",
+          "value": "36"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "21915fcd-9a35-48ba-b277-6296c4154603",
+          "severity": 3,
+          "intent": "complaint",
+          "quote": "This app the new update has made everthing premium and so usless"
+        },
+        {
+          "review_id": "5c9c17d3-9d6a-4fa1-a2a4-ae98eefbbd25",
+          "severity": 3,
+          "intent": "complaint",
+          "quote": "it plays any song of the Playlist randomly"
+        },
+        {
+          "review_id": "7084ced1-0428-4093-9328-442f74719b4f",
+          "severity": 3,
+          "intent": "complaint",
+          "quote": "I am using Spotify from past two years From last update they removed basic features of music player"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "issue_id": "ISS-OTHER-GENERAL",
+      "title": "General dissatisfaction with the app",
+      "area": "none",
+      "topic": "other",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C005",
+          "value": "12"
+        },
+        "severity_sum": {
+          "claim_id": "C006",
+          "value": "24"
+        },
+        "mean_severity": {
+          "claim_id": "C007",
+          "value": "2.000000"
+        },
+        "priority_score": {
+          "claim_id": "C008",
+          "value": "24"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "b47c203f-366e-4409-922d-cd52aa8bbef6",
+          "severity": 2,
+          "intent": "cancellation",
+          "quote": "Used to love the app but recent update is very disappointing bye Spotify"
+        },
+        {
+          "review_id": "06a45bd5-3ed9-43af-b7f2-8b9487e2ffff",
+          "severity": 2,
+          "intent": "complaint",
+          "quote": "Worst app"
+        },
+        {
+          "review_id": "178c3b49-b689-4fe4-92a2-2257a58e6d95",
+          "severity": 2,
+          "intent": "complaint",
+          "quote": "Worst app."
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "issue_id": "ISS-USABILITY-ADS",
+      "title": "Too many and too loud ads",
+      "area": "usability",
+      "topic": "usability",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C009",
+          "value": "8"
+        },
+        "severity_sum": {
+          "claim_id": "C010",
+          "value": "19"
+        },
+        "mean_severity": {
+          "claim_id": "C011",
+          "value": "2.375000"
+        },
+        "priority_score": {
+          "claim_id": "C012",
+          "value": "19"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "035213ba-b1b9-411c-b028-70296e5f0e73",
+          "severity": 3,
+          "intent": "cancellation",
+          "quote": "I m using this app from 5 to 6 year but now m uninstald this app cz his premium adds are everywhere now ."
+        },
+        {
+          "review_id": "cf6166ae-d71a-4839-9add-088645ad3b78",
+          "severity": 3,
+          "intent": "complaint",
+          "quote": "DON'T DOWNLOAD THIS:Such a worst app ... that always plays adds instead of songs ...if want to enjoy music free without adds don't download this app .."
+        },
+        {
+          "review_id": "e5e6c55f-3069-4b7c-9807-f8b5d5bf2726",
+          "severity": 3,
+          "intent": "complaint",
+          "quote": "Too many ads.... it's literally useless if u hv not taken premium"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "issue_id": "ISS-ACCESS-APP_WONT_OPEN",
+      "title": "App crashes or won't open",
+      "area": "access",
+      "topic": "access",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C013",
+          "value": "2"
+        },
+        "severity_sum": {
+          "claim_id": "C014",
+          "value": "8"
+        },
+        "mean_severity": {
+          "claim_id": "C015",
+          "value": "4.000000"
+        },
+        "priority_score": {
+          "claim_id": "C016",
+          "value": "8"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "55cc3abf-c295-4591-8c3a-78085cfdefaa",
+          "severity": 4,
+          "intent": "complaint",
+          "quote": "The latest update has caused my app to crash I cant open the app please fix."
+        },
+        {
+          "review_id": "66a29b3c-c14d-440e-b722-b23e0c99ae82",
+          "severity": 4,
+          "intent": "complaint",
+          "quote": "App is stuck on loading/logo screen"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "issue_id": "ISS-ACCESS-LOGIN",
+      "title": "Login and password issues",
+      "area": "access",
+      "topic": "access",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C017",
+          "value": "2"
+        },
+        "severity_sum": {
+          "claim_id": "C018",
+          "value": "8"
+        },
+        "mean_severity": {
+          "claim_id": "C019",
+          "value": "4.000000"
+        },
+        "priority_score": {
+          "claim_id": "C020",
+          "value": "8"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "32fb340f-4f9f-4551-8dae-755221e58d6a",
+          "severity": 4,
+          "intent": "complaint",
+          "quote": "It not letting me into my account and there are to many ads"
+        },
+        {
+          "review_id": "de0a9cdf-8974-48bc-802f-331228df4619",
+          "severity": 4,
+          "intent": "complaint",
+          "quote": "Will not except my password"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "title": "Disliked homescreen and UX redesign",
+      "area": "usability",
+      "topic": "usability",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C021",
+          "value": "3"
+        },
+        "severity_sum": {
+          "claim_id": "C022",
+          "value": "7"
+        },
+        "mean_severity": {
+          "claim_id": "C023",
+          "value": "2.333333"
+        },
+        "priority_score": {
+          "claim_id": "C024",
+          "value": "7"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "d455c11e-c530-4c03-a395-38f5a5cdb8d3",
+          "severity": 3,
+          "intent": "complaint",
+          "quote": "Spotify constantly rolls out new major UX updates without any use of their beta program."
+        },
+        {
+          "review_id": "94c9f2f9-36fa-4c11-936e-660514fe7a35",
+          "severity": 2,
+          "intent": "complaint",
+          "quote": "Spotify is great, but the new homescreen update is horrible. You're not tiktok or Instagram. I don't want to scroll through 1 playlist or album or artist at a time."
+        },
+        {
+          "review_id": "ca16e65d-d2ff-4453-a495-b8c422809330",
+          "severity": 2,
+          "intent": "complaint",
+          "quote": "Recent update 👎"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "issue_id": "ISS-CATALOG-LYRICS",
+      "title": "Lyrics missing for some songs",
+      "area": "content",
+      "topic": "catalog",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C025",
+          "value": "2"
+        },
+        "severity_sum": {
+          "claim_id": "C026",
+          "value": "6"
+        },
+        "mean_severity": {
+          "claim_id": "C027",
+          "value": "3.000000"
+        },
+        "priority_score": {
+          "claim_id": "C028",
+          "value": "6"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "47becad0-8ae5-4a10-9731-fde8f2091862",
+          "severity": 3,
+          "intent": "complaint",
+          "quote": "It is good but there is a problem that in some songs there is no lyrics and in some songs there is lyrics it's so confusing. However it is good 😊😊."
+        },
+        {
+          "review_id": "e0127547-4edd-44a0-8d5e-e8398bc07086",
+          "severity": 3,
+          "intent": "complaint",
+          "quote": "sometime the lyrics don't show"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "issue_id": "ISS-CATALOG-MISSING_CONTENT",
+      "title": "Missing songs or genres in catalog",
+      "area": "content",
+      "topic": "catalog",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C029",
+          "value": "2"
+        },
+        "severity_sum": {
+          "claim_id": "C030",
+          "value": "6"
+        },
+        "mean_severity": {
+          "claim_id": "C031",
+          "value": "3.000000"
+        },
+        "priority_score": {
+          "claim_id": "C032",
+          "value": "6"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "0658feaa-5bec-416e-b6b0-3de2a4c14580",
+          "severity": 3,
+          "intent": "complaint",
+          "quote": "Nice app! But many songs are not present here!"
+        },
+        {
+          "review_id": "a1a28752-3256-4f81-b888-3e943343529f",
+          "severity": 3,
+          "intent": "complaint",
+          "quote": "It's nice but gospel music isn't much"
+        }
+      ]
+    }
+  ]
+}

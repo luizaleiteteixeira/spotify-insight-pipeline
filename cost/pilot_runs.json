@@ -1,0 +1,108 @@
+{
+  "input_file": "data/raw/cost_100.csv",
+  "input_sha256": "c884ac3b9be5066995d5063f96ad9af6e5e082975788c1684c4f6b6ea661dd0e",
+  "input_rows": 100,
+  "distinct_texts": 100,
+  "executed_at": "2026-10-07T00:20:22+00:00",
+  "stage_config": {
+    "enrich": {
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "effort": "none",
+      "batch": 50,
+      "workers": 1
+    },
+    "verify": {
+      "provider": "anthropic",
+      "model": "claude-haiku-4-5",
+      "effort": "n/a",
+      "batch": 20,
+      "workers": 1
+    },
+    "adjudicate": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5",
+      "effort": "thinking disabled",
+      "batch": 1,
+      "workers": 1
+    },
+    "group": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5",
+      "effort": "thinking disabled",
+      "batch": "1 pack",
+      "workers": 1
+    },
+    "memo": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5",
+      "effort": "thinking disabled",
+      "batch": "1 pack",
+      "workers": 1
+    }
+  },
+  "cold": {
+    "run_id": "pilot-cold",
+    "end_to_end_wall_clock_s": 79.03,
+    "process_wall_clock_s_incl_startup": 79.228,
+    "stage_times_s": {
+      "ingest": 0.006,
+      "enrich": 27.859,
+      "verify": 18.201,
+      "group": 12.663,
+      "rank": 0.006,
+      "memo": 20.291
+    },
+    "completed": 100,
+    "quarantined": 0,
+    "pending": 0,
+    "label_config": "openai/gpt-6-luna/effort=none|enricher_v2@aa674cb6|enrich-schema-v2|labels-v2@0241cb18",
+    "enrich": {
+      "requests": 4,
+      "attempts": 4,
+      "cache_hits": 0,
+      "texts_classified": 100,
+      "reviews_resent_after_invalid": 9,
+      "reviews_per_second_one_worker": 3.59
+    },
+    "verify": {
+      "sample": 20,
+      "verified": 20,
+      "calls": 5,
+      "cache_hits": 0,
+      "adjudicated": 4
+    }
+  },
+  "warm": {
+    "run_id": "pilot-warm",
+    "end_to_end_wall_clock_s": 0.049,
+    "process_wall_clock_s_incl_startup": 0.115,
+    "stage_times_s": {
+      "ingest": 0.005,
+      "enrich": 0.034,
+      "verify": 0.003,
+      "group": 0.001,
+      "rank": 0.001,
+      "memo": 0.002
+    },
+    "completed": 100,
+    "quarantined": 0,
+    "pending": 0,
+    "label_config": "openai/gpt-6-luna/effort=none|enricher_v2@aa674cb6|enrich-schema-v2|labels-v2@0241cb18",
+    "enrich": {
+      "requests": 0,
+      "attempts": 0,
+      "cache_hits": 100,
+      "texts_classified": 0,
+      "reviews_resent_after_invalid": 0,
+      "reviews_per_second_one_worker": 0
+    },
+    "verify": {
+      "sample": 20,
+      "verified": 20,
+      "calls": 0,
+      "cache_hits": 20,
+      "adjudicated": 4
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"role": "adjudicate", "key": "21aaba27482ac6fcf8098327", "created_at": "2026-10-07T00:19:49+00:00", "value": {"code": "access.app_wont_open", "intent": "complaint", "severity": 4, "reason": "The review explicitly states 'I cant open the app' after an update, indicating the app fails to start, matching access.app_wont_open."}}

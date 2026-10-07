@@ -1,0 +1,167 @@
+{
+  "generated_at": "2026-10-07T00:20:01+00:00",
+  "model_call_cached": false,
+  "issues": [
+    {
+      "issue_id": "ISS-ACCESS-APP_WONT_OPEN",
+      "code": "access.app_wont_open",
+      "topic": "access",
+      "area": "access",
+      "title": "App crashes or won't open",
+      "summary": "Reviewers report the app crashes or gets stuck on the loading screen and won't open after an update.",
+      "named_by": "model",
+      "member_count": 2
+    },
+    {
+      "issue_id": "ISS-ACCESS-LOGIN",
+      "code": "access.login",
+      "topic": "access",
+      "area": "access",
+      "title": "Login and password issues",
+      "summary": "Reviewers say the app won't accept their password or let them log into their account.",
+      "named_by": "model",
+      "member_count": 2
+    },
+    {
+      "issue_id": "ISS-BILLING-OTHER",
+      "code": "billing.other",
+      "topic": "billing",
+      "area": "billing_support",
+      "title": "General restrictions complaint",
+      "summary": "A reviewer complains that the app has too many restrictions.",
+      "named_by": "model",
+      "member_count": 1
+    },
+    {
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "code": "billing.premium_only_controls",
+      "topic": "billing",
+      "area": "billing_support",
+      "title": "Free users can't control playback",
+      "summary": "Reviewers complain that basic playback controls like choosing a song, skipping freely, replaying, or seeking within a track now require Premium, leaving free playback limited to shuffled songs with a capped number of skips.",
+      "named_by": "model",
+      "member_count": 12
+    },
+    {
+      "issue_id": "ISS-CATALOG-LYRICS",
+      "code": "catalog.lyrics",
+      "topic": "catalog",
+      "area": "content",
+      "title": "Lyrics missing for some songs",
+      "summary": "Reviewers note that lyrics display inconsistently, appearing for some songs but not others.",
+      "named_by": "model",
+      "member_count": 2
+    },
+    {
+      "issue_id": "ISS-CATALOG-MISSING_CONTENT",
+      "code": "catalog.missing_content",
+      "topic": "catalog",
+      "area": "content",
+      "title": "Missing songs or genres in catalog",
+      "summary": "Reviewers say certain songs or music genres, such as gospel, are not available in the app.",
+      "named_by": "model",
+      "member_count": 2
+    },
+    {
+      "issue_id": "ISS-CATALOG-RECOMMENDATIONS",
+      "code": "catalog.recommendations",
+      "topic": "catalog",
+      "area": "content",
+      "title": "Recommendations and playlist suggestions",
+      "summary": "Reviewers comment on the recommended songs feature, with some wanting to avoid it while playing playlists and others noting changes in the types of songs suggested.",
+      "named_by": "model",
+      "member_count": 2
+    },
+    {
+      "issue_id": "ISS-DOWNLOADS-FAIL_DISAPPEAR",
+      "code": "downloads.fail_disappear",
+      "topic": "downloads",
+      "area": "playback",
+      "title": "Downloads get stuck",
+      "summary": "A reviewer reports that background song downloads get stuck until the app is opened.",
+      "named_by": "model",
+      "member_count": 1
+    },
+    {
+      "issue_id": "ISS-DOWNLOADS-OFFLINE_MODE",
+      "code": "downloads.offline_mode",
+      "topic": "downloads",
+      "area": "playback",
+      "title": "Offline mode not working",
+      "summary": "A reviewer reports that offline playback is not working.",
+      "named_by": "model",
+      "member_count": 1
+    },
+    {
+      "issue_id": "ISS-OTHER-GENERAL",
+      "code": "other.general",
+      "topic": "other",
+      "area": "none",
+      "title": "General dissatisfaction with the app",
+      "summary": "Reviewers express overall negative sentiment about the app, including low ratings and disappointment, especially after recent updates.",
+      "named_by": "model",
+      "member_count": 12
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-AUDIO_QUALITY",
+      "code": "playback.audio_quality",
+      "topic": "playback",
+      "area": "playback",
+      "title": "Audio adjustment bugs",
+      "summary": "A reviewer reports a bug where music adjustment settings don't work properly.",
+      "named_by": "model",
+      "member_count": 1
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-CONNECTION",
+      "code": "playback.connection",
+      "topic": "playback",
+      "area": "playback",
+      "title": "Wifi connection and sound quality issues",
+      "summary": "A reviewer reports being unable to connect over wifi (though mobile data works) and notes poor song quality compared to another music app.",
+      "named_by": "model",
+      "member_count": 1
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-DEVICES",
+      "code": "playback.devices",
+      "topic": "playback",
+      "area": "playback",
+      "title": "Google Assistant playback issue",
+      "summary": "A reviewer reports that using Google Assistant to play Spotify shows a playing status but doesn't actually play songs.",
+      "named_by": "model",
+      "member_count": 1
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "code": "playback.stops_skips",
+      "topic": "playback",
+      "area": "playback",
+      "title": "Playback stops and skips unexpectedly",
+      "summary": "A reviewer reports that songs stop halfway through and the app moves on to a new song instead of resuming.",
+      "named_by": "model",
+      "member_count": 1
+    },
+    {
+      "issue_id": "ISS-USABILITY-ADS",
+      "code": "usability.ads",
+      "topic": "usability",
+      "area": "usability",
+      "title": "Too many and too loud ads",
+      "summary": "Reviewers complain that free listening is interrupted by frequent, loud ads that make the app feel unusable without Premium.",
+      "named_by": "model",
+      "member_count": 8
+    },
+    {
+      "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "code": "usability.layout_redesign",
+      "topic": "usability",
+      "area": "usability",
+      "title": "Disliked homescreen and UX redesign",
+      "summary": "Reviewers dislike recent major interface updates, particularly a new homescreen layout that feels like a social media feed rather than a music browsing experience.",
+      "named_by": "model",
+      "member_count": 3
+    }
+  ],
+  "note": "Membership is assigned by code from the enriched subtopic; the model only names issues."
+}

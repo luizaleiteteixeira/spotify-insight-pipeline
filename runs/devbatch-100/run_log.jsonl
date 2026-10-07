@@ -1,0 +1,23 @@
+{"ts": "2026-10-07T00:28:11+00:00", "stage": "enrich_batch", "event": "batch_submitted", "batch_id": "batch_6ac5921a88488190a105c58a9699ad83", "requests": 2, "reviews": 99, "phase": "initial"}
+{"ts": "2026-10-07T00:28:11+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:validating:0/0", "spend": 0.7809}
+{"ts": "2026-10-07T00:28:31+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:validating:0/0", "spend": 0.7809}
+{"ts": "2026-10-07T00:28:51+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:validating:0/0", "spend": 0.7809}
+{"ts": "2026-10-07T00:29:12+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:29:32+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:29:53+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:30:13+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:30:33+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:30:54+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:31:14+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:31:34+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:31:55+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:32:15+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:32:35+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:32:56+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:33:16+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:33:36+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:33:56+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:34:17+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:34:37+00:00", "stage": "enrich_batch", "event": "waiting", "open_batches": 1, "completed_records": 0, "batches": "9699ad83:in_progress:0/2", "spend": 0.7809}
+{"ts": "2026-10-07T00:34:58+00:00", "stage": "enrich_batch", "event": "batch_collected", "batch_id": "batch_6ac5921a88488190a105c58a9699ad83", "status": "completed", "valid_first_try": 92, "invalid_items": 7, "errored_requests": 0, "missing_requests": 0}
+{"ts": "2026-10-07T00:35:05+00:00", "stage": "enrich_batch", "event": "done", "run_id": "devbatch-100", "session": 1, "phase": "initial", "mode": "batch", "stop_reason": "complete", "batches_submitted_this_session": 1, "wall_clock_s": 417.2, "accounting_ok": true, "n_completed": 100}

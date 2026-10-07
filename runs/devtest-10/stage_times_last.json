@@ -1,0 +1,14 @@
+{
+  "times_s": {
+    "ingest": 0.006,
+    "enrich": 5.243,
+    "verify": 3.252,
+    "group": 4.478,
+    "rank": 0.003,
+    "memo": 227.248
+  },
+  "end_to_end_wall_clock_s": 240.234,
+  "at": "2026-10-07T00:15:51+00:00",
+  "enrich_session": 1,
+  "memo_check_passed": false
+}

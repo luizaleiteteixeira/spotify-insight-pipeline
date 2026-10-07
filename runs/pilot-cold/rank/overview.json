@@ -1,0 +1,191 @@
+{
+  "run_id": "pilot-cold",
+  "generated_at": "2026-10-07T00:20:01+00:00",
+  "source_rows": 100,
+  "status_counts": {
+    "completed": 100
+  },
+  "completed": 100,
+  "quarantined": 0,
+  "pending": 0,
+  "cache_reuse_rows": 0,
+  "topic_counts": {
+    "other": 55,
+    "billing": 13,
+    "usability": 11,
+    "catalog": 11,
+    "playback": 4,
+    "access": 4,
+    "downloads": 2
+  },
+  "intent_counts": {
+    "complaint": 43,
+    "praise": 41,
+    "cancellation": 9,
+    "unclear": 5,
+    "request": 2
+  },
+  "severity_counts": {
+    "1": 48,
+    "2": 21,
+    "3": 27,
+    "4": 4
+  },
+  "complaint_or_cancellation": 52,
+  "needs_review": 13,
+  "areas": [
+    {
+      "area": "billing_support",
+      "complaint_count": 13,
+      "severity_sum": 38,
+      "sev4plus": 0,
+      "cancellation": 3,
+      "mean_severity": "2.923077"
+    },
+    {
+      "area": "usability",
+      "complaint_count": 11,
+      "severity_sum": 26,
+      "sev4plus": 0,
+      "cancellation": 1,
+      "mean_severity": "2.363636"
+    },
+    {
+      "area": "none",
+      "complaint_count": 12,
+      "severity_sum": 24,
+      "sev4plus": 0,
+      "cancellation": 3,
+      "mean_severity": "2.000000"
+    },
+    {
+      "area": "playback",
+      "complaint_count": 6,
+      "severity_sum": 18,
+      "sev4plus": 0,
+      "cancellation": 1,
+      "mean_severity": "3.000000"
+    },
+    {
+      "area": "content",
+      "complaint_count": 6,
+      "severity_sum": 17,
+      "sev4plus": 0,
+      "cancellation": 1,
+      "mean_severity": "2.833333"
+    },
+    {
+      "area": "access",
+      "complaint_count": 4,
+      "severity_sum": 16,
+      "sev4plus": 4,
+      "cancellation": 0,
+      "mean_severity": "4.000000"
+    }
+  ],
+  "monthly": [
+    {
+      "month": "2022-06",
+      "completed": 5,
+      "playback": 1,
+      "content": 1
+    },
+    {
+      "month": "2022-07",
+      "completed": 5,
+      "usability": 1,
+      "none": 1,
+      "access": 1
+    },
+    {
+      "month": "2022-08",
+      "completed": 6,
+      "billing_support": 1
+    },
+    {
+      "month": "2022-09",
+      "completed": 5,
+      "usability": 1
+    },
+    {
+      "month": "2022-10",
+      "completed": 4,
+      "billing_support": 1,
+      "content": 1
+    },
+    {
+      "month": "2022-11",
+      "completed": 1,
+      "usability": 1
+    },
+    {
+      "month": "2022-12",
+      "completed": 2
+    },
+    {
+      "month": "2023-01",
+      "completed": 4,
+      "access": 2,
+      "none": 1
+    },
+    {
+      "month": "2023-02",
+      "completed": 4,
+      "playback": 1,
+      "usability": 1
+    },
+    {
+      "month": "2023-03",
+      "completed": 7,
+      "usability": 2,
+      "playback": 1
+    },
+    {
+      "month": "2023-04",
+      "completed": 4,
+      "billing_support": 1
+    },
+    {
+      "month": "2023-05",
+      "completed": 5,
+      "usability": 1,
+      "playback": 1,
+      "billing_support": 1
+    },
+    {
+      "month": "2023-06",
+      "completed": 4,
+      "playback": 1,
+      "none": 2
+    },
+    {
+      "month": "2023-07",
+      "completed": 11,
+      "none": 4,
+      "playback": 1
+    },
+    {
+      "month": "2023-08",
+      "completed": 3,
+      "access": 1
+    },
+    {
+      "month": "2023-09",
+      "completed": 6,
+      "usability": 2
+    },
+    {
+      "month": "2023-10",
+      "completed": 19,
+      "billing_support": 9,
+      "content": 4,
+      "none": 3
+    },
+    {
+      "month": "2023-11",
+      "completed": 5,
+      "usability": 2,
+      "none": 1
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "run_id": "devtest-10",
+  "generated_at": "2026-10-07T00:12:03+00:00",
+  "source_rows": 10,
+  "status_counts": {
+    "completed": 10
+  },
+  "completed": 10,
+  "quarantined": 0,
+  "pending": 0,
+  "cache_reuse_rows": 0,
+  "topic_counts": {
+    "other": 6,
+    "catalog": 1,
+    "playback": 1,
+    "usability": 1,
+    "billing": 1
+  },
+  "intent_counts": {
+    "complaint": 5,
+    "praise": 3,
+    "unclear": 1,
+    "cancellation": 1
+  },
+  "severity_counts": {
+    "1": 4,
+    "2": 4,
+    "3": 1,
+    "4": 1
+  },
+  "complaint_or_cancellation": 6,
+  "needs_review": 1,
+  "areas": [
+    {
+      "area": "none",
+      "complaint_count": 3,
+      "severity_sum": 6,
+      "sev4plus": 0,
+      "cancellation": 0,
+      "mean_severity": "2.000000"
+    },
+    {
+      "area": "playback",
+      "complaint_count": 1,
+      "severity_sum": 4,
+      "sev4plus": 1,
+      "cancellation": 1,
+      "mean_severity": "4.000000"
+    },
+    {
+      "area": "billing_support",
+      "complaint_count": 1,
+      "severity_sum": 3,
+      "sev4plus": 0,
+      "cancellation": 0,
+      "mean_severity": "3.000000"
+    },
+    {
+      "area": "usability",
+      "complaint_count": 1,
+      "severity_sum": 2,
+      "sev4plus": 0,
+      "cancellation": 0,
+      "mean_severity": "2.000000"
+    }
+  ],
+  "monthly": [
+    {
+      "month": "2022-09",
+      "completed": 1,
+      "playback": 1
+    },
+    {
+      "month": "2022-10",
+      "completed": 1
+    },
+    {
+      "month": "2023-01",
+      "completed": 1
+    },
+    {
+      "month": "2023-06",
+      "completed": 2,
+      "usability": 1
+    },
+    {
+      "month": "2023-07",
+      "completed": 4,
+      "none": 3
+    },
+    {
+      "month": "2023-11",
+      "completed": 1,
+      "billing_support": 1
+    }
+  ]
+}

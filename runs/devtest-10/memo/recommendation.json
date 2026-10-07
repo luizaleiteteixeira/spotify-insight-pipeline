@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-10-07T00:16:05+00:00",
+  "model": "claude-sonnet-5",
+  "prompt_version": "memo_v2@d321a25a",
+  "model_call_cached": true,
+  "check": {
+    "unknown_claim_ids": [],
+    "unknown_review_ids": [],
+    "unknown_issue_ids": [],
+    "unsupported_numbers": [],
+    "cites_claims": true,
+    "cites_reviews": true,
+    "passed": true
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "check": {
+        "unknown_claim_ids": [],
+        "unknown_review_ids": [],
+        "unknown_issue_ids": [
+          "ISS-BILLING-PREMIUM",
+          "ISS-PLAYBACK-STOPS"
+        ],
+        "unsupported_numbers": [],
+        "cites_claims": true,
+        "cites_reviews": true,
+        "passed": false
+      }
+    },
+    {
+      "attempt": 2,
+      "check": {
+        "unknown_claim_ids": [],
+        "unknown_review_ids": [],
+        "unknown_issue_ids": [
+          "ISS-BILLING-PREMIUM",
+          "ISS-PLAYBACK-STOPS"
+        ],
+        "unsupported_numbers": [],
+        "cites_claims": true,
+        "cites_reviews": true,
+        "passed": false
+      }
+    }
+  ],
+  "recommendation_title": "Prioritize Playback Reliability Over Other Areas",
+  "recommendation": "Playback should be the top priority this quarter: the single playback complaint carries the highest mean severity of 4.000000 [C007] and priority score of 4 [C008], and it is tied to explicit cancellation intent in `a7b7539a-c8d3-4f4e-9edd-d46cd1b1fd12`, where the user says playback stopped immediately after subscribing to Premium. Billing/support follows closely with a severity sum of 3 [C010], driven by a Premium upsell blocking app usage [ISS-BILLING-PREMIUM_ONLY_CONTROLS]. While general dissatisfaction (ISS-OTHER-GENERAL) has the most complaints at 3 [C001], its mean severity is only 2.000000 [C003], and these reviews lack specific, actionable detail beyond expressions of dislike.",
+  "alternatives": [
+    {
+      "title": "Billing/Support (Premium upsell blocking)",
+      "why_not_first": "Severity sum of 3 [C010] and priority score of 3 [C012] are lower than playback's 4 [C008], though the issue (ISS-BILLING-PREMIUM_ONLY_CONTROLS) still merits near-term attention."
+    },
+    {
+      "title": "Usability (ad interruptions)",
+      "why_not_first": "Lowest priority score among ranked issues at 2 [C016], with mean severity of only 2.000000 [C015], despite the reviewer calling the app otherwise great."
+    },
+    {
+      "title": "Access",
+      "why_not_first": "No access-area issues appear among the top-ranked issues or area totals in this pack, so there is no evidence basis to prioritize it this quarter."
+    }
+  ]
+}

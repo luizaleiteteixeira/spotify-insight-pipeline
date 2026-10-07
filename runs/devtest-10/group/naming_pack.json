@@ -1,0 +1,54 @@
+[
+  {
+    "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+    "code": "billing.premium_only_controls",
+    "member_count": 1,
+    "examples": [
+      {
+        "review_id": "2313bd8e-43bd-4777-bff9-3ae753288f0e",
+        "quote": "It is absolutely useless after the latest update. There's nothing I can do without the \"try premium\" option popping up every damn time."
+      }
+    ]
+  },
+  {
+    "issue_id": "ISS-OTHER-GENERAL",
+    "code": "other.general",
+    "member_count": 3,
+    "examples": [
+      {
+        "review_id": "0575ce08-ab04-46f0-aa8a-fbf9cd27e8da",
+        "quote": "I hate this application .. 👎"
+      },
+      {
+        "review_id": "f1532a7d-a47c-40eb-b41f-da17a379f9fb",
+        "quote": "Hateful app Waste of time"
+      },
+      {
+        "review_id": "f7cc1aa7-c306-4f5b-a5e9-911cca07fa60",
+        "quote": "Hate this application 😡😡😡bakwas"
+      }
+    ]
+  },
+  {
+    "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+    "code": "playback.stops_skips",
+    "member_count": 1,
+    "examples": [
+      {
+        "review_id": "a7b7539a-c8d3-4f4e-9edd-d46cd1b1fd12",
+        "quote": "The very second I signed up for premium it stopped letting me play anything.. lol . Fastest cancelation of a service I've done, ever. Bye bye Spotify. Hello old friend, Bittorrent"
+      }
+    ]
+  },
+  {
+    "issue_id": "ISS-USABILITY-ADS",
+    "code": "usability.ads",
+    "member_count": 1,
+    "examples": [
+      {
+        "review_id": "5e42046c-b29b-4035-ba83-a8e222789e98",
+        "quote": "Listen to my music almost everyday,this app is great. But the bad thing is that it gives too many ads, i would have hiven it 5 stars. Apart from that this app is great"
+      }
+    ]
+  }
+]
