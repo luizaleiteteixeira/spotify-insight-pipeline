@@ -367,6 +367,43 @@ CLAIM = re.compile(r"\bC\d{3}\b")
 ISS = re.compile(r"ISS-[A-Z0-9_-]+")
 
 
+EVIDENCE_CHECK_ISSUES = 6
+
+
+def check_evidence(run_id, iid, cand, recs, budget):
+    """Evidence-checker agent (Claude Haiku): keep the first 3 candidates that clearly support the issue.
+    Cached by inputs; if the check fails or approves fewer than 3, the shortfall is NOT filled silently."""
+    code = iid[4:].lower().replace("-", ".", 1)
+    definition = LABELS["subtopics"].get(code, code)
+    system, ver = load_prompt("evidence_checker_v1")
+    m = settings()["models"]["verifier_v2"]
+    user = (f"ISSUE {iid} ({code}): {definition}\nTopic rules:\n" + "\n".join(f"- {r}" for r in LABELS["rules"]) +
+            "\n\nCANDIDATES:\n" + "\n".join(json.dumps({"i": n, "text": recs[r]["source"]["review_text"][:1200]},
+                                                         ensure_ascii=False) for n, r in enumerate(cand, 1)))
+    schema = {"type": "object", "properties": {"results": {"type": "array", "items": {"type": "object", "properties": {
+        "i": {"type": "integer"}, "supports": {"type": "boolean"}, "reason": {"type": "string"}},
+        "required": ["i", "supports", "reason"], "additionalProperties": False}}},
+        "required": ["results"], "additionalProperties": False}
+
+    def do():
+        res = llm.call(role="verify", provider=m["provider"], model=m["model"], system=system, user=user, schema=schema,
+                       max_output_tokens=1200, run_id=run_id, stage="evidence_check", budget=budget, reserve=0.02,
+                       review_ids=list(cand), label_config=f"evidence_checker|{ver}")
+        return res["data"]
+    try:
+        val, _ = cached_artifact("evidence", {"user": user, "cfg": ver, "model": m["model"]}, do)
+    except ModelCallFailed:
+        val = None
+    verdict = {}
+    for it in (val or {}).get("results", []):
+        if type(it.get("i")) is int and 1 <= it["i"] <= len(cand):
+            verdict[cand[it["i"] - 1]] = it
+    log = [{"issue_id": iid, "review_id": r, "supports": verdict.get(r, {}).get("supports"),
+            "reason": verdict.get(r, {}).get("reason", "no verdict")} for r in cand]
+    keep = [r for r in cand if verdict.get(r, {}).get("supports") is True][:3]
+    return keep, log
+
+
 def top_issue_monthly(recs, members, iid) -> list[dict]:
     """Per calendar month: completed reviews (denominator), top-issue complaints, share in percent (2 dp)."""
     from collections import Counter
@@ -423,7 +460,7 @@ def memo(run_id: str, budget: Budget, top_n: int = 8, prompt: str = "memo_v4") -
     members = defaultdict(list)
     for p in csv.DictReader(open(run_dir / "group" / "membership.csv", newline="", encoding="utf-8")):
         members[p["issue_id"]].append(p["review_id"])
-    claims, top = [], []
+    claims, top, evidence_log = [], [], []
     for row in ranking[:top_n]:
         iid = row["issue_id"]
         cl = {}
@@ -431,14 +468,18 @@ def memo(run_id: str, budget: Budget, top_n: int = 8, prompt: str = "memo_v4") -
             cid = f"C{len(claims) + 1:03d}"
             claims.append({"claim_id": cid, "issue_id": iid, "metric": metric, "value": row[metric]})
             cl[metric] = {"claim_id": cid, "value": row[metric]}
-        ex = sorted(members[iid], key=lambda i: (-recs[i]["severity"], -int(recs[i]["source"]["review_likes"] or 0), i))
-        ex = [i for i in ex if not recs[i]["cache_source_id"]][:3]
+        cand = sorted(members[iid], key=lambda i: (-recs[i]["severity"], -int(recs[i]["source"]["review_likes"] or 0), i))
+        cand = [i for i in cand if not recs[i]["cache_source_id"]][:8]
+        ex, ev_log = check_evidence(run_id, iid, cand, recs, budget) if len(top) < EVIDENCE_CHECK_ISSUES else (cand[:3], [])
+        evidence_log += ev_log
         canc = sum(1 for i in members[iid] if recs[i]["intent"] == "cancellation")
         top.append({"rank": int(row["rank"]), "issue_id": iid, "cancellation_intent_count": canc, "title": issues[iid]["title"], "area": issues[iid]["area"],
                     "topic": issues[iid]["topic"], "claims": cl,
                     "examples": [{"review_id": i, "severity": recs[i]["severity"], "intent": recs[i]["intent"],
                                   "quote": recs[i]["evidence_quote"][:180]} for i in ex]})
     write_csv(out / "claims.csv", claims, ["claim_id", "issue_id", "metric", "value"])
+    write_json(out / "evidence_check.json", {"generated_at": now(), "issues_checked": EVIDENCE_CHECK_ISSUES,
+                                             "candidates": evidence_log})
     pack = {"question": "Where should Spotify put the next quarter of product effort: access, usability, playback, "
                         "or billing/support?",
             "scope": {"source_rows": overview["source_rows"], "completed": overview["completed"],

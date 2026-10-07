@@ -68,7 +68,38 @@ def main():
                   "enricher": man.get("enricher", {}).get("model"), "verifier": verification.get("verifier"),
                   "memo_model": rec.get("model"), "memo_prompt": rec.get("prompt_version")}
 
+    def jf(path):
+        path = ROOT / path
+        return json.loads(path.read_text()) if path.exists() else None
+    gfull = jf("evals/golden_v2/golden_v2_report.json") or {}
+    replay = jf("cost/replay_result.json") or {}
+    extras = {
+        "golden_full": {k: gfull.get(k) for k in ("n", "human_ambiguous", "topic_accuracy", "topic_accuracy_clear_cases",
+                                                   "topic_accuracy_ambiguous_cases", "topic_macro_f1", "intent_accuracy",
+                                                   "intent_macro_f1", "severity_exact", "severity_mae", "severity_within_1",
+                                                   "sentiment_mae", "sentiment_within_0.4", "quote_exact_substring_rate",
+                                                   "needs_review_vs_human_ambiguous", "verifier_vs_human", "per_topic",
+                                                   "topic_confusion_human_to_pred")},
+        "planted": jf("evals/system/planted_error_test_v2.json"),
+        "synthetic": (lambda d: d and {"passed": d["passed"], "total": d["total"],
+                                       "cases": [{"id": r["id"], "kind": r["kind"], "passed": r["passed"],
+                                                  "label": f"{r['output'].get('subtopic')} / {r['output'].get('intent')} / {r['output'].get('severity')}"
+                                                  if r["output"].get("status") == "completed" else r["output"].get("reason")}
+                                                 for r in d["results"]]})(jf("evals/system/synthetic_tests_v2.json")),
+        "advisor": {k: v for k, v in (jf("evals/system/advisor_eval.json") or {}).items() if k != "rows"},
+        "fallback": jf(f"runs/{a.run_id}/fallback_report.json"),
+        "severity_rule": jf(f"runs/{a.run_id}/postprocess_severity_rule.json"),
+        "replication": jf("runs/repl-10000/replication_report.json"),
+        "evidence_check": jf(f"runs/{a.run_id}/memo/evidence_check.json"),
+        "ranking_check": jf(f"runs/{a.run_id}/rank/ranking_check.json"),
+        "memo_review": jf(f"runs/{a.run_id}/memo/human_review.json"),
+        "cost_pilot": replay.get("measured"), "cost_projection": replay.get("projection_full_run"),
+        "cost_actual": jf("cost/full_run_actuals.json"), "cost_scale": jf("cost/scale_checkpoints.json"),
+        "improvements": jf("docs/improvements.json"),
+    }
     con = sqlite3.connect(run_dir / "state.db")
+    extras["sessions"] = [dict(zip(("session", "phase", "started_at", "ended_at", "stop_reason", "completed_before",
+                                    "completed_after"), r)) for r in con.execute("SELECT * FROM sessions ORDER BY session")]
     rows = []
     for rid, status, reason, labels, csrc in con.execute(
             "SELECT review_id,status,reason,labels,cache_source_id FROM records ORDER BY row_idx"):
@@ -99,8 +130,10 @@ def main():
         db.execute("INSERT INTO recommendation VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                    (a.run_id, rec.get("recommendation_title"), rec.get("recommendation"), Jsonb(rec.get("alternatives")),
                     memo_md, Jsonb(rec.get("check")), rec.get("model"), rec.get("prompt_version"), rec.get("generated_at")))
-        db.execute("INSERT INTO run_meta (run_id, overview, verification, golden, cost, provenance) VALUES (%s,%s,%s,%s,%s,%s)",
-                   (a.run_id, Jsonb(overview), Jsonb(verification), Jsonb(golden), Jsonb(cost), Jsonb(provenance)))
+        db.execute("INSERT INTO run_meta (run_id, overview, verification, golden, cost, provenance, extras) "
+                   "VALUES (%s,%s,%s,%s,%s,%s,%s)",
+                   (a.run_id, Jsonb(overview), Jsonb(verification), Jsonb(golden), Jsonb(cost), Jsonb(provenance),
+                    Jsonb(extras)))
         if a.activate:
             db.execute("INSERT INTO active_run (id, run_id) VALUES (1, %s) ON CONFLICT (id) DO UPDATE SET run_id = EXCLUDED.run_id",
                        (a.run_id,))

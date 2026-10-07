@@ -1,1 +1,1 @@
-{"role": "adjudicate", "key": "57b2b9bb09a47d3ce6880ea5", "created_at": "2026-10-07T04:45:27+00:00", "value": null}
+{"role": "adjudicate", "key": "57b2b9bb09a47d3ce6880ea5", "created_at": "2026-10-07T06:27:08+00:00", "value": {"code": "catalog.recommendations", "intent": "praise", "severity": 1, "reason": "The review's specific praised feature is Spotify making 'playlists for me based on my previous choices,' which matches catalog.recommendations rather than vague general praise."}}

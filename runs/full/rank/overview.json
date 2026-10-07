@@ -1,281 +1,281 @@
 {
   "run_id": "full",
-  "generated_at": "2026-10-07T05:44:08+00:00",
+  "generated_at": "2026-10-07T06:29:03+00:00",
   "source_rows": 660622,
   "status_counts": {
-    "completed": 659026,
-    "quarantined": 1596
+    "completed": 660525,
+    "quarantined": 97
   },
-  "completed": 659026,
-  "quarantined": 1596,
+  "completed": 660525,
+  "quarantined": 97,
   "pending": 0,
   "cache_reuse_rows": 176418,
   "topic_counts": {
-    "other": 385341,
-    "usability": 93411,
-    "billing": 74193,
-    "playback": 46364,
-    "catalog": 37696,
-    "access": 13059,
-    "downloads": 8147,
-    "support": 815
+    "other": 385550,
+    "usability": 93775,
+    "billing": 74627,
+    "playback": 46589,
+    "catalog": 37864,
+    "access": 13121,
+    "downloads": 8182,
+    "support": 817
   },
   "intent_counts": {
-    "praise": 289435,
-    "complaint": 264240,
-    "unclear": 53450,
-    "cancellation": 32021,
-    "request": 19880
+    "praise": 289613,
+    "complaint": 265170,
+    "unclear": 53543,
+    "cancellation": 32274,
+    "request": 19925
   },
   "severity_counts": {
-    "1": 360172,
-    "2": 141060,
-    "3": 131663,
-    "4": 25089,
-    "5": 1042
+    "1": 363832,
+    "2": 139107,
+    "3": 131334,
+    "4": 25200,
+    "5": 1052
   },
-  "complaint_or_cancellation": 296261,
-  "needs_review": 110962,
+  "complaint_or_cancellation": 297444,
+  "needs_review": 111089,
   "areas": [
     {
       "area": "billing_support",
-      "complaint_count": 70856,
-      "severity_sum": 204819,
-      "sev4plus": 2419,
-      "cancellation": 12766,
-      "mean_severity": "2.890637"
+      "complaint_count": 71289,
+      "severity_sum": 206126,
+      "sev4plus": 2430,
+      "cancellation": 12890,
+      "mean_severity": "2.891414"
     },
     {
       "area": "usability",
-      "complaint_count": 75230,
-      "severity_sum": 178198,
-      "sev4plus": 1102,
-      "cancellation": 6840,
-      "mean_severity": "2.368709"
+      "complaint_count": 75546,
+      "severity_sum": 179058,
+      "sev4plus": 1105,
+      "cancellation": 6898,
+      "mean_severity": "2.370185"
     },
     {
       "area": "none",
-      "complaint_count": 73774,
-      "severity_sum": 147625,
-      "sev4plus": 136,
-      "cancellation": 6408,
-      "mean_severity": "2.001044"
+      "complaint_count": 73802,
+      "severity_sum": 147684,
+      "sev4plus": 137,
+      "cancellation": 6417,
+      "mean_severity": "2.001084"
     },
     {
       "area": "playback",
-      "complaint_count": 44456,
-      "severity_sum": 142045,
-      "sev4plus": 11374,
-      "cancellation": 3882,
-      "mean_severity": "3.195182"
+      "complaint_count": 44690,
+      "severity_sum": 142800,
+      "sev4plus": 11434,
+      "cancellation": 3920,
+      "mean_severity": "3.195346"
     },
     {
       "area": "content",
-      "complaint_count": 19196,
-      "severity_sum": 53862,
+      "complaint_count": 19306,
+      "severity_sum": 54173,
       "sev4plus": 288,
-      "cancellation": 1315,
-      "mean_severity": "2.805897"
+      "cancellation": 1329,
+      "mean_severity": "2.806019"
     },
     {
       "area": "access",
-      "complaint_count": 12749,
-      "severity_sum": 48943,
-      "sev4plus": 10804,
-      "cancellation": 810,
-      "mean_severity": "3.838968"
+      "complaint_count": 12811,
+      "severity_sum": 49186,
+      "sev4plus": 10858,
+      "cancellation": 820,
+      "mean_severity": "3.839357"
     }
   ],
   "monthly": [
     {
       "month": "2022-05",
-      "completed": 15439,
+      "completed": 15459,
       "access": 222,
-      "billing_support": 751,
-      "playback": 1669,
+      "billing_support": 753,
+      "playback": 1680,
       "none": 396,
-      "usability": 1400,
-      "content": 366
+      "usability": 1401,
+      "content": 367
     },
     {
       "month": "2022-06",
-      "completed": 30275,
+      "completed": 30332,
       "access": 452,
-      "usability": 2645,
-      "billing_support": 1622,
+      "usability": 2655,
+      "billing_support": 1630,
       "none": 755,
-      "playback": 3058,
-      "content": 700
+      "playback": 3078,
+      "content": 706
     },
     {
       "month": "2022-07",
-      "completed": 32717,
-      "usability": 3507,
-      "playback": 3738,
-      "content": 779,
-      "billing_support": 1675,
+      "completed": 32779,
+      "usability": 3522,
+      "playback": 3752,
+      "content": 780,
+      "billing_support": 1690,
       "none": 890,
-      "access": 1237
+      "access": 1244
     },
     {
       "month": "2022-08",
-      "completed": 30634,
-      "billing_support": 1574,
+      "completed": 30731,
+      "billing_support": 1591,
       "none": 715,
-      "playback": 2399,
-      "usability": 3092,
-      "access": 449,
-      "content": 605
+      "playback": 2418,
+      "usability": 3115,
+      "access": 453,
+      "content": 612
     },
     {
       "month": "2022-09",
-      "completed": 26885,
+      "completed": 26930,
       "access": 385,
-      "usability": 2664,
+      "usability": 2677,
       "none": 588,
-      "billing_support": 1312,
-      "playback": 1965,
-      "content": 598
+      "billing_support": 1317,
+      "playback": 1975,
+      "content": 600
     },
     {
       "month": "2022-10",
-      "completed": 27528,
-      "content": 679,
-      "none": 584,
-      "usability": 3177,
-      "playback": 1813,
-      "billing_support": 1329,
-      "access": 385
+      "completed": 27567,
+      "content": 681,
+      "none": 585,
+      "usability": 3185,
+      "playback": 1819,
+      "billing_support": 1338,
+      "access": 386
     },
     {
       "month": "2022-11",
-      "completed": 27290,
-      "billing_support": 1612,
+      "completed": 27343,
+      "billing_support": 1621,
       "none": 638,
-      "usability": 3212,
-      "playback": 1900,
-      "access": 394,
-      "content": 689
+      "usability": 3229,
+      "playback": 1908,
+      "access": 397,
+      "content": 693
     },
     {
       "month": "2022-12",
-      "completed": 31648,
-      "usability": 3225,
-      "billing_support": 1755,
-      "none": 1618,
-      "playback": 3449,
-      "content": 1141,
-      "access": 497
+      "completed": 31730,
+      "usability": 3238,
+      "billing_support": 1761,
+      "none": 1620,
+      "playback": 3474,
+      "content": 1156,
+      "access": 499
     },
     {
       "month": "2023-01",
-      "completed": 28556,
-      "playback": 2567,
-      "content": 653,
-      "billing_support": 1331,
-      "usability": 2668,
+      "completed": 28602,
+      "playback": 2578,
+      "content": 656,
+      "billing_support": 1337,
+      "usability": 2677,
       "none": 884,
-      "access": 743
+      "access": 745
     },
     {
       "month": "2023-02",
-      "completed": 20837,
-      "usability": 2253,
-      "playback": 1608,
-      "billing_support": 1058,
-      "none": 469,
-      "access": 331,
-      "content": 496
+      "completed": 20887,
+      "usability": 2263,
+      "playback": 1613,
+      "billing_support": 1068,
+      "none": 470,
+      "access": 333,
+      "content": 501
     },
     {
       "month": "2023-03",
-      "completed": 27168,
-      "usability": 4417,
-      "billing_support": 1287,
-      "playback": 1973,
-      "content": 1058,
+      "completed": 27226,
+      "usability": 4437,
+      "billing_support": 1296,
+      "playback": 1984,
+      "content": 1064,
       "access": 392,
       "none": 538
     },
     {
       "month": "2023-04",
-      "completed": 24895,
-      "usability": 3545,
-      "billing_support": 1169,
-      "playback": 2024,
-      "content": 1060,
-      "none": 510,
-      "access": 315
+      "completed": 25012,
+      "usability": 3574,
+      "billing_support": 1183,
+      "playback": 2038,
+      "content": 1069,
+      "none": 513,
+      "access": 316
     },
     {
       "month": "2023-05",
-      "completed": 27986,
-      "usability": 2649,
-      "playback": 1923,
-      "billing_support": 1734,
-      "content": 1293,
-      "none": 950,
-      "access": 707
+      "completed": 28060,
+      "usability": 2661,
+      "playback": 1940,
+      "billing_support": 1743,
+      "content": 1303,
+      "none": 951,
+      "access": 708
     },
     {
       "month": "2023-06",
-      "completed": 27046,
-      "billing_support": 2604,
-      "usability": 2926,
-      "playback": 1799,
+      "completed": 27114,
+      "billing_support": 2622,
+      "usability": 2942,
+      "playback": 1807,
       "none": 805,
-      "content": 1303,
-      "access": 857
+      "content": 1310,
+      "access": 863
     },
     {
       "month": "2023-07",
-      "completed": 85005,
-      "none": 36342,
-      "usability": 4654,
-      "billing_support": 2536,
-      "content": 1503,
-      "playback": 2693,
-      "access": 1229
+      "completed": 85076,
+      "none": 36347,
+      "usability": 4671,
+      "billing_support": 2550,
+      "content": 1506,
+      "playback": 2704,
+      "access": 1231
     },
     {
       "month": "2023-08",
-      "completed": 30347,
-      "billing_support": 1980,
-      "access": 1164,
-      "usability": 3268,
-      "content": 1052,
-      "playback": 2240,
-      "none": 2172
+      "completed": 30433,
+      "billing_support": 1997,
+      "access": 1175,
+      "usability": 3288,
+      "content": 1056,
+      "playback": 2254,
+      "none": 2173
     },
     {
       "month": "2023-09",
-      "completed": 41505,
-      "playback": 2418,
-      "none": 3402,
-      "content": 1795,
-      "billing_support": 7970,
-      "usability": 5514,
-      "access": 1148
+      "completed": 41627,
+      "playback": 2426,
+      "none": 3403,
+      "content": 1803,
+      "billing_support": 8028,
+      "usability": 5532,
+      "access": 1156
     },
     {
       "month": "2023-10",
-      "completed": 88828,
-      "billing_support": 29051,
-      "content": 2515,
-      "usability": 14767,
-      "access": 1267,
-      "none": 14988,
-      "playback": 3460
+      "completed": 89097,
+      "billing_support": 29212,
+      "content": 2526,
+      "usability": 14820,
+      "access": 1275,
+      "none": 14999,
+      "playback": 3475
     },
     {
       "month": "2023-11",
-      "completed": 34437,
-      "usability": 5647,
-      "none": 6530,
-      "playback": 1760,
-      "billing_support": 8506,
-      "content": 911,
-      "access": 575
+      "completed": 34520,
+      "usability": 5659,
+      "none": 6532,
+      "playback": 1767,
+      "billing_support": 8552,
+      "content": 917,
+      "access": 579
     }
   ]
 }

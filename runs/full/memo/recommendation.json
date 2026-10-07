@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T05:39:08+00:00",
+  "generated_at": "2026-10-07T06:29:33+00:00",
   "model": "claude-sonnet-5",
   "prompt_version": "memo_v4@083aa894",
   "model_call_cached": true,
@@ -11,7 +11,7 @@
     "inexact_quotes": [],
     "cites_claims": true,
     "cites_reviews": true,
-    "memo_words": 706,
+    "memo_words": 631,
     "looks_truncated": false,
     "passed": true
   },
@@ -23,54 +23,29 @@
         "unknown_review_ids": [],
         "unknown_issue_ids": [],
         "unsupported_numbers": [],
-        "inexact_quotes": [
-          "song choice, skips, rewind, order, lyrics etc. explicitly locked behind Premium,"
-        ],
+        "inexact_quotes": [],
         "cites_claims": true,
         "cites_reviews": true,
-        "memo_words": 619,
+        "memo_words": 631,
         "looks_truncated": false,
-        "passed": false
-      }
-    },
-    {
-      "attempt": 2,
-      "check": {
-        "unknown_claim_ids": [],
-        "unknown_review_ids": [],
-        "unknown_issue_ids": [],
-        "unsupported_numbers": [
-          "-4.76"
-        ],
-        "inexact_quotes": [
-          "general praise, generic criticism, unrelated or unclear text,"
-        ],
-        "cites_claims": true,
-        "cites_reviews": true,
-        "memo_words": 706,
-        "looks_truncated": false,
-        "passed": false
+        "passed": true
       }
     }
   ],
-  "recommendation_title": "Next Quarter Priority: Fix Billing's Premium-Only Controls",
-  "recommendation": "Spotify should prioritize billing/support, specifically the free-tier packaging around Premium-only controls, since it is the single largest issue by volume and severity with 58940 complaints [C001] and a severity sum of 174087 [C002], far ahead of any other issue. This is expressed as a product/packaging decision rather than a technical failure: the issue definition covers song choice, skips, rewind, order, lyrics and similar functions restricted to Premium, and it carries 11558 expressed cancellation-intent mentions [cancellation_intent_count on ISS-BILLING-PREMIUM_ONLY_CONTROLS]. Monthly tracking shows the issue sharply escalating late in the window, from 3.28% share in 2023-04 to 29.22% in 2023-10, making this an urgent, worsening area rather than a steady-state cost.",
+  "recommendation_title": "Focus Q next on billing: free-tier Premium-only controls",
+  "recommendation": "Put next quarter's product effort into billing_support, specifically the free-tier packaging issue where core playback controls (song choice, skips, rewind, lyrics) are locked behind Premium [C001][C002]. This single issue has the highest priority score of any issue in the pack (175,269 [C004], from 59,334 complaints [C001] at mean severity 2.953939 [C003]), well ahead of the next-ranked actionable issue, and it carries 11,677 cancellation-intent mentions [ISS-BILLING-PREMIUM_ONLY_CONTROLS]. The issue has also sharply escalated in recent months, moving from roughly 3-4% monthly share for most of the window to 17.13% in 2023-09 and 29.31% in 2023-10, making it both the biggest and the fastest-growing concern worth addressing now.",
   "alternatives": [
     {
-      "title": "Usability (ads, redesign, library/queue)",
-      "why_not_first": "Usability's largest issue, ads, totals 37406 complaints [C009] and severity sum 85318 [C010], well under half the top issue's severity sum [C002], and its area-level mean_severity (2.368709) is lower than billing_support's (2.890637)."
+      "title": "usability",
+      "why_not_first": "usability has the highest raw complaint_count (75,546) but a lower mean_severity (2.370185) and severity_sum (179,058) than billing_support's top single issue alone, and its leading sub-issues (ads C009/C010, redesign C017/C018) rank below the top billing issue in priority score."
     },
     {
-      "title": "Playback (stops/skips, crashes)",
-      "why_not_first": "Playback has the highest sev4plus count (11374) and strong mean_severity (3.195182), but its top issue, stops/skips, has only 13827 complaints [C013] and severity sum 44042 [C014], a small fraction of the top-ranked issue's 174087 [C002]."
+      "title": "playback",
+      "why_not_first": "playback shows high severity concentration (sev4plus 11,434, mean_severity 3.195346) but its largest issue, stops/skips, has a priority score of only 44,320 [C016], far below the top billing issue's 175,269 [C004]."
     },
     {
-      "title": "Access (login failures)",
-      "why_not_first": "Access shows the highest mean_severity of any area (3.838968) and login failures have severe per-case impact (severity_sum 31314 [C026]), but overall volume is just 8029 complaints [C025], far below the top issue's 58940 [C001]."
-    },
-    {
-      "title": "General/other dissatisfaction",
-      "why_not_first": "ISS-OTHER-GENERAL ranks second by priority score with 73774 complaints [C005] and severity sum 147625 [C006], but its definition covers generic praise, generic criticism, and unclear text, so it is not actionable as a specific product fix."
+      "title": "access",
+      "why_not_first": "access has the highest mean_severity of any area (3.839357) but the smallest complaint volume (12,811) and its top issue, login failures, scores only 31,486 [C028] in priority, making it a smaller-scope problem this quarter."
     }
   ]
 }

@@ -2,87 +2,87 @@
   "question": "Where should Spotify put the next quarter of product effort: access, usability, playback, or billing/support?",
   "scope": {
     "source_rows": 660622,
-    "completed": 659026,
-    "quarantined": 1596,
+    "completed": 660525,
+    "quarantined": 97,
     "pending": 0,
-    "complaint_or_cancellation": 296261,
+    "complaint_or_cancellation": 297444,
     "window": "2022-05-17 to 2023-11-15 (first and last months partial)"
   },
   "ranking_rule": "priority_score = complaint_count x mean_severity = severity_sum; ties by issue_id",
   "areas": [
     {
       "area": "billing_support",
-      "complaint_count": 70856,
-      "severity_sum": 204819,
-      "sev4plus": 2419,
-      "cancellation": 12766,
-      "mean_severity": "2.890637"
+      "complaint_count": 71289,
+      "severity_sum": 206126,
+      "sev4plus": 2430,
+      "cancellation": 12890,
+      "mean_severity": "2.891414"
     },
     {
       "area": "usability",
-      "complaint_count": 75230,
-      "severity_sum": 178198,
-      "sev4plus": 1102,
-      "cancellation": 6840,
-      "mean_severity": "2.368709"
+      "complaint_count": 75546,
+      "severity_sum": 179058,
+      "sev4plus": 1105,
+      "cancellation": 6898,
+      "mean_severity": "2.370185"
     },
     {
       "area": "none",
-      "complaint_count": 73774,
-      "severity_sum": 147625,
-      "sev4plus": 136,
-      "cancellation": 6408,
-      "mean_severity": "2.001044"
+      "complaint_count": 73802,
+      "severity_sum": 147684,
+      "sev4plus": 137,
+      "cancellation": 6417,
+      "mean_severity": "2.001084"
     },
     {
       "area": "playback",
-      "complaint_count": 44456,
-      "severity_sum": 142045,
-      "sev4plus": 11374,
-      "cancellation": 3882,
-      "mean_severity": "3.195182"
+      "complaint_count": 44690,
+      "severity_sum": 142800,
+      "sev4plus": 11434,
+      "cancellation": 3920,
+      "mean_severity": "3.195346"
     },
     {
       "area": "content",
-      "complaint_count": 19196,
-      "severity_sum": 53862,
+      "complaint_count": 19306,
+      "severity_sum": 54173,
       "sev4plus": 288,
-      "cancellation": 1315,
-      "mean_severity": "2.805897"
+      "cancellation": 1329,
+      "mean_severity": "2.806019"
     },
     {
       "area": "access",
-      "complaint_count": 12749,
-      "severity_sum": 48943,
-      "sev4plus": 10804,
-      "cancellation": 810,
-      "mean_severity": "3.838968"
+      "complaint_count": 12811,
+      "severity_sum": 49186,
+      "sev4plus": 10858,
+      "cancellation": 820,
+      "mean_severity": "3.839357"
     }
   ],
   "top_issues": [
     {
       "rank": 1,
       "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
-      "cancellation_intent_count": 11558,
-      "title": "Features locked behind Premium subscription",
+      "cancellation_intent_count": 11677,
+      "title": "Core features locked behind Premium",
       "area": "billing_support",
       "topic": "billing",
       "claims": {
         "complaint_count": {
           "claim_id": "C001",
-          "value": "58940"
+          "value": "59334"
         },
         "severity_sum": {
           "claim_id": "C002",
-          "value": "174087"
+          "value": "175269"
         },
         "mean_severity": {
           "claim_id": "C003",
-          "value": "2.953631"
+          "value": "2.953939"
         },
         "priority_score": {
           "claim_id": "C004",
-          "value": "174087"
+          "value": "175269"
         }
       },
       "examples": [
@@ -93,42 +93,42 @@
           "quote": "What the Hell Is wrong with Spotify. I am not to move the section of the song. Nor Can I repeat the part I want to listen or start. There is no back button. I need to buy Premium t"
         },
         {
-          "review_id": "d8be33b8-6758-4ae7-9e3e-6e7d02163930",
-          "severity": 4,
-          "intent": "complaint",
-          "quote": "Please fix your app. I literally cannot select songs and have to queue them to play anything. And that's if I'm able to get into my library at all. Unacceptable for an app I pay mo"
-        },
-        {
           "review_id": "2d1b5fa6-5d80-4616-9b65-f6e7738e9edf",
           "severity": 4,
           "intent": "complaint",
           "quote": "I can't actually play the songs I want to because it just plays a different song when I try."
+        },
+        {
+          "review_id": "4f8b85b3-da73-40fa-b7e4-5841c2385e5f",
+          "severity": 4,
+          "intent": "complaint",
+          "quote": "Recent updates disabled Queue, Skips, Rewind and the ability to play the song you desire"
         }
       ]
     },
     {
       "rank": 2,
       "issue_id": "ISS-OTHER-GENERAL",
-      "cancellation_intent_count": 6408,
-      "title": "General app dissatisfaction",
+      "cancellation_intent_count": 6417,
+      "title": "General dissatisfaction with the app",
       "area": "none",
       "topic": "other",
       "claims": {
         "complaint_count": {
           "claim_id": "C005",
-          "value": "73774"
+          "value": "73802"
         },
         "severity_sum": {
           "claim_id": "C006",
-          "value": "147625"
+          "value": "147684"
         },
         "mean_severity": {
           "claim_id": "C007",
-          "value": "2.001044"
+          "value": "2.001084"
         },
         "priority_score": {
           "claim_id": "C008",
-          "value": "147625"
+          "value": "147684"
         }
       },
       "examples": [
@@ -155,26 +155,26 @@
     {
       "rank": 3,
       "issue_id": "ISS-USABILITY-ADS",
-      "cancellation_intent_count": 2737,
-      "title": "Too many and too frequent ads",
+      "cancellation_intent_count": 2757,
+      "title": "Excessive and frequent ads",
       "area": "usability",
       "topic": "usability",
       "claims": {
         "complaint_count": {
           "claim_id": "C009",
-          "value": "37406"
+          "value": "37507"
         },
         "severity_sum": {
           "claim_id": "C010",
-          "value": "85318"
+          "value": "85570"
         },
         "mean_severity": {
           "claim_id": "C011",
-          "value": "2.280864"
+          "value": "2.281441"
         },
         "priority_score": {
           "claim_id": "C012",
-          "value": "85318"
+          "value": "85570"
         }
       },
       "examples": [
@@ -201,26 +201,26 @@
     {
       "rank": 4,
       "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
-      "cancellation_intent_count": 1458,
-      "title": "Music stops or skips unexpectedly",
+      "cancellation_intent_count": 1478,
+      "title": "Playback randomly stops or fails to start",
       "area": "playback",
       "topic": "playback",
       "claims": {
         "complaint_count": {
           "claim_id": "C013",
-          "value": "13827"
+          "value": "13916"
         },
         "severity_sum": {
           "claim_id": "C014",
-          "value": "44042"
+          "value": "44320"
         },
         "mean_severity": {
           "claim_id": "C015",
-          "value": "3.185217"
+          "value": "3.184823"
         },
         "priority_score": {
           "claim_id": "C016",
-          "value": "44042"
+          "value": "44320"
         }
       },
       "examples": [
@@ -247,35 +247,29 @@
     {
       "rank": 5,
       "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
-      "cancellation_intent_count": 2613,
-      "title": "Disliked app redesign and new UI",
+      "cancellation_intent_count": 2622,
+      "title": "Disliked app redesign and interface changes",
       "area": "usability",
       "topic": "usability",
       "claims": {
         "complaint_count": {
           "claim_id": "C017",
-          "value": "18938"
+          "value": "18975"
         },
         "severity_sum": {
           "claim_id": "C018",
-          "value": "40105"
+          "value": "40196"
         },
         "mean_severity": {
           "claim_id": "C019",
-          "value": "2.117700"
+          "value": "2.118366"
         },
         "priority_score": {
           "claim_id": "C020",
-          "value": "40105"
+          "value": "40196"
         }
       },
       "examples": [
-        {
-          "review_id": "3736ab38-6224-40c0-bc4a-07c637a5dd2d",
-          "severity": 4,
-          "intent": "cancellation",
-          "quote": "I can't use it anymore. It's not even music I want to listen to. Why would I want some random song to start playing automatically?? Should be an option to turn it off."
-        },
         {
           "review_id": "89e38a97-9372-4b02-8626-1a7f154771dc",
           "severity": 4,
@@ -287,32 +281,38 @@
           "severity": 4,
           "intent": "complaint",
           "quote": "It makes the layout terrible and hard to use. Going into your own playlist to edit it is a waking nightmare."
+        },
+        {
+          "review_id": "715a783b-3014-4a8d-9ae5-100664c09b6e",
+          "severity": 4,
+          "intent": "cancellation",
+          "quote": "I've had many instances where I want to just open the app to select music and have it blast into my ears or environment on loud speaker. Until this is addressed, will be reverting "
         }
       ]
     },
     {
       "rank": 6,
       "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
-      "cancellation_intent_count": 715,
-      "title": "App crashes and freezes",
+      "cancellation_intent_count": 719,
+      "title": "App crashes and freezes during use",
       "area": "playback",
       "topic": "playback",
       "claims": {
         "complaint_count": {
           "claim_id": "C021",
-          "value": "9817"
+          "value": "9845"
         },
         "severity_sum": {
           "claim_id": "C022",
-          "value": "32587"
+          "value": "32683"
         },
         "mean_severity": {
           "claim_id": "C023",
-          "value": "3.319446"
+          "value": "3.319756"
         },
         "priority_score": {
           "claim_id": "C024",
-          "value": "32587"
+          "value": "32683"
         }
       },
       "examples": [
@@ -339,26 +339,26 @@
     {
       "rank": 7,
       "issue_id": "ISS-ACCESS-LOGIN",
-      "cancellation_intent_count": 472,
+      "cancellation_intent_count": 478,
       "title": "Login failures",
       "area": "access",
       "topic": "access",
       "claims": {
         "complaint_count": {
           "claim_id": "C025",
-          "value": "8029"
+          "value": "8073"
         },
         "severity_sum": {
           "claim_id": "C026",
-          "value": "31314"
+          "value": "31486"
         },
         "mean_severity": {
           "claim_id": "C027",
-          "value": "3.900112"
+          "value": "3.900161"
         },
         "priority_score": {
           "claim_id": "C028",
-          "value": "31314"
+          "value": "31486"
         }
       },
       "examples": [
@@ -385,26 +385,26 @@
     {
       "rank": 8,
       "issue_id": "ISS-USABILITY-LIBRARY_QUEUE",
-      "cancellation_intent_count": 623,
+      "cancellation_intent_count": 635,
       "title": "Playlist and library management problems",
       "area": "usability",
       "topic": "usability",
       "claims": {
         "complaint_count": {
           "claim_id": "C029",
-          "value": "8856"
+          "value": "8920"
         },
         "severity_sum": {
           "claim_id": "C030",
-          "value": "26401"
+          "value": "26589"
         },
         "mean_severity": {
           "claim_id": "C031",
-          "value": "2.981143"
+          "value": "2.980830"
         },
         "priority_score": {
           "claim_id": "C032",
-          "value": "26401"
+          "value": "26589"
         }
       },
       "examples": [
@@ -451,142 +451,142 @@
       "verified_sample": 2000,
       "topic_agreement_all": 0.8475,
       "top_issue_code": "billing.premium_only_controls",
-      "top_issue_verified": 252,
-      "top_issue_verifier_same_topic": 194
+      "top_issue_verified": 255,
+      "top_issue_verifier_same_topic": 197
     }
   },
   "top_issue_monthly": [
     {
       "month": "2022-05",
-      "completed_reviews": 15439,
-      "top_issue_complaints": 540,
+      "completed_reviews": 15459,
+      "top_issue_complaints": 541,
       "share_pct": "3.50",
       "partial_month": true
     },
     {
       "month": "2022-06",
-      "completed_reviews": 30275,
-      "top_issue_complaints": 1211,
-      "share_pct": "4.00",
+      "completed_reviews": 30332,
+      "top_issue_complaints": 1218,
+      "share_pct": "4.02",
       "partial_month": false
     },
     {
       "month": "2022-07",
-      "completed_reviews": 32717,
-      "top_issue_complaints": 1281,
-      "share_pct": "3.92",
+      "completed_reviews": 32779,
+      "top_issue_complaints": 1294,
+      "share_pct": "3.95",
       "partial_month": false
     },
     {
       "month": "2022-08",
-      "completed_reviews": 30634,
-      "top_issue_complaints": 1106,
-      "share_pct": "3.61",
+      "completed_reviews": 30731,
+      "top_issue_complaints": 1120,
+      "share_pct": "3.64",
       "partial_month": false
     },
     {
       "month": "2022-09",
-      "completed_reviews": 26885,
-      "top_issue_complaints": 974,
-      "share_pct": "3.62",
+      "completed_reviews": 26930,
+      "top_issue_complaints": 978,
+      "share_pct": "3.63",
       "partial_month": false
     },
     {
       "month": "2022-10",
-      "completed_reviews": 27528,
-      "top_issue_complaints": 991,
-      "share_pct": "3.60",
+      "completed_reviews": 27567,
+      "top_issue_complaints": 1000,
+      "share_pct": "3.63",
       "partial_month": false
     },
     {
       "month": "2022-11",
-      "completed_reviews": 27290,
-      "top_issue_complaints": 1262,
-      "share_pct": "4.62",
+      "completed_reviews": 27343,
+      "top_issue_complaints": 1268,
+      "share_pct": "4.64",
       "partial_month": false
     },
     {
       "month": "2022-12",
-      "completed_reviews": 31648,
-      "top_issue_complaints": 1269,
+      "completed_reviews": 31730,
+      "top_issue_complaints": 1272,
       "share_pct": "4.01",
       "partial_month": false
     },
     {
       "month": "2023-01",
-      "completed_reviews": 28556,
-      "top_issue_complaints": 981,
-      "share_pct": "3.44",
+      "completed_reviews": 28602,
+      "top_issue_complaints": 987,
+      "share_pct": "3.45",
       "partial_month": false
     },
     {
       "month": "2023-02",
-      "completed_reviews": 20837,
-      "top_issue_complaints": 761,
-      "share_pct": "3.65",
+      "completed_reviews": 20887,
+      "top_issue_complaints": 769,
+      "share_pct": "3.68",
       "partial_month": false
     },
     {
       "month": "2023-03",
-      "completed_reviews": 27168,
-      "top_issue_complaints": 907,
-      "share_pct": "3.34",
+      "completed_reviews": 27226,
+      "top_issue_complaints": 914,
+      "share_pct": "3.36",
       "partial_month": false
     },
     {
       "month": "2023-04",
-      "completed_reviews": 24895,
-      "top_issue_complaints": 817,
-      "share_pct": "3.28",
+      "completed_reviews": 25012,
+      "top_issue_complaints": 826,
+      "share_pct": "3.30",
       "partial_month": false
     },
     {
       "month": "2023-05",
-      "completed_reviews": 27986,
-      "top_issue_complaints": 1333,
-      "share_pct": "4.76",
+      "completed_reviews": 28060,
+      "top_issue_complaints": 1342,
+      "share_pct": "4.78",
       "partial_month": false
     },
     {
       "month": "2023-06",
-      "completed_reviews": 27046,
-      "top_issue_complaints": 2155,
-      "share_pct": "7.97",
+      "completed_reviews": 27114,
+      "top_issue_complaints": 2172,
+      "share_pct": "8.01",
       "partial_month": false
     },
     {
       "month": "2023-07",
-      "completed_reviews": 85005,
-      "top_issue_complaints": 1829,
-      "share_pct": "2.15",
+      "completed_reviews": 85076,
+      "top_issue_complaints": 1840,
+      "share_pct": "2.16",
       "partial_month": false
     },
     {
       "month": "2023-08",
-      "completed_reviews": 30347,
-      "top_issue_complaints": 1347,
-      "share_pct": "4.44",
+      "completed_reviews": 30433,
+      "top_issue_complaints": 1361,
+      "share_pct": "4.47",
       "partial_month": false
     },
     {
       "month": "2023-09",
-      "completed_reviews": 41505,
-      "top_issue_complaints": 7073,
-      "share_pct": "17.04",
+      "completed_reviews": 41627,
+      "top_issue_complaints": 7129,
+      "share_pct": "17.13",
       "partial_month": false
     },
     {
       "month": "2023-10",
-      "completed_reviews": 88828,
-      "top_issue_complaints": 25956,
-      "share_pct": "29.22",
+      "completed_reviews": 89097,
+      "top_issue_complaints": 26111,
+      "share_pct": "29.31",
       "partial_month": false
     },
     {
       "month": "2023-11",
-      "completed_reviews": 34437,
-      "top_issue_complaints": 7147,
-      "share_pct": "20.75",
+      "completed_reviews": 34520,
+      "top_issue_complaints": 7192,
+      "share_pct": "20.83",
       "partial_month": true
     }
   ]

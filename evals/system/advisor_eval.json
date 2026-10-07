@@ -1,0 +1,185 @@
+{
+  "generated_at": "2026-10-07T06:16:42+00:00",
+  "run_id": "golden-v2-adv",
+  "advisor": "anthropic/claude-sonnet-5 (prompt advisor_v2)",
+  "cases": 9,
+  "selection": "golden reviews the enricher flagged needs_review",
+  "topic_correct": {
+    "first_pass": 6,
+    "advisor": 6
+  },
+  "intent_correct": {
+    "first_pass": 6,
+    "advisor": 4
+  },
+  "severity_exact": {
+    "first_pass": 6,
+    "advisor": 6
+  },
+  "decision": "not adopted: no measured benefit (intent worse, topic/severity unchanged); n=9 is small",
+  "cost_usd": 0.0208,
+  "rows": [
+    {
+      "review_id": "292ce26a-815d-4bce-a3b6-93cb6c9e7e2c",
+      "human": {
+        "topic": "catalog",
+        "intent": "complaint",
+        "severity": 2
+      },
+      "first_pass": {
+        "topic": "catalog",
+        "intent": "complaint",
+        "severity": 3
+      },
+      "advisor": {
+        "topic": "catalog",
+        "intent": "complaint",
+        "severity": 3
+      }
+    },
+    {
+      "review_id": "ac6cd66d-a9d2-42a4-afb8-2f84beff7fd1",
+      "human": {
+        "topic": "catalog",
+        "intent": "praise",
+        "severity": 1
+      },
+      "first_pass": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1
+      },
+      "advisor": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1
+      }
+    },
+    {
+      "review_id": "44129679-31a0-4108-9314-086a3456f6ae",
+      "human": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 3
+      },
+      "first_pass": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1
+      },
+      "advisor": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1
+      }
+    },
+    {
+      "review_id": "46842184-32f8-4088-ac15-2a700a7e94ed",
+      "human": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 3
+      },
+      "first_pass": {
+        "topic": "catalog",
+        "intent": "complaint",
+        "severity": 3
+      },
+      "advisor": {
+        "topic": "catalog",
+        "intent": "complaint",
+        "severity": 3
+      }
+    },
+    {
+      "review_id": "372d4e67-59cc-4c54-879f-3e8a202ee554",
+      "human": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 2
+      },
+      "first_pass": {
+        "topic": "usability",
+        "intent": "request",
+        "severity": 2
+      },
+      "advisor": {
+        "topic": "usability",
+        "intent": "request",
+        "severity": 2
+      }
+    },
+    {
+      "review_id": "36609c5c-fe48-4459-86b8-cc78fd3c77cd",
+      "human": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2
+      },
+      "first_pass": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1
+      },
+      "advisor": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1
+      }
+    },
+    {
+      "review_id": "f4c8146a-d5c8-4168-b00e-21af666afc6a",
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1
+      },
+      "first_pass": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1
+      },
+      "advisor": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1
+      }
+    },
+    {
+      "review_id": "283b5843-a992-464f-b1dc-9dc7281ff390",
+      "human": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1
+      },
+      "first_pass": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1
+      },
+      "advisor": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1
+      }
+    },
+    {
+      "review_id": "99b93e31-9f15-4daa-88ac-349ab0419c48",
+      "human": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2
+      },
+      "first_pass": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 2
+      },
+      "advisor": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 2
+      }
+    }
+  ]
+}

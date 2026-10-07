@@ -1,0 +1,16 @@
+{
+  "run_id": "repl-10000",
+  "session": 1,
+  "phase": "initial",
+  "stop_reason": "complete",
+  "input_rows": 10000,
+  "status_counts": {
+    "completed": 9983,
+    "quarantined": 17
+  },
+  "requests_sent_this_session": 160,
+  "cache_hits_this_session": 1436,
+  "wall_clock_s": 566.15,
+  "accounting_ok": true,
+  "label_config": "openai/gpt-6-luna/effort=none|enricher_v2@aa674cb6|enrich-schema-v2|labels-v2@0241cb18"
+}

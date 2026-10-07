@@ -1,6 +1,6 @@
 # 100-review cost & runtime report
 
-Generated 2026-10-07T05:58:08+00:00 by `python3 cost/calculator.py` (offline replay; no API calls).
+Generated 2026-10-07T06:32:59+00:00 by `python3 cost/calculator.py` (offline replay; no API calls).
 
 Input `data/raw/cost_100.csv` · SHA-256 `c884ac3b9be5066995d5063f96ad9af6e5e082975788c1684c4f6b6ea661dd0e` · 100 rows · 100 distinct texts · pilot run on 2026-10-07T00:20:22+00:00
 
@@ -81,20 +81,32 @@ Disclosure: the plan in COST_CALCULATOR.md is to refresh the estimate at 500 and
 
 After session 3 the remaining texts went through the OpenAI Batch API (50% price); its per-text cost and the higher-than-pilot retry rate are in the actual-vs-projection section below.
 
+### Formal 500 and 10,000 checkpoint runs (post-hoc replication)
+
+Post-hoc formal checkpoint runs (2026-10-07): checkpoint_500.csv then analysis_10000.csv re-run end-to-end through the enricher with an EMPTY result cache (namespace 'replication'), same configuration, sync tier, 4 workers. Run after the full run (not before scaling) and labelled as such; they also measure label stability (evals: runs/repl-10000/replication_report.json).
+
+| Run | Input rows | Completed | Quarantined | Calls | API cost USD | Cost per input row | Wall clock s |
+|---|---|---|---|---|---|---|---|
+| repl-500 | 500 | 499 | 1 | 18 | 0.01218 | 0.00002435 | 38.4 |
+| repl-10000 | 10,000 | 9,983 | 17 | 315 | 0.20296 | 0.00002030 | 566.4 |
+
 ## Actual full run vs projection (measured after the run)
 
-Projected (pilot-based, batch scenario): $7.08 · **Actual: $9.5752** for 660,622 rows (659,026 completed, 1,596 quarantined). sessions 1-5: 2026-10-07 01:20:42 -> 04:23:23 UTC (3h03m incl. 5 min recorded pauses).
+Projected (pilot-based, batch scenario): $7.08 · **Actual: $9.884** for 660,622 rows (660,525 completed, 97 quarantined). sessions 1-5: 2026-10-07 01:20:42 -> 04:23:23 UTC (3h03m incl. 5 min recorded pauses).
 
 | Stage / model / tier | Calls | Succeeded | Input tok | Output tok | Cost USD |
 |---|---|---|---|---|---|
-| adjudicate · anthropic/claude-sonnet-5 · standard | 245 | 198 | 651,210 | 75,094 | 0.9408 |
+| adjudicate · anthropic/claude-sonnet-5 · standard | 249 | 202 | 661,957 | 76,689 | 0.9658 |
+| enrich (fallback) · openai/gpt-6-luna · standard | 288 | 279 | 957,189 | 238,334 | 0.1473 |
 | enrich · openai/gpt-6-luna · batch | 9,608 | 9,559 | 40,681,283 | 16,861,514 | 5.141 |
 | enrich · openai/gpt-6-luna · standard | 9,355 | 9,274 | 29,504,976 | 3,324,624 | 2.4666 |
-| group · anthropic/claude-sonnet-5 · standard | 1 | 1 | 21,687 | 2,744 | 0.0708 |
-| memo · anthropic/claude-sonnet-5 · standard | 9 | 9 | 74,778 | 20,053 | 0.338 |
-| verify · anthropic/claude-haiku-4-5 · standard | 100 | 100 | 267,582 | 70,066 | 0.6179 |
+| evidence_check · anthropic/claude-haiku-4-5 · standard | 6 | 6 | 8,436 | 2,063 | 0.0188 |
+| group · anthropic/claude-sonnet-5 · standard | 2 | 2 | 43,372 | 5,600 | 0.1427 |
+| memo · anthropic/claude-sonnet-5 · standard | 10 | 10 | 83,711 | 22,400 | 0.3803 |
+| verify · anthropic/claude-haiku-4-5 · standard | 101 | 101 | 270,070 | 70,296 | 0.6216 |
 
 Why actual differs from the projection:
 - ~9-16% of items per batch needed the one validation retry, run at STANDARD price (sync): 9,355 sync calls cost $2.47 vs a modeled retry rate of 0.09 at batch price
 - adjudication capped at 200 cases (pilot cost per case $0.0045); 45 first attempts truncated and retried
 - memo regenerated v2->v3->v4 after human review (9 calls, $0.34)
+- improvement iteration (2026-10-07): capped fallback for 1,583 first-pass failures ($0.15), evidence checker, downstream reruns and memo regeneration are included in this total

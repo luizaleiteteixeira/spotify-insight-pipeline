@@ -1,0 +1,28 @@
+{
+  "run_id": "full",
+  "label_config": "openai/gpt-6-luna/effort=low/fallback|enricher_v2_fallback@2d9fb24e|enrich-schema-v2|labels-v2@0241cb18",
+  "declared_cap": 2000,
+  "sessions": [
+    {
+      "session": 6,
+      "purpose": "10-case test",
+      "sent": 10,
+      "rescued": 9,
+      "still_quarantined": 1
+    },
+    {
+      "session": 7,
+      "purpose": "remaining cases",
+      "sent": 1573,
+      "rescued": 1490,
+      "still_quarantined": 83
+    }
+  ],
+  "sent": 1583,
+  "rescued": 1499,
+  "still_quarantined": 84,
+  "calls": 288,
+  "cost_usd": 0.1473,
+  "at": "2026-10-07T06:27:50+00:00",
+  "note": "Totals recounted from state.db and the ledger across both fallback sessions."
+}

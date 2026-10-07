@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-10-07T06:26:36+00:00",
+  "compared": 9964,
+  "method": "fresh cache namespace; same model, prompt, schema and label_config as the full run's first pass",
+  "topic_same": 0.9318,
+  "subtopic_same": 0.9101,
+  "intent_same": 0.9605,
+  "severity_same": 0.9425,
+  "severity_within_1": 0.9941,
+  "top_topic_flips_full_to_rerun": {
+    "other -> usability": 80,
+    "other -> catalog": 76,
+    "usability -> other": 61,
+    "catalog -> other": 55,
+    "billing -> usability": 41,
+    "billing -> other": 36,
+    "catalog -> usability": 32,
+    "other -> playback": 32
+  },
+  "rerun_status_counts": {
+    "completed": 9983,
+    "quarantined": 17
+  },
+  "rerun_cost_usd": 0.2151,
+  "rerun_calls": 333,
+  "note": "The code severity rule (praise/unclear/pure request => 1) was applied to both runs before comparing."
+}

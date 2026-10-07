@@ -1,0 +1,22 @@
+{
+  "times_s": {
+    "verify": 29.2,
+    "group": 31.2,
+    "rank": 5.6,
+    "memo": 58.4,
+    "rank_check": 14.3
+  },
+  "memo_check_passed": true,
+  "rank_check": {
+    "run_id": "full",
+    "checked_at": "2026-10-07T06:29:06+00:00",
+    "rebuild_sha256": [
+      "f8f1a09428967296f908be020212664236492483452ef8bb10d1b6555def0728",
+      "f8f1a09428967296f908be020212664236492483452ef8bb10d1b6555def0728"
+    ],
+    "rebuilds_identical": true,
+    "sql_matches_python": true,
+    "issues": 33
+  },
+  "at": "2026-10-07T06:29:06+00:00"
+}

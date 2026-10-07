@@ -2,7 +2,7 @@
   {
     "issue_id": "ISS-ACCESS-ACCOUNT_COMPROMISED",
     "code": "access.account_compromised",
-    "member_count": 471,
+    "member_count": 476,
     "examples": [
       {
         "review_id": "efe984b3-24d3-439a-8f2e-655ca9d166ef",
@@ -41,7 +41,7 @@
   {
     "issue_id": "ISS-ACCESS-APP_WONT_OPEN",
     "code": "access.app_wont_open",
-    "member_count": 3195,
+    "member_count": 3206,
     "examples": [
       {
         "review_id": "69235678-ce4f-4c6f-ac3f-b52f2ee6f4bc",
@@ -80,7 +80,7 @@
   {
     "issue_id": "ISS-ACCESS-LOGIN",
     "code": "access.login",
-    "member_count": 8029,
+    "member_count": 8073,
     "examples": [
       {
         "review_id": "6800aa48-c165-4f2c-a6a2-9c017750fc12",
@@ -119,7 +119,7 @@
   {
     "issue_id": "ISS-ACCESS-OTHER",
     "code": "access.other",
-    "member_count": 362,
+    "member_count": 364,
     "examples": [
       {
         "review_id": "1652e44c-c658-4fba-a51f-222746b5a53f",
@@ -197,7 +197,7 @@
   {
     "issue_id": "ISS-BILLING-CHARGES_REFUNDS",
     "code": "billing.charges_refunds",
-    "member_count": 1815,
+    "member_count": 1823,
     "examples": [
       {
         "review_id": "ba9e7b7c-d1fb-49c2-97f4-b75f56a8c769",
@@ -236,7 +236,7 @@
   {
     "issue_id": "ISS-BILLING-OTHER",
     "code": "billing.other",
-    "member_count": 3067,
+    "member_count": 3071,
     "examples": [
       {
         "review_id": "00dc8493-a153-4c06-8609-2a38513461bf",
@@ -275,7 +275,7 @@
   {
     "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
     "code": "billing.premium_only_controls",
-    "member_count": 58940,
+    "member_count": 59334,
     "examples": [
       {
         "review_id": "62a9a557-6cde-47be-bea9-b71823301888",
@@ -314,7 +314,7 @@
   {
     "issue_id": "ISS-BILLING-PRICE",
     "code": "billing.price",
-    "member_count": 3770,
+    "member_count": 3776,
     "examples": [
       {
         "review_id": "7959e076-3dcf-416a-9729-9aa4206d4961",
@@ -353,7 +353,7 @@
   {
     "issue_id": "ISS-BILLING-SUBSCRIPTION_MANAGEMENT",
     "code": "billing.subscription_management",
-    "member_count": 2713,
+    "member_count": 2732,
     "examples": [
       {
         "review_id": "d5a0d1af-0a74-41b2-b9d8-03c45e51edd1",
@@ -392,7 +392,7 @@
   {
     "issue_id": "ISS-CATALOG-LYRICS",
     "code": "catalog.lyrics",
-    "member_count": 4681,
+    "member_count": 4696,
     "examples": [
       {
         "review_id": "82c73a89-5a44-4ba8-bb80-84de407ddcc9",
@@ -431,7 +431,7 @@
   {
     "issue_id": "ISS-CATALOG-MISSING_CONTENT",
     "code": "catalog.missing_content",
-    "member_count": 6027,
+    "member_count": 6053,
     "examples": [
       {
         "review_id": "43cc0bbf-76d4-4ecc-81e8-8071cb44bbc8",
@@ -470,7 +470,7 @@
   {
     "issue_id": "ISS-CATALOG-OTHER",
     "code": "catalog.other",
-    "member_count": 947,
+    "member_count": 953,
     "examples": [
       {
         "review_id": "82531810-8e1b-494b-a2eb-3b4b9218a128",
@@ -509,7 +509,7 @@
   {
     "issue_id": "ISS-CATALOG-RECOMMENDATIONS",
     "code": "catalog.recommendations",
-    "member_count": 5606,
+    "member_count": 5659,
     "examples": [
       {
         "review_id": "b464dc98-828b-4746-9e8d-6c64708e825b",
@@ -548,7 +548,7 @@
   {
     "issue_id": "ISS-CATALOG-SEARCH_DISCOVERY",
     "code": "catalog.search_discovery",
-    "member_count": 1935,
+    "member_count": 1945,
     "examples": [
       {
         "review_id": "858dd8b4-e9f3-462f-ac9b-92953a25e87e",
@@ -587,7 +587,7 @@
   {
     "issue_id": "ISS-DOWNLOADS-FAIL_DISAPPEAR",
     "code": "downloads.fail_disappear",
-    "member_count": 2947,
+    "member_count": 2958,
     "examples": [
       {
         "review_id": "a1e6215f-8987-4a28-8835-c196b97b8cb4",
@@ -626,7 +626,7 @@
   {
     "issue_id": "ISS-DOWNLOADS-OFFLINE_MODE",
     "code": "downloads.offline_mode",
-    "member_count": 2550,
+    "member_count": 2568,
     "examples": [
       {
         "review_id": "3c2e5b57-f7ad-4b1c-b343-6c44294e91cb",
@@ -665,7 +665,7 @@
   {
     "issue_id": "ISS-DOWNLOADS-OTHER",
     "code": "downloads.other",
-    "member_count": 496,
+    "member_count": 498,
     "examples": [
       {
         "review_id": "a61c9ffd-059e-416d-b109-ea034797573d",
@@ -704,7 +704,7 @@
   {
     "issue_id": "ISS-OTHER-GENERAL",
     "code": "other.general",
-    "member_count": 73774,
+    "member_count": 73802,
     "examples": [
       {
         "review_id": "b6b746f6-70e5-4834-a2d3-f5d6f4bedaba",
@@ -743,7 +743,7 @@
   {
     "issue_id": "ISS-PLAYBACK-AUDIO_QUALITY",
     "code": "playback.audio_quality",
-    "member_count": 2063,
+    "member_count": 2070,
     "examples": [
       {
         "review_id": "5bc59eed-8559-4acb-b464-b2ff30a06357",
@@ -782,7 +782,7 @@
   {
     "issue_id": "ISS-PLAYBACK-CONNECTION",
     "code": "playback.connection",
-    "member_count": 3688,
+    "member_count": 3718,
     "examples": [
       {
         "review_id": "57f00b7a-696f-470d-a713-fc5c0787d565",
@@ -821,7 +821,7 @@
   {
     "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
     "code": "playback.crashes_freezes",
-    "member_count": 9817,
+    "member_count": 9845,
     "examples": [
       {
         "review_id": "418964d5-ae08-4d88-a694-b967b7365add",
@@ -860,7 +860,7 @@
   {
     "issue_id": "ISS-PLAYBACK-DEVICES",
     "code": "playback.devices",
-    "member_count": 5877,
+    "member_count": 5914,
     "examples": [
       {
         "review_id": "32482a13-7e28-4b89-a05b-96f60ff82700",
@@ -899,7 +899,7 @@
   {
     "issue_id": "ISS-PLAYBACK-OTHER",
     "code": "playback.other",
-    "member_count": 1817,
+    "member_count": 1822,
     "examples": [
       {
         "review_id": "77e806b0-fd8f-4e16-a2d4-7cb27828e2b0",
@@ -938,7 +938,7 @@
   {
     "issue_id": "ISS-PLAYBACK-RESOURCE_USE",
     "code": "playback.resource_use",
-    "member_count": 1374,
+    "member_count": 1381,
     "examples": [
       {
         "review_id": "6241731f-d1d0-4ba8-9c25-f757d855fc8a",
@@ -957,6 +957,10 @@
         "quote": "Spotify is now ALWAYS running in the background on my phone, no matter what."
       },
       {
+        "review_id": "6ed9d24c-ede0-47f5-9172-16982d30defb",
+        "quote": "I have to regular clear the cache on the app because it takes up so much space I recently cleared it and got 8.8 Gb of space back."
+      },
+      {
         "review_id": "e5263763-1e5e-4f4e-8bd2-6b17b8a779cc",
         "quote": "it plays at maximum loudness. It also cannot be changed and the app cannot be forced closed, so it is running all the time."
       },
@@ -967,17 +971,13 @@
       {
         "review_id": "5bbcd911-a26f-4339-851d-ba968dc8aed2",
         "quote": "This app also drains your watch's battery like CRAZY and that's with songs directly downloaded on your watch."
-      },
-      {
-        "review_id": "3e9ab676-6786-4ff5-bb31-8f0ffcd47b50",
-        "quote": "sportify is still saving song on my internal memory this is annoying cause now I can't even see the option to save music on my SD CARD"
       }
     ]
   },
   {
     "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
     "code": "playback.stops_skips",
-    "member_count": 13827,
+    "member_count": 13916,
     "examples": [
       {
         "review_id": "ae2ad245-5d6a-4979-9014-c6f6fe29cdb2",
@@ -1055,7 +1055,7 @@
   {
     "issue_id": "ISS-SUPPORT-UNHELPFUL",
     "code": "support.unhelpful",
-    "member_count": 475,
+    "member_count": 477,
     "examples": [
       {
         "review_id": "f4aab3d0-62d2-4a55-b38d-0ff6181a69c8",
@@ -1094,7 +1094,7 @@
   {
     "issue_id": "ISS-USABILITY-ADS",
     "code": "usability.ads",
-    "member_count": 37406,
+    "member_count": 37507,
     "examples": [
       {
         "review_id": "d16cb1ee-f1cb-4652-b47b-f30b5e2333a8",
@@ -1133,7 +1133,7 @@
   {
     "issue_id": "ISS-USABILITY-CONTROLS_NAVIGATION",
     "code": "usability.controls_navigation",
-    "member_count": 8026,
+    "member_count": 8134,
     "examples": [
       {
         "review_id": "469ead49-67fe-4436-aaa4-af4e0278c1b4",
@@ -1172,7 +1172,7 @@
   {
     "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
     "code": "usability.layout_redesign",
-    "member_count": 18938,
+    "member_count": 18975,
     "examples": [
       {
         "review_id": "52d55864-3144-416b-9141-e7ca3b66f501",
@@ -1211,7 +1211,7 @@
   {
     "issue_id": "ISS-USABILITY-LIBRARY_QUEUE",
     "code": "usability.library_queue",
-    "member_count": 8856,
+    "member_count": 8920,
     "examples": [
       {
         "review_id": "948c6299-33fd-45d8-94f2-872d6d26e798",
@@ -1250,7 +1250,7 @@
   {
     "issue_id": "ISS-USABILITY-OTHER",
     "code": "usability.other",
-    "member_count": 2004,
+    "member_count": 2010,
     "examples": [
       {
         "review_id": "6dd250ea-573d-491c-89ee-94cc9ad52c41",

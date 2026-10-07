@@ -1,0 +1,11 @@
+{
+  "run_id": "repl-10000",
+  "rule": "contract: praise / unclear / pure request => severity 1",
+  "records_changed": 41,
+  "by_intent_and_model_severity": {
+    "request:2": 22,
+    "request:3": 16,
+    "unclear:2": 3
+  },
+  "at": "2026-10-07T06:26:32+00:00"
+}

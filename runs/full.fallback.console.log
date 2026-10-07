@@ -1,0 +1,14 @@
+[2026-10-07T06:15:38+00:00] fallback:start session=7 quarantined_nonempty=1573 selected=1573 cap=2000 label_config=openai/gpt-6-luna/effort=low/fallback|enricher_v2_fallback@2d9fb24e|enrich-schema-v2|labels-v2@0241cb18
+[2026-10-07T06:25:42+00:00] fallback:done run_id=full session=7 label_config=openai/gpt-6-luna/effort=low/fallback|enricher_v2_fallback@2d9fb24e|enrich-schema-v2|labels-v2@0241cb18 declared_cap=2000 candidates=1573 sent=1573 rescued=1490 still_quarantined=83 stop=None
+{
+ "run_id": "full",
+ "session": 7,
+ "label_config": "openai/gpt-6-luna/effort=low/fallback|enricher_v2_fallback@2d9fb24e|enrich-schema-v2|labels-v2@0241cb18",
+ "declared_cap": 2000,
+ "candidates": 1573,
+ "sent": 1573,
+ "rescued": 1490,
+ "still_quarantined": 83,
+ "stop": null,
+ "at": "2026-10-07T06:25:42+00:00"
+}

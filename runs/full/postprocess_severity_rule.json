@@ -1,0 +1,11 @@
+{
+  "run_id": "full",
+  "rule": "contract: praise / unclear / pure request => severity 1",
+  "records_changed": 7,
+  "by_intent_and_model_severity": {
+    "request:2": 3,
+    "request:3": 3,
+    "unclear:2": 1
+  },
+  "at": "2026-10-07T06:26:32+00:00"
+}

@@ -1,7 +1,7 @@
 {
   "reviewer": "Luiza Leite Teixeira (author)",
   "date": "2026-10-07",
-  "decision": "APPROVED",
+  "decision": "PENDING re-review",
   "memo_prompt_version": "memo_v4",
   "accepted_changes": [
     "A",
@@ -12,5 +12,21 @@
   "rejected_changes": [
     "E"
   ],
-  "notes": "Changes were proposed by the AI coding assistant (Claude) after the author read memo v3; the author chose A-D and rejected E. See docs/memo_review.md."
+  "notes": "memo_v4 regenerated after the capped fallback (+1,499 classified records) and the new evidence-checker agent; the author's A-D / not-E decisions are kept in the prompt. Awaiting the author's read of this regenerated version.",
+  "history": [
+    {
+      "version": "memo_v4 (pre-fallback numbers)",
+      "decision": "APPROVED",
+      "date": "2026-10-07",
+      "accepted_changes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rejected_changes": [
+        "E"
+      ]
+    }
+  ]
 }

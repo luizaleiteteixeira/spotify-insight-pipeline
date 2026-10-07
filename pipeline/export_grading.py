@@ -68,6 +68,13 @@ def main():
         shutil.copy(src, out / name)
 
     role_ok = {"enrich", "verify", "group", "memo"}
+    # Final config per completed record: an ID that appears in a successful enrich call of ANOTHER config failed
+    # validation in that call (otherwise it would have been saved there) and was completed later by the declared
+    # fallback. Such calls are exported as two entries: the items that were accepted ("succeeded") and the items that
+    # failed validation ("failed", request_id suffixed '#invalid-items'). Every sent ID still appears exactly once.
+    final_cfg = {rid: lc for rid, st, lc in con.execute("SELECT review_id, status, label_config FROM records")
+                 if st == "completed"}
+    split_calls = 0
     calls = 0
     with gzip.open(out / "calls.jsonl.gz", "wt", encoding="utf-8") as f:
         for c in ledger_calls():
@@ -84,6 +91,20 @@ def main():
                 e["input_artifact"] = c["input_artifact"]
             if e["model"] and e["role"] == "enrich":
                 e["model"] = c["model"]      # exact configured model ID, same as in label_config
+            bad = [r for r in e["review_ids"] if e["role"] == "enrich" and e["outcome"] == "succeeded"
+                   and r in final_cfg and final_cfg[r] != e["label_config"]]
+            if bad:
+                ok = [r for r in e["review_ids"] if r not in set(bad)]
+                split_calls += 1
+                if ok:
+                    f.write(json.dumps({**e, "review_ids": ok}, ensure_ascii=False) + "\n")
+                    calls += 1
+                f.write(json.dumps({**e, "request_id": e["request_id"] + "#invalid-items", "review_ids": bad,
+                                    "outcome": "failed", "input_tokens": 0, "output_tokens": 0, "cost_usd": 0.0,
+                                    "note": "items failed validation in this call (usage counted on the parent entry); "
+                                            "completed later by the capped fallback"}, ensure_ascii=False) + "\n")
+                calls += 1
+                continue
             f.write(json.dumps(e, ensure_ascii=False) + "\n")
             calls += 1
     before = json.loads((run_dir / f"checkpoint_session{a.before_session}.json").read_text())
@@ -93,7 +114,7 @@ def main():
                                                             "at": before["at"], "completed_ids": before["completed_ids"]}))
     (out / "checkpoint_after.json").write_text(json.dumps({"session": after["session"], "phase": after["phase"],
                                                            "at": after["at"], "completed_ids": after["completed_ids"]}))
-    print(json.dumps({"records": n, "calls": calls, "before": len(before["completed_ids"]),
+    print(json.dumps({"records": n, "calls": calls, "calls_split_by_item_outcome": split_calls, "before": len(before["completed_ids"]),
                       "after": len(after["completed_ids"]), "out": str(out)}, indent=1))
 
 

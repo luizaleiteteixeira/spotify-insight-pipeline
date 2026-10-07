@@ -1,0 +1,294 @@
+{
+  "generated_at": "2026-10-07T06:29:33+00:00",
+  "issues_checked": 6,
+  "candidates": [
+    {
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "review_id": "8964aaea-f4c7-4b01-94e0-a76b992018fd",
+      "supports": true,
+      "reason": "Explicitly mentions needing to buy Premium to turn off shuffle and inability to use back/forward buttons, direct premium-only control restrictions."
+    },
+    {
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "review_id": "d8be33b8-6758-4ae7-9e3e-6e7d02163930",
+      "supports": false,
+      "reason": "Describes inability to select and queue songs as a technical defect/bug, not an explicit premium-tier restriction."
+    },
+    {
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "review_id": "2d1b5fa6-5d80-4616-9b65-f6e7738e9edf",
+      "supports": true,
+      "reason": "Explicitly states no option to turn off shuffle play and implies song selection is locked behind payment as a deliberate restriction."
+    },
+    {
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "review_id": "4f8b85b3-da73-40fa-b7e4-5841c2385e5f",
+      "supports": true,
+      "reason": "Explicitly states recent updates disabled Queue, Skips, Rewind and song selection, identifying these as premium-gated features."
+    },
+    {
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "review_id": "11ca2d13-42e8-40d2-bde3-6a46972d12f2",
+      "supports": true,
+      "reason": "States the app is actively forcing premium purchase by making core features unusable without it, explicitly linking premium to basic functionality."
+    },
+    {
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "review_id": "8090e14c-5408-4ee8-b927-008e2b3821a0",
+      "supports": false,
+      "reason": "Describes a technical bug where the wrong song plays when selecting one, not an explicit premium-tier control restriction."
+    },
+    {
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "review_id": "1b74a4a1-64ad-4b7c-bf03-bd3b2570bf01",
+      "supports": false,
+      "reason": "Describes usability/navigation problems and autoshuffle behavior as bugs rather than explicit premium-only feature gating."
+    },
+    {
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "review_id": "b9b6ff85-59ea-421b-bb4f-50681dedca53",
+      "supports": true,
+      "reason": "Explicitly states users without subscription have no rights to listen and cannot choose preferred music, indicating premium-locked song selection controls."
+    },
+    {
+      "issue_id": "ISS-OTHER-GENERAL",
+      "review_id": "f4834cf7-112b-4489-8a43-efe862eb1425",
+      "supports": true,
+      "reason": "Generic criticism about data privacy and tracking without specific app defects or usability issues; lacks clarity on actual functional problems."
+    },
+    {
+      "issue_id": "ISS-OTHER-GENERAL",
+      "review_id": "29ba0136-125a-4300-8616-1cdabc443ce7",
+      "supports": true,
+      "reason": "Vague conspiracy-style complaint without concrete evidence of a specific app malfunction or feature defect."
+    },
+    {
+      "issue_id": "ISS-OTHER-GENERAL",
+      "review_id": "3eb26f71-b184-4787-9361-9e402eb0d8ea",
+      "supports": true,
+      "reason": "Generic criticism about tracking practices without describing a specific reproducible app defect or usability problem."
+    },
+    {
+      "issue_id": "ISS-OTHER-GENERAL",
+      "review_id": "d0b489d1-5b4c-408b-9984-336c46dae0c9",
+      "supports": true,
+      "reason": "While detailed about tracking concerns, this is a privacy/policy complaint rather than a specific functional defect or playback/usability issue."
+    },
+    {
+      "issue_id": "ISS-OTHER-GENERAL",
+      "review_id": "e10c0675-be54-4ff3-90c3-648e7562a76c",
+      "supports": true,
+      "reason": "Specific tracking complaint but lacks evidence of an actual app malfunction; unclear causation between review and tracking increase."
+    },
+    {
+      "issue_id": "ISS-OTHER-GENERAL",
+      "review_id": "e93b9f04-94d4-411a-b56d-cbd2b770629a",
+      "supports": false,
+      "reason": "Describes a security issue (potential malware/trojan) which is a specific technical defect, not generic criticism."
+    },
+    {
+      "issue_id": "ISS-OTHER-GENERAL",
+      "review_id": "06368cfa-d76c-4244-b0fc-fba6f48dcf97",
+      "supports": true,
+      "reason": "Generic criticism about data sharing without describing any specific app malfunction or feature problem."
+    },
+    {
+      "issue_id": "ISS-OTHER-GENERAL",
+      "review_id": "08f88c90-d6a8-459c-bf27-4c4f81426f11",
+      "supports": true,
+      "reason": "Incoherent complaint with unclear accusations and no specific functional defect described."
+    },
+    {
+      "issue_id": "ISS-USABILITY-ADS",
+      "review_id": "b551e798-27ab-416e-8f72-a175bb19500a",
+      "supports": true,
+      "reason": "Explicitly describes many ads played after each song as destroying music experience, directly matching ad frequency interruption."
+    },
+    {
+      "issue_id": "ISS-USABILITY-ADS",
+      "review_id": "6bb97cff-a467-4f6a-ba9f-4cdadbbe852c",
+      "supports": true,
+      "reason": "Complains about an unexpectedly loud commercial (ad) blaring during driving, a clear example of ad content and loudness interrupting listening."
+    },
+    {
+      "issue_id": "ISS-USABILITY-ADS",
+      "review_id": "08a1f178-3e7a-4d65-9da3-dee293dd0061",
+      "supports": true,
+      "reason": "Specifically reports ads are incredibly louder than music even with normalization on, and caused dangerous distraction while driving."
+    },
+    {
+      "issue_id": "ISS-USABILITY-ADS",
+      "review_id": "4a9e83b2-ab6f-4f84-9c2d-f5564c26e858",
+      "supports": false,
+      "reason": "Though it mentions ads and voices, the extreme claims (puking, broken leg while driving) lack credibility and specificity about actual ad defects."
+    },
+    {
+      "issue_id": "ISS-USABILITY-ADS",
+      "review_id": "765ed2d9-e14a-4384-bc04-131442aac251",
+      "supports": false,
+      "reason": "Mentions ads exist but focuses primarily on security/card hacking concerns, not ad frequency, length, loudness, or content interruption."
+    },
+    {
+      "issue_id": "ISS-USABILITY-ADS",
+      "review_id": "b0fda092-6003-41d9-a76f-991d125e9751",
+      "supports": true,
+      "reason": "Describes ads interrupting songs, being repetitive and non-entertaining, with complaint about lack of variety in ad content."
+    },
+    {
+      "issue_id": "ISS-USABILITY-ADS",
+      "review_id": "e74f605d-8b50-4dec-970b-e5e6e8988d19",
+      "supports": true,
+      "reason": "Explicitly complains about ad frequency (every 5 minutes or less) as disgusting and annoying, with ads interrupting music listening."
+    },
+    {
+      "issue_id": "ISS-USABILITY-ADS",
+      "review_id": "8fcb62cb-c2ac-4fc1-9a66-afcf4299759f",
+      "supports": true,
+      "reason": "Specifically describes 4-5 ads every 3-4 songs as extremely irritating and notes that ad loading failures bar listening to music."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "review_id": "8991b385-507f-4798-855f-9ff6390b1b50",
+      "supports": true,
+      "reason": "Explicitly describes music stopping and starting by itself, and randomly coming on at odd hours while user was listening to another app."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "review_id": "574d3a84-5cab-43c2-8573-367f42555bf6",
+      "supports": true,
+      "reason": "Clearly states music has been cutting out for weeks, which directly matches the stops/skips issue."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "review_id": "080bab9f-20ba-430b-b95f-872647c6f8ac",
+      "supports": true,
+      "reason": "Explicitly describes music stopping automatically after 2-3 minutes, matching the core issue definition."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "review_id": "cf91b556-b439-4e37-8eb1-0b79608282f5",
+      "supports": true,
+      "reason": "Describes a song that kept playing and kept restarting despite user attempts to skip it, supporting the stops_skips issue."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "review_id": "58af4b3e-a46c-49ef-a177-74786ae9767e",
+      "supports": true,
+      "reason": "Clearly describes app stopping playback after 1 song with the song bar disappearing, requiring app restart, directly matching the issue."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "review_id": "a840c71c-974c-4edd-8c65-b8b529555ace",
+      "supports": true,
+      "reason": "Mentions bugs including the app trying to start when it isn't open and overriding other apps, though primary complaint is playlists not loading; supports stops_skips as a secondary mentioned bug."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "review_id": "e6970c23-d6cd-470b-9fab-aefa6ec99d59",
+      "supports": true,
+      "reason": "Explicitly describes music playing for only 10 seconds then stopping on phone while showing as still playing, matching the stops issue."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "review_id": "d8686f5a-8006-4104-b02b-16f960b31a57",
+      "supports": true,
+      "reason": "Clearly states the app will stop playing music after like 5 minutes, directly matching the core stops_skips issue."
+    },
+    {
+      "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "review_id": "3736ab38-6224-40c0-bc4a-07c637a5dd2d",
+      "supports": false,
+      "reason": "Focuses on autoplay audio behavior (a playback/control feature) rather than home screen layout, redesign, or look and feel."
+    },
+    {
+      "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "review_id": "89e38a97-9372-4b02-8626-1a7f154771dc",
+      "supports": true,
+      "reason": "Explicitly mentions update making it harder to find content and criticizes the layout redesign's impact on usability."
+    },
+    {
+      "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "review_id": "8c9d3abe-22c7-4976-a531-5d3b2ccf1792",
+      "supports": true,
+      "reason": "Directly addresses the recent update making layout terrible and hard to use, with specific mention of playlist editing difficulty."
+    },
+    {
+      "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "review_id": "0f082ea7-9cd0-497c-a749-9214a9e2fda4",
+      "supports": false,
+      "reason": "Focuses on audio preview control behavior rather than home screen layout, redesign, or visual look and feel."
+    },
+    {
+      "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "review_id": "715a783b-3014-4a8d-9ae5-100664c09b6e",
+      "supports": true,
+      "reason": "Criticizes both massive cards taking up the screen (layout) and the associated autoplay feature as part of the home screen UI update."
+    },
+    {
+      "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "review_id": "b9141762-3271-45bb-9d34-dedc24017a1a",
+      "supports": true,
+      "reason": "Explicitly describes the new UI update negatively, mentioning forced single-item scrolling layout and inability to browse effectively due to visual design changes."
+    },
+    {
+      "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "review_id": "bc8c7b42-d592-4b66-8b0b-0082079c86b2",
+      "supports": true,
+      "reason": "Directly criticizes the home UI facelift, describing the layout as formatted in a stupid way making browsing impossible."
+    },
+    {
+      "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "review_id": "41ded96f-de4b-41c7-bb62-13be788b46fc",
+      "supports": true,
+      "reason": "Explicitly references the TikTok-style update and describes specific layout changes: loss of category lines, horizontal rows replaced with vertical single-item scrolling."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
+      "review_id": "d29c1b8a-2f02-4487-9744-b70a93a75eca",
+      "supports": true,
+      "reason": "Explicitly states 'The app crashes a lot' and describes severe impact on phone usability, directly supporting the crashes/freezes issue."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
+      "review_id": "bd99f3ed-be10-4cd7-837a-e889fe57994b",
+      "supports": true,
+      "reason": "Clearly reports 'Continuously crashes and takes out additional apps and often entire OS,' directly matching the crashes definition."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
+      "review_id": "4538a329-fb56-4a15-8efa-4358b507f6f3",
+      "supports": true,
+      "reason": "Describes inability to play music and presents 'black screen' alongside system-level impacts, indicating playback crashes or freezes."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
+      "review_id": "76ae76a3-7984-40d4-a140-c5a0d4b6a666",
+      "supports": true,
+      "reason": "Explicitly states app 'becoming unresponsive and bricking my phone when it becomes stuck,' directly describing crashes/freezes."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
+      "review_id": "630490e0-4032-44fd-8c9c-bad305a7dd60",
+      "supports": true,
+      "reason": "Clearly reports 'my phone will crash and restart' when starting music, directly supporting the crashes issue."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
+      "review_id": "68d39193-8524-481d-b1f2-afa7ef34a1a2",
+      "supports": true,
+      "reason": "Explicitly states 'it keeps crashing and rebooting my phone,' directly matching the crashes/freezes definition."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
+      "review_id": "25c2686b-9948-4e01-a006-25ae1f3cc4ca",
+      "supports": true,
+      "reason": "Describes 'blank album screen' and troubleshooting attempts to fix it, indicating a significant playback/display crash or freeze affecting app usability."
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
+      "review_id": "2bb83b80-ac94-4ba6-a0f4-4c9cb064518c",
+      "supports": true,
+      "reason": "States in Portuguese that the app 'crasha e trava todo o celular' (crashes and freezes the entire phone), directly supporting the crashes/freezes issue."
+    }
+  ]
+}

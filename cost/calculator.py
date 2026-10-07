@@ -224,6 +224,13 @@ def write_report(out, runs, rates, calls):
         for r in z["points"]:
             L.append(f"| {r['texts']:,} | {r['calls']:,} | {r['cost_usd']} | {r['cost_per_text']} | {r['elapsed_s']} | {r['texts_per_s']} |")
         L += ["", z["batch_note"]]
+        if z.get("formal_replication"):
+            L += ["", "### Formal 500 and 10,000 checkpoint runs (post-hoc replication)", "", z["formal_note"], "",
+                  "| Run | Input rows | Completed | Quarantined | Calls | API cost USD | Cost per input row | Wall clock s |",
+                  "|---|---|---|---|---|---|---|---|"]
+            for r in z["formal_replication"]:
+                L.append(f"| {r['run']} | {r['input_rows']:,} | {r['completed']:,} | {r['quarantined']} | {r['calls']} | "
+                         f"{r['cost_usd']} | {r['cost_per_input_row']} | {r['wall_clock_s']} |")
     fa = HERE / "full_run_actuals.json"
     if fa.exists():
         a = json.loads(fa.read_text())

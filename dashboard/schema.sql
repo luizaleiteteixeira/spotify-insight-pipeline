@@ -37,3 +37,6 @@ CREATE TABLE IF NOT EXISTS recommendation (
   check_result JSONB, model TEXT, prompt_version TEXT, generated_at TEXT
 );
 CREATE TABLE IF NOT EXISTS active_run (id INTEGER PRIMARY KEY DEFAULT 1, run_id TEXT NOT NULL);
+
+-- v2 dashboard: evaluation, cost, pipeline and iteration evidence (all copied from saved files by load_db.py)
+ALTER TABLE run_meta ADD COLUMN IF NOT EXISTS extras JSONB;
