@@ -53,7 +53,7 @@ def parse_body(body: dict):
 
 
 def run(input_path: Path, run_id: str, requests_per_batch: int = 1000, max_inflight: int = 3, poll_seconds: int = 60,
-        no_wait: bool = False, max_new_batches: int | None = None) -> dict:
+        no_wait: bool = False, max_new_batches: int | None = None, retry_workers: int = 8) -> dict:
     run_dir = RUNS / run_id
     state = State(run_dir)
     state.db.executescript("""
@@ -97,8 +97,9 @@ def run(input_path: Path, run_id: str, requests_per_batch: int = 1000, max_infli
                        "WHERE text_sha=? AND status='pending' AND review_id<>?",
                        (cfg["label_config"], lj, row["review_id"], now(), sha256_text(row["review_text"]), row["review_id"]))
         state.tx(fn)
-        cdb.execute("INSERT OR IGNORE INTO cache VALUES (?,?,?,?,?,?)", (sha256_text(row["review_text"]),
-                                                                           cfg["label_config"], row["review_id"], run_id, lj, now()))
+        with state.lock:          # one writer at a time for the shared result cache
+            cdb.execute("INSERT OR IGNORE INTO cache VALUES (?,?,?,?,?,?)", (sha256_text(row["review_text"]),
+                                                                               cfg["label_config"], row["review_id"], run_id, lj, now()))
 
     def save_quarantined(row, reason, errs):
         state.tx(lambda db: db.execute("UPDATE records SET status='quarantined', reason=?, attempts=attempts+2, phase=?, "
@@ -198,9 +199,13 @@ def run(input_path: Path, run_id: str, requests_per_batch: int = 1000, max_infli
         missing = [cid for cid in reqmap if cid not in seen]
         log.event("batch_collected", batch_id=batch_id, status=b.status, valid_first_try=n_ok,
                   invalid_items=n_bad, errored_requests=n_err, missing_requests=len(missing))
-        for batch_rows, fb in retry_jobs:
-            # retries run in the CURRENT session's phase (they are new calls made now)
-            sync_retry(batch_rows, fb, phase)
+        # Retries run in the CURRENT session's phase (new calls made now), in parallel: one shared queue,
+        # each job owns distinct review_ids, and all writes go through the state lock (no double counting).
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=retry_workers) as pool:
+            for f in [pool.submit(sync_retry, br, fb, phase) for br, fb in retry_jobs]:
+                f.result()
+        log.event("batch_retries_done", batch_id=batch_id, retry_jobs=len(retry_jobs), workers=retry_workers)
         state.tx(lambda db: db.execute("UPDATE batches SET status=?, collected_at=? WHERE batch_id=?",
                                        (b.status, now(), batch_id)))
 
@@ -305,9 +310,11 @@ def main():
     ap.add_argument("--max-new-batches", type=int)
     ap.add_argument("--poll-seconds", type=int, default=60)
     ap.add_argument("--no-wait", action="store_true")
+    ap.add_argument("--retry-workers", type=int, default=8)
     a = ap.parse_args()
     set_cache_namespace(a.cache_ns)
-    s = run(a.input, a.run_id, a.requests_per_batch, a.max_inflight, a.poll_seconds, a.no_wait, a.max_new_batches)
+    s = run(a.input, a.run_id, a.requests_per_batch, a.max_inflight, a.poll_seconds, a.no_wait, a.max_new_batches,
+            a.retry_workers)
     print(json.dumps(s, indent=1))
 
 

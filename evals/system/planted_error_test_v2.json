@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-10-07T01:34:26+00:00",
+  "run_id": "pilot-cold",
+  "verified_records": 20,
+  "planted": 16,
+  "detected": 16,
+  "detection_rate": 1.0,
+  "planted_topic_detected": "16/16",
+  "planted_severity_detected": "0/0",
+  "background_disagreements_unplanted": 4,
+  "method": "plants only where enricher and verifier originally agreed; test copy in memory; state.db untouched; severity plants move >= 2 points so the +-1 tolerance cannot hide them"
+}

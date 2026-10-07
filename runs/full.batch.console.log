@@ -1,3 +1,28 @@
 [2026-10-07T01:32:08+00:00] enrich_batch:batch_submitted batch_id=batch_6ac5a117d1248190a70b0cda313a4919 requests=1000 reviews=50000 phase=resume
 [2026-10-07T01:32:10+00:00] enrich_batch:batch_submitted batch_id=batch_6ac5a11aa2008190bb91dcf5a53614d5 requests=1000 reviews=50000 phase=resume
 [2026-10-07T01:32:11+00:00] enrich_batch:waiting open_batches=2 completed_records=101851 batches=313a4919:validating:0/0 a53614d5:validating:0/0 spend=0.8766
+[2026-10-07T01:34:13+00:00] enrich_batch:waiting open_batches=2 completed_records=101851 batches=313a4919:in_progress:12/1000 a53614d5:in_progress:40/1000 spend=0.8766
+[2026-10-07T01:36:15+00:00] enrich_batch:waiting open_batches=2 completed_records=101851 batches=313a4919:in_progress:103/1000 a53614d5:in_progress:486/1000 spend=0.8766
+[2026-10-07T01:38:17+00:00] enrich_batch:waiting open_batches=2 completed_records=101851 batches=313a4919:in_progress:280/1000 a53614d5:in_progress:684/1000 spend=0.8766
+[2026-10-07T01:40:19+00:00] enrich_batch:waiting open_batches=2 completed_records=101851 batches=313a4919:in_progress:432/1000 a53614d5:in_progress:832/1000 spend=0.8766
+[2026-10-07T01:42:21+00:00] enrich_batch:waiting open_batches=2 completed_records=101851 batches=313a4919:in_progress:511/1000 a53614d5:in_progress:944/1000 spend=0.8766
+[2026-10-07T01:44:23+00:00] enrich_batch:waiting open_batches=2 completed_records=101851 batches=313a4919:in_progress:662/1000 a53614d5:in_progress:959/1000 spend=0.8766
+[2026-10-07T01:46:26+00:00] enrich_batch:waiting open_batches=2 completed_records=101851 batches=313a4919:in_progress:791/1000 a53614d5:in_progress:976/1000 spend=0.8766
+[2026-10-07T01:48:28+00:00] enrich_batch:waiting open_batches=2 completed_records=101851 batches=313a4919:in_progress:832/1000 a53614d5:in_progress:986/1000 spend=0.8766
+[2026-10-07T01:51:21+00:00] enrich_batch:batch_collected batch_id=batch_6ac5a11aa2008190bb91dcf5a53614d5 status=completed valid_first_try=45289 invalid_items=4711 errored_requests=0 missing_requests=0
+[2026-10-07T02:29:39+00:00] enrich_batch:stop run_id=full session=4 phase=resume mode=batch stop_reason=interrupted_by_user (open batches keep running server-side; rerun to collect) batches_submitted_this_session=2 wall_clock_s=3457.4 accounting_ok=True n_completed=160805 n_pending=499669 n_quarantined=148
+{
+ "run_id": "full",
+ "session": 4,
+ "phase": "resume",
+ "mode": "batch",
+ "stop_reason": "interrupted_by_user (open batches keep running server-side; rerun to collect)",
+ "status_counts": {
+  "completed": 160805,
+  "pending": 499669,
+  "quarantined": 148
+ },
+ "batches_submitted_this_session": 2,
+ "wall_clock_s": 3457.4,
+ "accounting_ok": true
+}

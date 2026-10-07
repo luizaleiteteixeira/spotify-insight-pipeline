@@ -1,0 +1,15 @@
+{
+  "run_id": "full",
+  "session": 4,
+  "phase": "resume",
+  "mode": "batch",
+  "stop_reason": "interrupted_by_user (open batches keep running server-side; rerun to collect)",
+  "status_counts": {
+    "completed": 160805,
+    "pending": 499669,
+    "quarantined": 148
+  },
+  "batches_submitted_this_session": 2,
+  "wall_clock_s": 3457.4,
+  "accounting_ok": true
+}
