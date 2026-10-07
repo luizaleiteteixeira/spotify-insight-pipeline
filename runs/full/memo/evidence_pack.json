@@ -420,5 +420,31 @@
         }
       ]
     }
-  ]
+  ],
+  "issue_definitions": {
+    "ISS-BILLING-PREMIUM_ONLY_CONTROLS": "song choice, skips, rewind, order, lyrics etc. explicitly locked behind Premium; free tier restrictions",
+    "ISS-OTHER-GENERAL": "general praise, generic criticism, unrelated or unclear text",
+    "ISS-USABILITY-ADS": "ad frequency, length, loudness or content interrupting listening",
+    "ISS-PLAYBACK-STOPS_SKIPS": "music stops, pauses, skips or repeats on its own",
+    "ISS-USABILITY-LAYOUT_REDESIGN": "home screen, redesigns, layout, look and feel",
+    "ISS-PLAYBACK-CRASHES_FREEZES": "app crashes, freezes, lags, 'something went wrong' errors",
+    "ISS-ACCESS-LOGIN": "cannot log in, logged out, login loop, password reset",
+    "ISS-USABILITY-LIBRARY_QUEUE": "playlists, library, queue, liked songs management"
+  },
+  "label_reliability": {
+    "golden_set": {
+      "cases": 50,
+      "topic_accuracy": 0.7,
+      "human_labeled_billing": 0,
+      "model_labeled_billing": 5,
+      "note": "small diagnostic sample of 50 human-labeled reviews"
+    },
+    "independent_verifier": {
+      "verified_sample": 2000,
+      "topic_agreement_all": 0.8475,
+      "top_issue_code": "billing.premium_only_controls",
+      "top_issue_verified": 252,
+      "top_issue_verifier_same_topic": 194
+    }
+  }
 }

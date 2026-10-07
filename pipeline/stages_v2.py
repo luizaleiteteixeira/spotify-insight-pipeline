@@ -367,7 +367,30 @@ CLAIM = re.compile(r"\bC\d{3}\b")
 ISS = re.compile(r"ISS-[A-Z0-9_-]+")
 
 
-def memo(run_id: str, budget: Budget, top_n: int = 8) -> dict:
+def label_reliability(run_dir, recs, top) -> dict:
+    """Code-computed reliability facts the memo must disclose (golden set + independent verifier)."""
+    out = {}
+    g = RUNS.parent / "evals" / "golden_v2" / "golden_v2_report.json"
+    if g.exists():
+        gr = json.loads(g.read_text())
+        out["golden_set"] = {"cases": gr["n"], "topic_accuracy": gr["topic_accuracy"],
+                             "human_labeled_billing": gr["per_topic"].get("billing", {}).get("support", 0),
+                             "model_labeled_billing": gr["per_topic"].get("billing", {}).get("predicted", 0),
+                             "note": "small diagnostic sample of 50 human-labeled reviews"}
+    vc = run_dir / "verify" / "verify_comparison.csv"
+    if vc.exists():
+        rows = [r for r in csv.DictReader(open(vc, newline="")) if r.get("verifier_status") == "completed"]
+        vr = json.loads((run_dir / "verify" / "verify_report.json").read_text())
+        out["independent_verifier"] = {"verified_sample": len(rows), "topic_agreement_all": vr["topic_agreement"]}
+        if top:
+            code = top[0]["issue_id"][4:].lower().replace("-", ".", 1)
+            sub = [r for r in rows if r["enricher_code"] == code]
+            out["independent_verifier"].update({"top_issue_code": code, "top_issue_verified": len(sub),
+                                                "top_issue_verifier_same_topic": sum(r["topic_agree"] == "True" for r in sub)})
+    return out
+
+
+def memo(run_id: str, budget: Budget, top_n: int = 8, prompt: str = "memo_v3") -> dict:
     run_dir, man, recs = load_run(run_id)
     log = RunLog(run_dir, "memo")
     out = run_dir / "memo"
@@ -400,10 +423,13 @@ def memo(run_id: str, budget: Budget, top_n: int = 8) -> dict:
                       "complaint_or_cancellation": overview["complaint_or_cancellation"],
                       "window": "2022-05-17 to 2023-11-15 (first and last months partial)"},
             "ranking_rule": "priority_score = complaint_count x mean_severity = severity_sum; ties by issue_id",
-            "areas": overview["areas"], "top_issues": top}
+            "areas": overview["areas"], "top_issues": top,
+            "issue_definitions": {t["issue_id"]: LABELS["subtopics"][t["issue_id"][4:].lower().replace("-", ".", 1)]
+                                  for t in top if t["issue_id"][4:].lower().replace("-", ".", 1) in LABELS["subtopics"]},
+            "label_reliability": label_reliability(run_dir, recs, top)}
     write_json(out / "evidence_pack.json", pack)
     m = settings()["models"]["memo_v2"]
-    system, ver = load_prompt("memo_v2")
+    system, ver = load_prompt(prompt)
     schema = {"type": "object", "properties": {
         "recommendation_title": {"type": "string"}, "recommendation": {"type": "string"},
         "alternatives": {"type": "array", "items": {"type": "object", "properties": {
@@ -444,10 +470,27 @@ def memo(run_id: str, budget: Budget, top_n: int = 8) -> dict:
             if nn in allowed_nums or nn in ("2022", "2023") or (nn.lstrip("-").isdigit() and 0 <= int(nn) <= 10):
                 continue
             bad_n.append(x)
+        # quoted fragments must be exact excerpts of pack text (customer quotes, issue titles, definitions)
+        quotes_ok = []
+
+        def strings(x):
+            if isinstance(x, dict):
+                for v in x.values():
+                    strings(v)
+            elif isinstance(x, list):
+                for v in x:
+                    strings(v)
+            elif isinstance(x, str):
+                quotes_ok.append(x)
+        strings(pack)
+        bad_q = []
+        for q in re.findall(r'["\u201c]([^"\u201d]{8,})["\u201d]', text):
+            if "..." in q or "[" in q or "\u2026" in q or not any(q in src for src in quotes_ok):
+                bad_q.append(q[:80])
         res = {"unknown_claim_ids": bad_c, "unknown_review_ids": bad_r, "unknown_issue_ids": bad_i,
-               "unsupported_numbers": sorted(set(bad_n)), "cites_claims": bool(CLAIM.findall(text)),
-               "cites_reviews": bool(UUID.findall(text))}
-        res["passed"] = not (bad_c or bad_r or bad_i or bad_n) and res["cites_claims"] and res["cites_reviews"]
+               "unsupported_numbers": sorted(set(bad_n)), "inexact_quotes": bad_q,
+               "cites_claims": bool(CLAIM.findall(text)), "cites_reviews": bool(UUID.findall(text))}
+        res["passed"] = not (bad_c or bad_r or bad_i or bad_n or bad_q) and res["cites_claims"] and res["cites_reviews"]
         return res
 
     def do():
