@@ -177,8 +177,14 @@ def write_report(out, runs, rates, calls):
          "## By stage (cold)", "",
          "| Stage | Provider / model / effort | Prompt/schema | Batch | Workers | Requests | Attempts | Failed | "
          "Input tok | Output tok | Reasoning tok | Cost USD | Wall s |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+    lc_by_stage = {}
+    for c in calls:
+        if c["pilot_run"] == "cold" and c.get("label_config"):
+            lc_by_stage.setdefault(c["stage"], c["label_config"])
     for s, st in m["cold"]["per_stage"].items():
-        meta = runs["stage_config"].get(s, {})
+        meta = dict(runs["stage_config"].get(s, {}))
+        lc = lc_by_stage.get(s, "")
+        meta["prompt"] = " / ".join(p for p in lc.split("|")[1:] if p) or lc
         L.append(f"| {s} | {meta.get('provider','')}/{meta.get('model','')}/{meta.get('effort','-')} | "
                  f"{meta.get('prompt','')} | {meta.get('batch','')} | {meta.get('workers','')} | {st['requests']} | "
                  f"{st['attempts']} | {st['failed_attempts']} | {st['input_tokens']} | {st['output_tokens']} | "
@@ -209,6 +215,15 @@ def write_report(out, runs, rates, calls):
           "Local compute (orchestration, SQLite on a laptop) is not metered: **unknown**, excluded from API spend.", "",
           "Replay: `python3 cost/calculator.py` · Change `rates.csv` or `assumptions.json` and rerun; doubling all rates "
           "doubles every API figure while measured times are unchanged."]
+    sc = HERE / "scale_checkpoints.json"
+    if sc.exists():
+        z = json.loads(sc.read_text())
+        L += ["", "## Scale measurements: 500 → 10,000 → 100,000+ texts (retrospective, from the full run's own log)", "",
+              z["disclosure"], "", "| First N distinct texts classified (time order) | Calls | API cost USD | Cost per text | "
+              "Elapsed s | Texts/s |", "|---|---|---|---|---|---|"]
+        for r in z["points"]:
+            L.append(f"| {r['texts']:,} | {r['calls']:,} | {r['cost_usd']} | {r['cost_per_text']} | {r['elapsed_s']} | {r['texts_per_s']} |")
+        L += ["", z["batch_note"]]
     fa = HERE / "full_run_actuals.json"
     if fa.exists():
         a = json.loads(fa.read_text())

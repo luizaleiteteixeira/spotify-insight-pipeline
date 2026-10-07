@@ -115,6 +115,8 @@ Caveat: 50 cases is a diagnostic sample. One case moves topic accuracy by 2 poin
 | API cost | **$0.078641** | **$0.000000** (0 new calls in every stage; every model output is cached by inputs + config) |
 | Enrichment | 2 requests × 50 + 2 retry requests (9 invalid items fixed by the single retry) | 100 result-cache hits |
 
+**Scale refresh (500 → 10,000 → 100,000 texts):** the estimate was **not** formally paused and refreshed at 500 and 10,000 as separate runs before scaling. The full run's own log provides those measurements, reported retrospectively in [`cost/report.md`](cost/report.md#scale-measurements-500--10000--100000-texts-retrospective-from-the-full-runs-own-log) ([`scale_checkpoints.json`](cost/scale_checkpoints.json)): cost per distinct text $0.0000240 at 500, $0.0000159 at 10,000, $0.0000132 at 100,000, and $0.0000158 at the end (481,741 texts; the late rise comes from retries).
+
 Per stage, the cold run cost: enrich $0.0025, verify $0.0061, adjudicate $0.0180, group $0.0227, memo $0.0293. Grouping and the memo are **fixed overhead counted once**, never multiplied per review. Full-run projections (base, batch, conservative, and no-reuse) are in [`cost/report.md`](cost/report.md), along with the **actual full-run cost per stage and why it differs**: validation retries ran at standard price and were more frequent than in the pilot (9–16% of items per batch).
 
 ### 3.6 Retry, spending and recovery controls
@@ -123,6 +125,8 @@ Per stage, the cold run cost: enrich $0.0025, verify $0.0061, adjudicate $0.0180
 - **Spending:** one shared ledger (`runs/ledger.jsonl`, every attempt including failures). A reservation is checked before every dispatch against the hard cap in `config/settings.json`. Batches are reserved before submission.
 - **Recovery:** SQLite state per run, with an atomic transaction per batch. Each OpenAI batch ID is saved **before waiting**, and an interrupted run re-polls the same batches. Changing the prompt, schema or model changes `label_config`, which invalidates the affected cached results.
 - **Offline control tests** (fake client; logic only): [`evals/test_offline.py`](evals/test_offline.py), **9/9 pass**. They cover validator rules, invalid→valid retry, invalid twice→quarantine (exactly 2 calls), connection/overload errors→backoff→success, interrupt→resume with no reprocessing, budget cap→pending, config change→stale, and a batch interrupt with resume and no resubmission.
+
+**Clean-environment test (2026-10-07):** fresh `git clone` of this public repo → `pip install -r requirements.txt` → download `full-state.db.gz` from the release → `python -m pipeline.run_v2 --run-id full --offline` with an empty environment (no API keys): two identical rebuilds, SQL = Python, and `ranking.csv` byte-identical to the committed file. `python3 cost/calculator.py` (system Python, no dependencies) reproduces the pilot figures; `test_offline.py` 9/9; the course checker on the cloned `grading/` gives 0.9986. The live dashboard API was compared with the saved files: ranking (33 issues), status, topic and intent counts, and claims C001-C004 all match.
 
 ### 3.7 Mechanical self-check
 

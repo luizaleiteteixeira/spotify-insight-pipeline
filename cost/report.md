@@ -1,6 +1,6 @@
 # 100-review cost & runtime report
 
-Generated 2026-10-07T05:41:30+00:00 by `python3 cost/calculator.py` (offline replay; no API calls).
+Generated 2026-10-07T05:58:08+00:00 by `python3 cost/calculator.py` (offline replay; no API calls).
 
 Input `data/raw/cost_100.csv` · SHA-256 `c884ac3b9be5066995d5063f96ad9af6e5e082975788c1684c4f6b6ea661dd0e` · 100 rows · 100 distinct texts · pilot run on 2026-10-07T00:20:22+00:00
 
@@ -20,11 +20,11 @@ Cost per 1,000 input rows (cold): **$0.7864** · per completed record: **$0.0007
 
 | Stage | Provider / model / effort | Prompt/schema | Batch | Workers | Requests | Attempts | Failed | Input tok | Output tok | Reasoning tok | Cost USD | Wall s |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| enrich | openai/gpt-6-luna/none |  | 50 | 1 | 4 | 4 | 0 | 14362 | 3889 | 0 | 0.002463 | 27.859 |
-| verify | anthropic/claude-haiku-4-5/n/a |  | 20 | 1 | 1 | 1 | 0 | 2575 | 713 | 0 | 0.006140 | 18.201 |
-| adjudicate | anthropic/claude-sonnet-5/thinking disabled |  | 1 | 1 | 4 | 4 | 0 | 10623 | 919 | 0 | 0.018010 | 18.201 |
-| group | anthropic/claude-sonnet-5/thinking disabled |  | 1 pack | 1 | 1 | 1 | 0 | 4542 | 1361 | 0 | 0.022694 | 12.663 |
-| memo | anthropic/claude-sonnet-5/thinking disabled |  | 1 pack | 1 | 1 | 1 | 0 | 5444 | 2041 | 0 | 0.029334 | 20.291 |
+| enrich | openai/gpt-6-luna/none | enricher_v2@aa674cb6 / enrich-schema-v2 / labels-v2@0241cb18 | 50 | 1 | 4 | 4 | 0 | 14362 | 3889 | 0 | 0.002463 | 27.859 |
+| verify | anthropic/claude-haiku-4-5/n/a | verifier_v2@18fbd7f7 | 20 | 1 | 1 | 1 | 0 | 2575 | 713 | 0 | 0.006140 | 18.201 |
+| adjudicate | anthropic/claude-sonnet-5/thinking disabled | adjudicator_v2@e63eb3b0 | 1 | 1 | 4 | 4 | 0 | 10623 | 919 | 0 | 0.018010 | 18.201 |
+| group | anthropic/claude-sonnet-5/thinking disabled | grouper_v2@46c92d16 | 1 pack | 1 | 1 | 1 | 0 | 4542 | 1361 | 0 | 0.022694 | 12.663 |
+| memo | anthropic/claude-sonnet-5/thinking disabled | memo_v2@d321a25a | 1 pack | 1 | 1 | 1 | 0 | 5444 | 2041 | 0 | 0.029334 | 20.291 |
 
 Wall seconds are clock time per stage (adjudication is inside verify). Summed request durations are reported separately in `replay_result.json` and are not wall-clock time.
 
@@ -67,6 +67,19 @@ Projection method: measured per-review token usage of the cold enrichment calls 
 Local compute (orchestration, SQLite on a laptop) is not metered: **unknown**, excluded from API spend.
 
 Replay: `python3 cost/calculator.py` · Change `rates.csv` or `assumptions.json` and rerun; doubling all rates doubles every API figure while measured times are unchanged.
+
+## Scale measurements: 500 → 10,000 → 100,000+ texts (retrospective, from the full run's own log)
+
+Disclosure: the plan in COST_CALCULATOR.md is to refresh the estimate at 500 and 10,000 reviews before scaling. This project went from the 100-review pilot to the full run without pausing at 500 and 10,000 as separate runs. The rows below are measured from the first sessions of the full run itself (sessions 1-3 sync with 4 workers and recorded interruptions; then OpenAI Batch API), ordered by time, and are reported retrospectively; elapsed time excludes nothing and includes the recorded pauses between sessions. Texts = distinct texts classified on the first attempt (exact-duplicate rows reused their result at no cost; at the end of session 3, 101,851 rows were complete).
+
+| First N distinct texts classified (time order) | Calls | API cost USD | Cost per text | Elapsed s | Texts/s |
+|---|---|---|---|---|---|
+| 500 | 19 | 0.01198 | 0.00002396 | 27.0 | 18.52 |
+| 10,000 | 273 | 0.15942 | 0.00001594 | 1780.0 | 5.62 |
+| 100,000 | 3,051 | 1.31854 | 0.00001319 | 4811.0 | 20.79 |
+| 481,741 | 18,963 | 7.60762 | 0.00001579 | 10947.0 | 44.01 |
+
+After session 3 the remaining texts went through the OpenAI Batch API (50% price); its per-text cost and the higher-than-pilot retry rate are in the actual-vs-projection section below.
 
 ## Actual full run vs projection (measured after the run)
 
