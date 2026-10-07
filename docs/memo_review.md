@@ -26,7 +26,7 @@ For D, code added `top_issue_monthly` to the evidence pack: the top issue's mont
 
 While building v4, the checks rejected real defects: rounded shares ("3.3-4.8%"), and an output that stopped mid-sentence. They also produced false positives that were fixed in the checker, not the memo: a range dash read as a minus sign, a quote ending in a comma inside the quotation marks, and mismatched straight and curly quote pairing. Every attempt is logged in `recommendation.json` → `attempts` and in `runs/ledger.jsonl` (stage `memo`).
 
-One formatting-only post-processing step: the model twice wrote the em dash as the literal escape `—`. The writer converts it to the character. The content is unchanged.
+One formatting-only post-processing step: the model twice wrote the em dash as the literal six-character escape `\u2014`. The writer converts it to the character. The content is unchanged.
 
 **Status of the pre-iteration v4: APPROVED by the author on 2026-10-07.**
 
