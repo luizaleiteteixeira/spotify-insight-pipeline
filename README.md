@@ -10,7 +10,7 @@
 | 📝 Decision memo + human review record | [`runs/full/memo/memo.md`](runs/full/memo/memo.md) · [`docs/memo_review.md`](docs/memo_review.md) |
 | 📦 Grading export (course contract `a5-audit-v1`) | [`grading/`](grading/) |
 | 💵 100-review cost/runtime calculator (offline replay) | [`cost/`](cost/) · [`cost/report.md`](cost/report.md) |
-| 🎥 Interruption/resume recording | Release assets: see [Run evidence](#run-evidence-and-resume) |
+| 🎥 Interruption/resume recordings | [Release v1.0-final](https://github.com/luizaleiteteixeira/spotify-insight-pipeline/releases/tag/v1.0-final) · see [Run evidence](#run-evidence-and-resume) |
 | 🧪 Evaluations | [`evals/`](evals/) |
 
 ---
@@ -193,7 +193,7 @@ python3 cost/calculator.py                                  # offline cost/runti
 .venv/bin/python -m pipeline.ingest                         # full-file profile + SQLite load
 .venv/bin/python -m unittest evals/test_offline.py          # control tests with a fake client
 ```
-`runs/full/state.db` (631 MB) is published as a release asset; place it at `runs/full/state.db` for offline reranking. The grading export already contains every record.
+`runs/full/state.db` (631 MB) is published gzip-compressed as a [release asset](https://github.com/luizaleiteteixeira/spotify-insight-pipeline/releases/tag/v1.0-final) (`full-state.db.gz`); `gunzip` it to `runs/full/state.db` for offline reranking (`--offline`). The grading export already contains every record.
 
 **Paid model runs (explicit):**
 ```bash
@@ -207,7 +207,12 @@ python3 cost/calculator.py pilot --execute                                      
 
 ### Run evidence and resume
 
-The full run's interruptions are on screen recordings (release assets) and in the saved state:
+**Recordings** (release [`v1.0-final`](https://github.com/luizaleiteteixeira/spotify-insight-pipeline/releases/tag/v1.0-final) assets):
+
+- **Recording 1 (main): sessions 2→3** (`recording-1-main-sessions-2-3-resume.mov`). Resume from saved state (`phase=resume`, `completed_before=84,022`), a Ctrl-C interruption after saved progress, then a second resume that continues from 94,186 to 101,851 without reprocessing completed IDs. `pipeline.status_v2` is shown before and after.
+- **Session 1 (not in the release):** a first recording of the initial run and the first Ctrl-C was cut short when the laptop froze and went to sleep mid-recording, an unplanned interruption, and that file was not kept. When the machine came back, the saved state was intact: session 1 had committed 84,022 completed records (snapshot: `grading/checkpoint_before.json`), which recording 1 shows being resumed.
+
+The same sequence in the saved state:
 
 | Session | Phase | Completed | Stop |
 |---|---|---|---|
