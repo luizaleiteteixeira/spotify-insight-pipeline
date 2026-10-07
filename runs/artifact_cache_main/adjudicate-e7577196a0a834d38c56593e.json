@@ -1,0 +1,1 @@
+{"role": "adjudicate", "key": "e7577196a0a834d38c56593e", "created_at": "2026-10-07T04:46:09+00:00", "value": {"code": "catalog.search_discovery", "intent": "praise", "severity": 1, "reason": "The review's first specific praised feature is being able to 'get rare and popular songs,' which maps to catalog.search_discovery rather than generic praise."}}

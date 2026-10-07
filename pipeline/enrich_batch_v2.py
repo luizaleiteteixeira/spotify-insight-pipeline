@@ -20,7 +20,8 @@ import time
 from pathlib import Path
 
 from . import llm
-from .common import LEDGER, RUNS, Budget, BudgetExceeded, ModelCallFailed, RunLog, append_jsonl, now, sha256_text, write_json
+from .common import (LEDGER, RUNS, Budget, BudgetExceeded, ModelCallFailed, RunLog, append_jsonl, now, read_jsonl,
+                     sha256_text, write_json)
 from .enrich_v2 import (State, build_user, cache_db, check_response, item_schema, load_rows, role_config, row_sha,
                         set_cache_namespace, validate_item)
 
@@ -142,6 +143,8 @@ def run(input_path: Path, run_id: str, requests_per_batch: int = 1000, max_infli
             if fid:
                 lines += [json.loads(l) for l in client.files.content(fid).text.splitlines() if l.strip()]
         retry_jobs, n_ok, n_bad, n_err = [], 0, 0, 0
+        # A batch can be collected again after an interruption: never log/charge a request twice.
+        already_logged = {c.get("request_id") for c in read_jsonl(LEDGER) if c.get("batch_id") == batch_id}
         done_now = {rid for (rid,) in state.q("SELECT review_id FROM records WHERE status!='pending'")}
         for line in lines:
             cid = line.get("custom_id")
@@ -167,8 +170,9 @@ def run(input_path: Path, run_id: str, requests_per_batch: int = 1000, max_infli
                 continue
             text, status, items, reasoning = parse_body(body)
             cost = llm.cost_of("openai", cfg["model"], "batch", items)
-            budget.add(cost)
-            append_jsonl(LEDGER, {"ts": now(), "run_id": run_id, "stage": "enrich", "role": "enrich", "provider": "openai",
+            if (body.get("id") or line.get("id")) not in already_logged:
+              budget.add(cost)
+              append_jsonl(LEDGER, {"ts": now(), "run_id": run_id, "stage": "enrich", "role": "enrich", "provider": "openai",
                                   "model": cfg["model"], "served_model": body.get("model"), "effort": cfg["effort"],
                                   "tier": "batch", "phase": bphase, "label_config": cfg["label_config"],
                                   "review_ids": ids, "request_id": body.get("id") or line.get("id"), "batch_id": batch_id,

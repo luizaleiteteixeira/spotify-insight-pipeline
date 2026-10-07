@@ -1,0 +1,424 @@
+{
+  "question": "Where should Spotify put the next quarter of product effort: access, usability, playback, or billing/support?",
+  "scope": {
+    "source_rows": 660622,
+    "completed": 659026,
+    "quarantined": 1596,
+    "pending": 0,
+    "complaint_or_cancellation": 296261,
+    "window": "2022-05-17 to 2023-11-15 (first and last months partial)"
+  },
+  "ranking_rule": "priority_score = complaint_count x mean_severity = severity_sum; ties by issue_id",
+  "areas": [
+    {
+      "area": "billing_support",
+      "complaint_count": 70856,
+      "severity_sum": 204819,
+      "sev4plus": 2419,
+      "cancellation": 12766,
+      "mean_severity": "2.890637"
+    },
+    {
+      "area": "usability",
+      "complaint_count": 75230,
+      "severity_sum": 178198,
+      "sev4plus": 1102,
+      "cancellation": 6840,
+      "mean_severity": "2.368709"
+    },
+    {
+      "area": "none",
+      "complaint_count": 73774,
+      "severity_sum": 147625,
+      "sev4plus": 136,
+      "cancellation": 6408,
+      "mean_severity": "2.001044"
+    },
+    {
+      "area": "playback",
+      "complaint_count": 44456,
+      "severity_sum": 142045,
+      "sev4plus": 11374,
+      "cancellation": 3882,
+      "mean_severity": "3.195182"
+    },
+    {
+      "area": "content",
+      "complaint_count": 19196,
+      "severity_sum": 53862,
+      "sev4plus": 288,
+      "cancellation": 1315,
+      "mean_severity": "2.805897"
+    },
+    {
+      "area": "access",
+      "complaint_count": 12749,
+      "severity_sum": 48943,
+      "sev4plus": 10804,
+      "cancellation": 810,
+      "mean_severity": "3.838968"
+    }
+  ],
+  "top_issues": [
+    {
+      "rank": 1,
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "title": "Features locked behind Premium subscription",
+      "area": "billing_support",
+      "topic": "billing",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C001",
+          "value": "58940"
+        },
+        "severity_sum": {
+          "claim_id": "C002",
+          "value": "174087"
+        },
+        "mean_severity": {
+          "claim_id": "C003",
+          "value": "2.953631"
+        },
+        "priority_score": {
+          "claim_id": "C004",
+          "value": "174087"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "8964aaea-f4c7-4b01-94e0-a76b992018fd",
+          "severity": 4,
+          "intent": "complaint",
+          "quote": "What the Hell Is wrong with Spotify. I am not to move the section of the song. Nor Can I repeat the part I want to listen or start. There is no back button. I need to buy Premium t"
+        },
+        {
+          "review_id": "d8be33b8-6758-4ae7-9e3e-6e7d02163930",
+          "severity": 4,
+          "intent": "complaint",
+          "quote": "Please fix your app. I literally cannot select songs and have to queue them to play anything. And that's if I'm able to get into my library at all. Unacceptable for an app I pay mo"
+        },
+        {
+          "review_id": "2d1b5fa6-5d80-4616-9b65-f6e7738e9edf",
+          "severity": 4,
+          "intent": "complaint",
+          "quote": "I can't actually play the songs I want to because it just plays a different song when I try."
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "issue_id": "ISS-OTHER-GENERAL",
+      "title": "General app dissatisfaction",
+      "area": "none",
+      "topic": "other",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C005",
+          "value": "73774"
+        },
+        "severity_sum": {
+          "claim_id": "C006",
+          "value": "147625"
+        },
+        "mean_severity": {
+          "claim_id": "C007",
+          "value": "2.001044"
+        },
+        "priority_score": {
+          "claim_id": "C008",
+          "value": "147625"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "f4834cf7-112b-4489-8a43-efe862eb1425",
+          "severity": 5,
+          "intent": "cancellation",
+          "quote": "The amount of personal data it collects and shares is UNacceptable and worse than Facebook"
+        },
+        {
+          "review_id": "29ba0136-125a-4300-8616-1cdabc443ce7",
+          "severity": 5,
+          "intent": "cancellation",
+          "quote": "Deleted due to the new patent you have to listen into my conversations!"
+        },
+        {
+          "review_id": "3eb26f71-b184-4787-9361-9e402eb0d8ea",
+          "severity": 5,
+          "intent": "complaint",
+          "quote": "4452 app tracking attempts from 62 different advertising companies on Spotify"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "issue_id": "ISS-USABILITY-ADS",
+      "title": "Too many and too frequent ads",
+      "area": "usability",
+      "topic": "usability",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C009",
+          "value": "37406"
+        },
+        "severity_sum": {
+          "claim_id": "C010",
+          "value": "85318"
+        },
+        "mean_severity": {
+          "claim_id": "C011",
+          "value": "2.280864"
+        },
+        "priority_score": {
+          "claim_id": "C012",
+          "value": "85318"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "b551e798-27ab-416e-8f72-a175bb19500a",
+          "severity": 5,
+          "intent": "cancellation",
+          "quote": "may destroy my privacy"
+        },
+        {
+          "review_id": "6bb97cff-a467-4f6a-ba9f-4cdadbbe852c",
+          "severity": 5,
+          "intent": "cancellation",
+          "quote": "IT'S PART OF A COMMERCIAL FOR LAY'S CHIPS! I was stopped in the middle of the road for CHIPS!"
+        },
+        {
+          "review_id": "08a1f178-3e7a-4d65-9da3-dee293dd0061",
+          "severity": 5,
+          "intent": "complaint",
+          "quote": "Today I almost got into an accident because of unexpected loud ad music"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "title": "Music stops or skips unexpectedly",
+      "area": "playback",
+      "topic": "playback",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C013",
+          "value": "13827"
+        },
+        "severity_sum": {
+          "claim_id": "C014",
+          "value": "44042"
+        },
+        "mean_severity": {
+          "claim_id": "C015",
+          "value": "3.185217"
+        },
+        "priority_score": {
+          "claim_id": "C016",
+          "value": "44042"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "8991b385-507f-4798-855f-9ff6390b1b50",
+          "severity": 5,
+          "intent": "cancellation",
+          "quote": "I have autism and sudden loud noises like this are dangerous for me."
+        },
+        {
+          "review_id": "574d3a84-5cab-43c2-8573-367f42555bf6",
+          "severity": 5,
+          "intent": "cancellation",
+          "quote": "Music has been cutting out for weeks. The last few days I'm noticing songs I've never listened to before apperearing in my liked songs. Today I see I'm following 120 artists I've n"
+        },
+        {
+          "review_id": "080bab9f-20ba-430b-b95f-872647c6f8ac",
+          "severity": 5,
+          "intent": "cancellation",
+          "quote": "spotify deactivated my account...and I have take 1 year subscription though they deactivated my account after 2 minutes."
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "title": "Disliked app redesign and new UI",
+      "area": "usability",
+      "topic": "usability",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C017",
+          "value": "18938"
+        },
+        "severity_sum": {
+          "claim_id": "C018",
+          "value": "40105"
+        },
+        "mean_severity": {
+          "claim_id": "C019",
+          "value": "2.117700"
+        },
+        "priority_score": {
+          "claim_id": "C020",
+          "value": "40105"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "3736ab38-6224-40c0-bc4a-07c637a5dd2d",
+          "severity": 4,
+          "intent": "cancellation",
+          "quote": "I can't use it anymore. It's not even music I want to listen to. Why would I want some random song to start playing automatically?? Should be an option to turn it off."
+        },
+        {
+          "review_id": "89e38a97-9372-4b02-8626-1a7f154771dc",
+          "severity": 4,
+          "intent": "cancellation",
+          "quote": "What the **** is this update? Makes it so much harder to find what I'm looking for and the autoplay for the recommended playlist is horrible on my sensory overload."
+        },
+        {
+          "review_id": "8c9d3abe-22c7-4976-a531-5d3b2ccf1792",
+          "severity": 4,
+          "intent": "complaint",
+          "quote": "It makes the layout terrible and hard to use. Going into your own playlist to edit it is a waking nightmare."
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
+      "title": "App crashes and freezes",
+      "area": "playback",
+      "topic": "playback",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C021",
+          "value": "9817"
+        },
+        "severity_sum": {
+          "claim_id": "C022",
+          "value": "32587"
+        },
+        "mean_severity": {
+          "claim_id": "C023",
+          "value": "3.319446"
+        },
+        "priority_score": {
+          "claim_id": "C024",
+          "value": "32587"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "d29c1b8a-2f02-4487-9744-b70a93a75eca",
+          "severity": 5,
+          "intent": "complaint",
+          "quote": "Most recently logging out and back in lost everything I had on it. Now everything I had saved is gone."
+        },
+        {
+          "review_id": "bd99f3ed-be10-4cd7-837a-e889fe57994b",
+          "severity": 5,
+          "intent": "complaint",
+          "quote": "Continuously crashes and takes out additional apps and often entire OS."
+        },
+        {
+          "review_id": "4538a329-fb56-4a15-8efa-4358b507f6f3",
+          "severity": 5,
+          "intent": "cancellation",
+          "quote": "Everything stored on my sd card is deleted."
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "issue_id": "ISS-ACCESS-LOGIN",
+      "title": "Login failures",
+      "area": "access",
+      "topic": "access",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C025",
+          "value": "8029"
+        },
+        "severity_sum": {
+          "claim_id": "C026",
+          "value": "31314"
+        },
+        "mean_severity": {
+          "claim_id": "C027",
+          "value": "3.900112"
+        },
+        "priority_score": {
+          "claim_id": "C028",
+          "value": "31314"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "af3e906a-dd66-4d67-92fa-1784ec867b96",
+          "severity": 5,
+          "intent": "complaint",
+          "quote": "all my playlists are gone.. all of it .. and if that was not enough, my premium account has been shifted to a free one"
+        },
+        {
+          "review_id": "8f38a31c-2f9a-4874-a170-7a31c80149a1",
+          "severity": 5,
+          "intent": "complaint",
+          "quote": "I've been logged out of my account everywhere and when I try to log back in it says my account doesn't exist!? I've tried everything: reinstalling, clearing the cache, using anothe"
+        },
+        {
+          "review_id": "9dcb094f-c9e9-4a59-9f64-c9b8a47a3f5b",
+          "severity": 5,
+          "intent": "complaint",
+          "quote": "All my liked songs, curated playlists, 4 years just washed out at once."
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "issue_id": "ISS-USABILITY-LIBRARY_QUEUE",
+      "title": "Playlist and library management problems",
+      "area": "usability",
+      "topic": "usability",
+      "claims": {
+        "complaint_count": {
+          "claim_id": "C029",
+          "value": "8856"
+        },
+        "severity_sum": {
+          "claim_id": "C030",
+          "value": "26401"
+        },
+        "mean_severity": {
+          "claim_id": "C031",
+          "value": "2.981143"
+        },
+        "priority_score": {
+          "claim_id": "C032",
+          "value": "26401"
+        }
+      },
+      "examples": [
+        {
+          "review_id": "95237f59-b7ab-4ea1-ae8d-3aa9b69d0ae1",
+          "severity": 5,
+          "intent": "cancellation",
+          "quote": "For the 2nd time Spotify has deleted everything on my account. This includes my Playlists I spent forever making, along with my username! How does this even happen twice?"
+        },
+        {
+          "review_id": "16f4505c-8b84-41e3-8cb8-2cef60b269f1",
+          "severity": 5,
+          "intent": "complaint",
+          "quote": "over 70% is gone. So I go to look up the songs that were not on my list and behold, they have been unliked and have to redo all the like again."
+        },
+        {
+          "review_id": "e0d08ca4-3d8d-4a1a-883c-e12d18bc1b86",
+          "severity": 5,
+          "intent": "complaint",
+          "quote": "Playlists are created as public by default, the app doesn't mention it with a single word."
+        }
+      ]
+    }
+  ]
+}

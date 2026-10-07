@@ -1,0 +1,1 @@
+{"role": "adjudicate", "key": "1633fd06b66145f0648fdf82", "created_at": "2026-10-07T04:37:35+00:00", "value": {"code": "other.general", "intent": "praise", "severity": 1, "reason": "The review 'So much music!' is general positive praise about catalog size rather than a specific feature, so it falls under other.general per the rule that general praise defaults to other."}}

@@ -1,0 +1,1 @@
+{"role": "adjudicate", "key": "0acac4e49844e40cdbe0dc1a", "created_at": "2026-10-07T04:50:34+00:00", "value": {"code": "usability.library_queue", "intent": "complaint", "severity": 3, "reason": "The phrase 'Cannot get the whole Album at one time' describes a restricted library/playlist function rather than missing content, matching usability.library_queue."}}

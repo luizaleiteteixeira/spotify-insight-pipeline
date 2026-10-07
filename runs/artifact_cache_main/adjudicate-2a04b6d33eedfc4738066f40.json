@@ -1,0 +1,1 @@
+{"role": "adjudicate", "key": "2a04b6d33eedfc4738066f40", "created_at": "2026-10-07T04:45:43+00:00", "value": {"code": "playback.crashes_freezes", "intent": "complaint", "severity": 4, "reason": "'suddenly stopped working' reflects the classic Android crash dialog language, indicating the app crashes rather than failing to open."}}

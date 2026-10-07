@@ -1,0 +1,1 @@
+{"role": "adjudicate", "key": "49b0a3ba19aeb7dbdc8f0c8f", "created_at": "2026-10-07T04:48:19+00:00", "value": {"code": "access.login", "intent": "complaint", "severity": 3, "reason": "The first specific problem mentioned is that account recovery is 'extremely hard,' which is an access/login issue rated as a degraded but still possible function (severity 3)."}}

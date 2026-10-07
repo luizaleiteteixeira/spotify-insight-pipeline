@@ -1,0 +1,1 @@
+{"role": "adjudicate", "key": "1379ed22201341400f53a39c", "created_at": "2026-10-07T04:39:09+00:00", "value": {"code": "access.other", "intent": "complaint", "severity": 2, "reason": "The complaint 'opens on its own' describes unwanted app-launch behavior, an access issue not covered by playback.devices, so access.other with minor severity fits best."}}

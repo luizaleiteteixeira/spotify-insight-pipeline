@@ -1,0 +1,1 @@
+{"role": "adjudicate", "key": "eb88e12c448d7568c15ff946", "created_at": "2026-10-07T04:42:34+00:00", "value": {"code": "usability.controls_navigation", "intent": "request", "severity": 1, "reason": "The request to 'reverse the direction podcasts autoplay' concerns a playback control/navigation setting, not the recommendation algorithm, so Label A's code fits better."}}

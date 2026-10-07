@@ -60,8 +60,12 @@ def cached_artifact(role: str, key_obj, fn):
     key = sha256_text(json.dumps(key_obj, sort_keys=True, ensure_ascii=False))[:24]
     p = ARTIFACTS / f"{role}-{key}.json"
     if p.exists():
-        return json.loads(p.read_text())["value"], True
+        cached = json.loads(p.read_text())["value"]
+        if cached is not None:
+            return cached, True
     val = fn()
+    if val is None:              # never cache a failed/empty model answer
+        return None, False
     p.write_text(json.dumps({"role": role, "key": key, "created_at": now(), "value": val}, ensure_ascii=False))
     return val, False
 
@@ -183,7 +187,7 @@ def verify(run_id: str, sample_size: int, max_adjudications: int, budget: Budget
 
         def do(user=user, rid=rid):
             res = llm.call(role="verify", provider=acfg["provider"], model=acfg["model"], system=asys, user=user,
-                           schema=adjudicator_schema(), max_output_tokens=400, run_id=run_id, stage="adjudicate",
+                           schema=adjudicator_schema(), max_output_tokens=1000, run_id=run_id, stage="adjudicate",
                            budget=budget, reserve=0.02, review_ids=[rid], label_config=f"adjudicator|{aver}")
             return res["data"]
         try:

@@ -55,7 +55,8 @@ def main():
         cost["pilot"] = {"cold_usd": c["measured"]["cold"]["total_usd"], "warm_usd": c["measured"]["warm"]["total_usd"],
                          "cold_wall_s": c["measured"]["cold"]["wall_clock_s"],
                          "warm_wall_s": c["measured"]["warm"]["wall_clock_s"]}
-    led = [json.loads(l) for l in open(ROOT / "runs" / "ledger.jsonl") if l.strip()]
+    from pipeline.common import ledger_calls
+    led = ledger_calls()
     run_led = [x for x in led if x.get("run_id") == a.run_id]
     cost["run_api_usd_by_role"] = {}
     for x in run_led:

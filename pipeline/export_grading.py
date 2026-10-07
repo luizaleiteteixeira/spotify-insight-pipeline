@@ -14,7 +14,7 @@ import shutil
 import sqlite3
 from pathlib import Path
 
-from .common import RAW, ROOT, RUNS, read_jsonl
+from .common import RAW, ROOT, RUNS, ledger_calls, read_jsonl
 
 
 def checker():
@@ -70,7 +70,7 @@ def main():
     role_ok = {"enrich", "verify", "group", "memo"}
     calls = 0
     with gzip.open(out / "calls.jsonl.gz", "wt", encoding="utf-8") as f:
-        for c in read_jsonl(RUNS / "ledger.jsonl"):
+        for c in ledger_calls():
             if c.get("run_id") != a.run_id or c.get("role") not in role_ok:
                 continue
             e = {"request_id": c["request_id"], "role": c["role"], "review_ids": c.get("review_ids", []),

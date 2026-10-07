@@ -168,8 +168,22 @@ def price(model: str, usage: dict, batch: bool = False) -> float:
     ) / 1_000_000
 
 
+def ledger_calls() -> list[dict]:
+    """Ledger entries with re-logged duplicates removed (same provider request_id logged twice when an
+    interrupted batch was collected again). The raw ledger stays append-only; readers use this view."""
+    seen, out = set(), []
+    for r in read_jsonl(LEDGER):
+        rid = r.get("request_id")
+        if rid and r.get("tier") == "batch":
+            if rid in seen:
+                continue
+            seen.add(rid)
+        out.append(r)
+    return out
+
+
 def total_spend() -> float:
-    return round(sum(r.get("cost_usd", 0.0) for r in read_jsonl(LEDGER)), 6)
+    return round(sum(r.get("cost_usd", 0.0) for r in ledger_calls()), 6)
 
 
 class Budget:

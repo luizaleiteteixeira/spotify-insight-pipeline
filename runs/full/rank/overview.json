@@ -1,0 +1,281 @@
+{
+  "run_id": "full",
+  "generated_at": "2026-10-07T04:46:52+00:00",
+  "source_rows": 660622,
+  "status_counts": {
+    "completed": 659026,
+    "quarantined": 1596
+  },
+  "completed": 659026,
+  "quarantined": 1596,
+  "pending": 0,
+  "cache_reuse_rows": 176418,
+  "topic_counts": {
+    "other": 385341,
+    "usability": 93411,
+    "billing": 74193,
+    "playback": 46364,
+    "catalog": 37696,
+    "access": 13059,
+    "downloads": 8147,
+    "support": 815
+  },
+  "intent_counts": {
+    "praise": 289435,
+    "complaint": 264240,
+    "unclear": 53450,
+    "cancellation": 32021,
+    "request": 19880
+  },
+  "severity_counts": {
+    "1": 360172,
+    "2": 141060,
+    "3": 131663,
+    "4": 25089,
+    "5": 1042
+  },
+  "complaint_or_cancellation": 296261,
+  "needs_review": 110962,
+  "areas": [
+    {
+      "area": "billing_support",
+      "complaint_count": 70856,
+      "severity_sum": 204819,
+      "sev4plus": 2419,
+      "cancellation": 12766,
+      "mean_severity": "2.890637"
+    },
+    {
+      "area": "usability",
+      "complaint_count": 75230,
+      "severity_sum": 178198,
+      "sev4plus": 1102,
+      "cancellation": 6840,
+      "mean_severity": "2.368709"
+    },
+    {
+      "area": "none",
+      "complaint_count": 73774,
+      "severity_sum": 147625,
+      "sev4plus": 136,
+      "cancellation": 6408,
+      "mean_severity": "2.001044"
+    },
+    {
+      "area": "playback",
+      "complaint_count": 44456,
+      "severity_sum": 142045,
+      "sev4plus": 11374,
+      "cancellation": 3882,
+      "mean_severity": "3.195182"
+    },
+    {
+      "area": "content",
+      "complaint_count": 19196,
+      "severity_sum": 53862,
+      "sev4plus": 288,
+      "cancellation": 1315,
+      "mean_severity": "2.805897"
+    },
+    {
+      "area": "access",
+      "complaint_count": 12749,
+      "severity_sum": 48943,
+      "sev4plus": 10804,
+      "cancellation": 810,
+      "mean_severity": "3.838968"
+    }
+  ],
+  "monthly": [
+    {
+      "month": "2022-05",
+      "completed": 15439,
+      "access": 222,
+      "billing_support": 751,
+      "playback": 1669,
+      "none": 396,
+      "usability": 1400,
+      "content": 366
+    },
+    {
+      "month": "2022-06",
+      "completed": 30275,
+      "access": 452,
+      "usability": 2645,
+      "billing_support": 1622,
+      "none": 755,
+      "playback": 3058,
+      "content": 700
+    },
+    {
+      "month": "2022-07",
+      "completed": 32717,
+      "usability": 3507,
+      "playback": 3738,
+      "content": 779,
+      "billing_support": 1675,
+      "none": 890,
+      "access": 1237
+    },
+    {
+      "month": "2022-08",
+      "completed": 30634,
+      "billing_support": 1574,
+      "none": 715,
+      "playback": 2399,
+      "usability": 3092,
+      "access": 449,
+      "content": 605
+    },
+    {
+      "month": "2022-09",
+      "completed": 26885,
+      "access": 385,
+      "usability": 2664,
+      "none": 588,
+      "billing_support": 1312,
+      "playback": 1965,
+      "content": 598
+    },
+    {
+      "month": "2022-10",
+      "completed": 27528,
+      "content": 679,
+      "none": 584,
+      "usability": 3177,
+      "playback": 1813,
+      "billing_support": 1329,
+      "access": 385
+    },
+    {
+      "month": "2022-11",
+      "completed": 27290,
+      "billing_support": 1612,
+      "none": 638,
+      "usability": 3212,
+      "playback": 1900,
+      "access": 394,
+      "content": 689
+    },
+    {
+      "month": "2022-12",
+      "completed": 31648,
+      "usability": 3225,
+      "billing_support": 1755,
+      "none": 1618,
+      "playback": 3449,
+      "content": 1141,
+      "access": 497
+    },
+    {
+      "month": "2023-01",
+      "completed": 28556,
+      "playback": 2567,
+      "content": 653,
+      "billing_support": 1331,
+      "usability": 2668,
+      "none": 884,
+      "access": 743
+    },
+    {
+      "month": "2023-02",
+      "completed": 20837,
+      "usability": 2253,
+      "playback": 1608,
+      "billing_support": 1058,
+      "none": 469,
+      "access": 331,
+      "content": 496
+    },
+    {
+      "month": "2023-03",
+      "completed": 27168,
+      "usability": 4417,
+      "billing_support": 1287,
+      "playback": 1973,
+      "content": 1058,
+      "access": 392,
+      "none": 538
+    },
+    {
+      "month": "2023-04",
+      "completed": 24895,
+      "usability": 3545,
+      "billing_support": 1169,
+      "playback": 2024,
+      "content": 1060,
+      "none": 510,
+      "access": 315
+    },
+    {
+      "month": "2023-05",
+      "completed": 27986,
+      "usability": 2649,
+      "playback": 1923,
+      "billing_support": 1734,
+      "content": 1293,
+      "none": 950,
+      "access": 707
+    },
+    {
+      "month": "2023-06",
+      "completed": 27046,
+      "billing_support": 2604,
+      "usability": 2926,
+      "playback": 1799,
+      "none": 805,
+      "content": 1303,
+      "access": 857
+    },
+    {
+      "month": "2023-07",
+      "completed": 85005,
+      "none": 36342,
+      "usability": 4654,
+      "billing_support": 2536,
+      "content": 1503,
+      "playback": 2693,
+      "access": 1229
+    },
+    {
+      "month": "2023-08",
+      "completed": 30347,
+      "billing_support": 1980,
+      "access": 1164,
+      "usability": 3268,
+      "content": 1052,
+      "playback": 2240,
+      "none": 2172
+    },
+    {
+      "month": "2023-09",
+      "completed": 41505,
+      "playback": 2418,
+      "none": 3402,
+      "content": 1795,
+      "billing_support": 7970,
+      "usability": 5514,
+      "access": 1148
+    },
+    {
+      "month": "2023-10",
+      "completed": 88828,
+      "billing_support": 29051,
+      "content": 2515,
+      "usability": 14767,
+      "access": 1267,
+      "none": 14988,
+      "playback": 3460
+    },
+    {
+      "month": "2023-11",
+      "completed": 34437,
+      "usability": 5647,
+      "none": 6530,
+      "playback": 1760,
+      "billing_support": 8506,
+      "content": 911,
+      "access": 575
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-10-07T04:47:20+00:00",
+  "model": "claude-sonnet-5",
+  "prompt_version": "memo_v2@d321a25a",
+  "model_call_cached": false,
+  "check": {
+    "unknown_claim_ids": [],
+    "unknown_review_ids": [],
+    "unknown_issue_ids": [],
+    "unsupported_numbers": [],
+    "cites_claims": true,
+    "cites_reviews": true,
+    "passed": true
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "check": {
+        "unknown_claim_ids": [],
+        "unknown_review_ids": [],
+        "unknown_issue_ids": [],
+        "unsupported_numbers": [],
+        "cites_claims": true,
+        "cites_reviews": true,
+        "passed": true
+      }
+    }
+  ],
+  "recommendation_title": "Prioritize Billing/Support: Fix Premium Feature Lock-In",
+  "recommendation": "Billing/support should be the top focus next quarter, driven primarily by ISS-BILLING-PREMIUM_ONLY_CONTROLS, which alone accounts for 58,940 complaints [C001] and a severity sum of 174,087 [C002] — the single highest-priority issue in the entire dataset, nearly matching the whole billing_support area's severity sum of 204,819. Customers describe being blocked from basic playback controls (seek, repeat, song selection) unless they pay for Premium, a confusion/frustration pattern distinct from simple outages. While access (ISS-ACCESS-LOGIN, mean severity 3.900112 [C027]) and playback (crashes/skips) show higher per-complaint severity, billing/support's issue delivers the largest combined volume and severity impact, making it the clearest lever for next-quarter effort.",
+  "alternatives": [
+    {
+      "title": "Access (login failures)",
+      "why_not_first": "Access has the highest mean severity in the pack (3.838968 area-level; 3.900112 for ISS-ACCESS-LOGIN [C027]) but far lower volume, with only 12,749 area complaints and 8,029 for the login issue [C025], limiting its overall priority_score versus billing/support's leading issue [C004]."
+    },
+    {
+      "title": "Usability (ads, redesign, library)",
+      "why_not_first": "Usability has the highest area complaint_count (75,230) but its top issue, ads (ISS-USABILITY-ADS), has a lower priority_score of 85,318 [C012] than the billing issue's 174,087 [C004], and lower mean severity (2.280864 [C011]) overall."
+    },
+    {
+      "title": "Playback (stops/skips, crashes)",
+      "why_not_first": "Playback has high sev4plus counts (11,374 area-level) and severe individual issues like ISS-PLAYBACK-STOPS_SKIPS (mean severity 3.185217 [C015]), but its top issue's priority_score of 44,042 [C016] trails well behind the billing issue's 174,087 [C004]."
+    }
+  ]
+}

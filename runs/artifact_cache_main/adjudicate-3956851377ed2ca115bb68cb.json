@@ -1,0 +1,1 @@
+{"role": "adjudicate", "key": "3956851377ed2ca115bb68cb", "created_at": "2026-10-07T04:41:01+00:00", "value": {"code": "downloads.fail_disappear", "intent": "complaint", "severity": 4, "reason": "The phrase 'all my music has now disappeared' indicates downloaded/saved music vanishing, matching downloads.fail_disappear rather than catalog removal."}}

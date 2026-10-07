@@ -1,0 +1,14 @@
+{
+  "run_id": "full",
+  "session": 5,
+  "phase": "resume",
+  "mode": "batch",
+  "stop_reason": "complete",
+  "status_counts": {
+    "completed": 659026,
+    "quarantined": 1596
+  },
+  "batches_submitted_this_session": 8,
+  "wall_clock_s": 6801.5,
+  "accounting_ok": true
+}

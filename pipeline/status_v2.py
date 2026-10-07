@@ -4,7 +4,7 @@ from __future__ import annotations
 import argparse
 import sqlite3
 
-from .common import RUNS, read_jsonl
+from .common import RUNS, ledger_calls
 
 
 def main():
@@ -29,7 +29,7 @@ def main():
             print(f"  batch {b[0]} (session {b[1]}, {b[2]} requests) {b[3]} {'collected' if b[4] else 'OPEN'}")
     except sqlite3.OperationalError:
         pass
-    calls = [c for c in read_jsonl(RUNS / "ledger.jsonl") if c.get("run_id") == a.run_id and c.get("role") == "enrich"]
+    calls = [c for c in ledger_calls() if c.get("run_id") == a.run_id and c.get("role") == "enrich"]
     print(f"enrichment calls logged: {len(calls):,} (succeeded {sum(c['outcome'] == 'succeeded' for c in calls):,}) "
           f"· API cost so far ${sum(c.get('cost_usd', 0) for c in calls):.4f}")
 

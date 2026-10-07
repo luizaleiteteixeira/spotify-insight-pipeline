@@ -1,0 +1,337 @@
+{
+  "generated_at": "2026-10-07T04:46:44+00:00",
+  "model_call_cached": false,
+  "issues": [
+    {
+      "issue_id": "ISS-ACCESS-ACCOUNT_COMPROMISED",
+      "code": "access.account_compromised",
+      "topic": "access",
+      "area": "access",
+      "title": "Account security and hacking concerns",
+      "summary": "Reviewers report their accounts being hacked, phished, or accessed by unknown devices/people without their consent.",
+      "named_by": "model",
+      "member_count": 471
+    },
+    {
+      "issue_id": "ISS-ACCESS-APP_WONT_OPEN",
+      "code": "access.app_wont_open",
+      "topic": "access",
+      "area": "access",
+      "title": "App fails to open or launch",
+      "summary": "Reviewers say the app won't open, gets stuck on the splash screen, or freezes on launch.",
+      "named_by": "model",
+      "member_count": 3195
+    },
+    {
+      "issue_id": "ISS-ACCESS-LOGIN",
+      "code": "access.login",
+      "topic": "access",
+      "area": "access",
+      "title": "Login failures",
+      "summary": "Reviewers report being unable to log in to their accounts, often receiving errors like 'something went wrong' or incorrect credentials messages.",
+      "named_by": "model",
+      "member_count": 8029
+    },
+    {
+      "issue_id": "ISS-ACCESS-OTHER",
+      "code": "access.other",
+      "topic": "access",
+      "area": "access",
+      "title": "Other account access restrictions",
+      "summary": "Reviewers describe miscellaneous access problems such as region/country restrictions, locked content, and inability to use the app after changing location.",
+      "named_by": "model",
+      "member_count": 362
+    },
+    {
+      "issue_id": "ISS-ACCESS-SIGNUP_EMAIL",
+      "code": "access.signup_email",
+      "topic": "access",
+      "area": "access",
+      "title": "Sign-up and account creation problems",
+      "summary": "Reviewers report difficulty creating new accounts, with issues entering phone numbers, verifying emails, or completing registration.",
+      "named_by": "model",
+      "member_count": 692
+    },
+    {
+      "issue_id": "ISS-BILLING-CHARGES_REFUNDS",
+      "code": "billing.charges_refunds",
+      "topic": "billing",
+      "area": "billing_support",
+      "title": "Incorrect charges and refund issues",
+      "summary": "Reviewers report being charged multiple times, charged after cancellation, or not receiving refunds for unauthorized payments.",
+      "named_by": "model",
+      "member_count": 1815
+    },
+    {
+      "issue_id": "ISS-BILLING-OTHER",
+      "code": "billing.other",
+      "topic": "billing",
+      "area": "billing_support",
+      "title": "Other billing and monetization complaints",
+      "summary": "Reviewers express general frustration with Spotify's monetization practices, invoicing, and unclaimed rewards.",
+      "named_by": "model",
+      "member_count": 3067
+    },
+    {
+      "issue_id": "ISS-BILLING-PREMIUM_ONLY_CONTROLS",
+      "code": "billing.premium_only_controls",
+      "topic": "billing",
+      "area": "billing_support",
+      "title": "Features locked behind Premium subscription",
+      "summary": "Reviewers complain that basic playback controls like skipping, repeating, and choosing songs are restricted to paying Premium subscribers.",
+      "named_by": "model",
+      "member_count": 58940
+    },
+    {
+      "issue_id": "ISS-BILLING-PRICE",
+      "code": "billing.price",
+      "topic": "billing",
+      "area": "billing_support",
+      "title": "Subscription price too high",
+      "summary": "Reviewers say the Premium subscription cost is too expensive and feel pressured to pay for basic functionality.",
+      "named_by": "model",
+      "member_count": 3770
+    },
+    {
+      "issue_id": "ISS-BILLING-SUBSCRIPTION_MANAGEMENT",
+      "code": "billing.subscription_management",
+      "topic": "billing",
+      "area": "billing_support",
+      "title": "Premium subscription activation problems",
+      "summary": "Reviewers report paying for Premium but not receiving the subscription benefits, or having trouble managing/cancelling their plan.",
+      "named_by": "model",
+      "member_count": 2713
+    },
+    {
+      "issue_id": "ISS-CATALOG-LYRICS",
+      "code": "catalog.lyrics",
+      "topic": "catalog",
+      "area": "content",
+      "title": "Lyrics not displaying correctly",
+      "summary": "Reviewers report lyrics failing to load, missing entirely, or not syncing properly with the song.",
+      "named_by": "model",
+      "member_count": 4681
+    },
+    {
+      "issue_id": "ISS-CATALOG-MISSING_CONTENT",
+      "code": "catalog.missing_content",
+      "topic": "catalog",
+      "area": "content",
+      "title": "Songs and content missing from catalog",
+      "summary": "Reviewers say specific songs, artists, or genres they want are unavailable or have disappeared from the app.",
+      "named_by": "model",
+      "member_count": 6027
+    },
+    {
+      "issue_id": "ISS-CATALOG-OTHER",
+      "code": "catalog.other",
+      "topic": "catalog",
+      "area": "content",
+      "title": "Other content and feature gaps",
+      "summary": "Reviewers mention miscellaneous content issues including missing Wrapped results, local files not showing, and podcast transcript unavailability.",
+      "named_by": "model",
+      "member_count": 947
+    },
+    {
+      "issue_id": "ISS-CATALOG-RECOMMENDATIONS",
+      "code": "catalog.recommendations",
+      "topic": "catalog",
+      "area": "content",
+      "title": "Poor shuffle and recommendations",
+      "summary": "Reviewers complain that shuffle repeats the same songs and that recommended tracks don't match their preferences.",
+      "named_by": "model",
+      "member_count": 5606
+    },
+    {
+      "issue_id": "ISS-CATALOG-SEARCH_DISCOVERY",
+      "code": "catalog.search_discovery",
+      "topic": "catalog",
+      "area": "content",
+      "title": "Search function not working",
+      "summary": "Reviewers report that search fails to find songs, artists, or playlists, or that search functionality has been removed or broken.",
+      "named_by": "model",
+      "member_count": 1935
+    },
+    {
+      "issue_id": "ISS-DOWNLOADS-FAIL_DISAPPEAR",
+      "code": "downloads.fail_disappear",
+      "topic": "downloads",
+      "area": "playback",
+      "title": "Downloaded content disappearing",
+      "summary": "Reviewers report downloaded songs and podcasts vanishing unexpectedly or needing to be redownloaded repeatedly.",
+      "named_by": "model",
+      "member_count": 2947
+    },
+    {
+      "issue_id": "ISS-DOWNLOADS-OFFLINE_MODE",
+      "code": "downloads.offline_mode",
+      "topic": "downloads",
+      "area": "playback",
+      "title": "Offline playback not working",
+      "summary": "Reviewers say downloaded songs won't play without an internet connection despite having downloaded them for offline use.",
+      "named_by": "model",
+      "member_count": 2550
+    },
+    {
+      "issue_id": "ISS-DOWNLOADS-OTHER",
+      "code": "downloads.other",
+      "topic": "downloads",
+      "area": "playback",
+      "title": "Other download limitations",
+      "summary": "Reviewers mention missing download options, inability to download without Premium, and lack of SD card download support.",
+      "named_by": "model",
+      "member_count": 496
+    },
+    {
+      "issue_id": "ISS-OTHER-GENERAL",
+      "code": "other.general",
+      "topic": "other",
+      "area": "none",
+      "title": "General app dissatisfaction",
+      "summary": "Reviewers express broad dissatisfaction with the app, describing it as buggy, worsening over time, or simply bad overall.",
+      "named_by": "model",
+      "member_count": 73774
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-AUDIO_QUALITY",
+      "code": "playback.audio_quality",
+      "topic": "playback",
+      "area": "playback",
+      "title": "Poor audio quality",
+      "summary": "Reviewers report low sound quality, distorted audio, or quiet volume compared to other music apps.",
+      "named_by": "model",
+      "member_count": 2063
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-CONNECTION",
+      "code": "playback.connection",
+      "topic": "playback",
+      "area": "playback",
+      "title": "False 'no internet connection' errors",
+      "summary": "Reviewers report the app incorrectly claiming they are offline or have no internet connection, blocking playback despite a working connection.",
+      "named_by": "model",
+      "member_count": 3688
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-CRASHES_FREEZES",
+      "code": "playback.crashes_freezes",
+      "topic": "playback",
+      "area": "playback",
+      "title": "App crashes and freezes",
+      "summary": "Reviewers report the app crashing, freezing, or hanging frequently, sometimes requiring a device restart.",
+      "named_by": "model",
+      "member_count": 9817
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-DEVICES",
+      "code": "playback.devices",
+      "topic": "playback",
+      "area": "playback",
+      "title": "Playback issues with external devices",
+      "summary": "Reviewers report problems with sound output to headphones, Bluetooth, Android Auto, and other connected devices.",
+      "named_by": "model",
+      "member_count": 5877
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-OTHER",
+      "code": "playback.other",
+      "topic": "playback",
+      "area": "playback",
+      "title": "General inability to play music",
+      "summary": "Reviewers report that the app simply fails to play songs at all, with no sound or response when pressing play.",
+      "named_by": "model",
+      "member_count": 1817
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-RESOURCE_USE",
+      "code": "playback.resource_use",
+      "topic": "playback",
+      "area": "playback",
+      "title": "Excessive battery, data, and memory use",
+      "summary": "Reviewers report the app draining battery, consuming excessive data, or running constantly in the background.",
+      "named_by": "model",
+      "member_count": 1374
+    },
+    {
+      "issue_id": "ISS-PLAYBACK-STOPS_SKIPS",
+      "code": "playback.stops_skips",
+      "topic": "playback",
+      "area": "playback",
+      "title": "Music stops or skips unexpectedly",
+      "summary": "Reviewers report playback randomly stopping, pausing, or songs failing to start after an update.",
+      "named_by": "model",
+      "member_count": 13827
+    },
+    {
+      "issue_id": "ISS-SUPPORT-OTHER",
+      "code": "support.other",
+      "topic": "support",
+      "area": "billing_support",
+      "title": "Customer support difficulties",
+      "summary": "Reviewers describe trouble reaching or getting useful responses from Spotify's customer support team.",
+      "named_by": "model",
+      "member_count": 76
+    },
+    {
+      "issue_id": "ISS-SUPPORT-UNHELPFUL",
+      "code": "support.unhelpful",
+      "topic": "support",
+      "area": "billing_support",
+      "title": "No access to live customer support",
+      "summary": "Reviewers say there is no way to talk to a live person or get direct support for their account issues.",
+      "named_by": "model",
+      "member_count": 475
+    },
+    {
+      "issue_id": "ISS-USABILITY-ADS",
+      "code": "usability.ads",
+      "topic": "usability",
+      "area": "usability",
+      "title": "Too many and too frequent ads",
+      "summary": "Reviewers complain about excessive advertisements interrupting music and podcasts, even for paying users.",
+      "named_by": "model",
+      "member_count": 37406
+    },
+    {
+      "issue_id": "ISS-USABILITY-CONTROLS_NAVIGATION",
+      "code": "usability.controls_navigation",
+      "topic": "usability",
+      "area": "usability",
+      "title": "Playback controls not working as expected",
+      "summary": "Reviewers report issues with repeat, shuffle, and search buttons not functioning or disappearing from the interface.",
+      "named_by": "model",
+      "member_count": 8026
+    },
+    {
+      "issue_id": "ISS-USABILITY-LAYOUT_REDESIGN",
+      "code": "usability.layout_redesign",
+      "topic": "usability",
+      "area": "usability",
+      "title": "Disliked app redesign and new UI",
+      "summary": "Reviewers express frustration with recent interface redesigns, citing lost features and a worse user experience.",
+      "named_by": "model",
+      "member_count": 18938
+    },
+    {
+      "issue_id": "ISS-USABILITY-LIBRARY_QUEUE",
+      "code": "usability.library_queue",
+      "topic": "usability",
+      "area": "usability",
+      "title": "Playlist and library management problems",
+      "summary": "Reviewers report issues viewing, editing, or accessing their liked songs, playlists, and queue after updates.",
+      "named_by": "model",
+      "member_count": 8856
+    },
+    {
+      "issue_id": "ISS-USABILITY-OTHER",
+      "code": "usability.other",
+      "topic": "usability",
+      "area": "usability",
+      "title": "Miscellaneous usability complaints",
+      "summary": "Reviewers mention various smaller issues such as broken links, lack of sharing options, and missing parental controls.",
+      "named_by": "model",
+      "member_count": 2004
+    }
+  ],
+  "note": "Membership is assigned by code from the enriched subtopic; the model only names issues."
+}
