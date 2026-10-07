@@ -1,0 +1,3 @@
+[2026-10-07T01:32:08+00:00] enrich_batch:batch_submitted batch_id=batch_6ac5a117d1248190a70b0cda313a4919 requests=1000 reviews=50000 phase=resume
+[2026-10-07T01:32:10+00:00] enrich_batch:batch_submitted batch_id=batch_6ac5a11aa2008190bb91dcf5a53614d5 requests=1000 reviews=50000 phase=resume
+[2026-10-07T01:32:11+00:00] enrich_batch:waiting open_batches=2 completed_records=101851 batches=313a4919:validating:0/0 a53614d5:validating:0/0 spend=0.8766

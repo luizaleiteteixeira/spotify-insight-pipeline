@@ -297,10 +297,12 @@ def run(input_path: Path, run_id: str, workers: int | None = None, stop_after_re
             "VALUES (?,?,?,?,?,?,?,?)", new))
 
     # Records completed under an older label_config are stale -> back to pending (never silently reused).
-    stale = state.q("SELECT COUNT(*) FROM records WHERE status='completed' AND label_config<>?", (cfg["label_config"],))[0][0]
+    # (labels finalized by the capped advisor keep their advisor label_config and are not stale)
+    stale_sql = "status='completed' AND label_config<>? AND label_config NOT LIKE '%/advisor|%'"
+    stale = state.q(f"SELECT COUNT(*) FROM records WHERE {stale_sql}", (cfg["label_config"],))[0][0]
     if stale:
-        state.tx(lambda db: db.execute("UPDATE records SET status='pending', labels=NULL, cache_source_id=NULL "
-                                       "WHERE status='completed' AND label_config<>?", (cfg["label_config"],)))
+        state.tx(lambda db: db.execute(f"UPDATE records SET status='pending', labels=NULL, cache_source_id=NULL "
+                                       f"WHERE {stale_sql}", (cfg["label_config"],)))
 
     prev_sessions = state.q("SELECT COUNT(*) FROM sessions")[0][0]
     session = prev_sessions + 1

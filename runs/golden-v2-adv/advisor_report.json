@@ -1,0 +1,11 @@
+{
+  "run_id": "golden-v2-adv",
+  "advisor": "anthropic/claude-sonnet-5",
+  "prompt_version": "advisor_v2@c475b0fc",
+  "selected": 9,
+  "changed": 2,
+  "kept": 7,
+  "failed_validation_kept_first_pass": 0,
+  "cost_usd": 0.0208,
+  "at": "2026-10-07T01:33:14+00:00"
+}

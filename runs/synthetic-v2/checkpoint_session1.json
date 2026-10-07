@@ -1,0 +1,16 @@
+{
+  "session": 1,
+  "phase": "initial",
+  "at": "2026-10-07T01:33:52+00:00",
+  "completed_ids": [
+    "syn2-inj-1",
+    "syn2-inj-2",
+    "syn2-inj-3",
+    "syn2-emoji",
+    "syn2-es",
+    "syn2-multi",
+    "syn2-long",
+    "syn2-boycott",
+    "syn2-premium-only"
+  ]
+}
