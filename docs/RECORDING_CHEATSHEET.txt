@@ -1,0 +1,112 @@
+COLA DA GRAVAÇÃO – SIGA UM PASSO DE CADA VEZ
+(leva uns 5 minutos; custa ~10 centavos)
+
+=========================== PREPARAR (ainda sem gravar) ===========================
+
+PASSO 1 – Abrir o Terminal
+  • Aperte ao mesmo tempo as teclas  Cmd  e  Espaço  (a barra de espaço).
+  • Vai aparecer uma caixinha de busca no meio da tela.
+  • Digite:  Terminal
+  • Aperte a tecla  Enter.
+  • Abre uma janela branca (ou preta) com um texto que termina em  %  ou  $ .
+    Essa é a janela do Terminal. Todos os próximos comandos vão nela.
+
+PASSO 2 – Aumentar a letra (para ficar legível no vídeo)
+  • Clique uma vez dentro da janela do Terminal.
+  • Aperte  Cmd  e  +  ao mesmo tempo, 3 vezes.
+
+PASSO 3 – Entrar na pasta do projeto
+  • Copie a linha abaixo (selecione com o mouse e aperte Cmd+C):
+
+        cd ~/Desktop/MBA/spotify-insight-pipeline
+
+  • Clique dentro do Terminal, aperte  Cmd+V  (colar) e depois  Enter.
+  • Não aparece nada de especial. Tudo bem, é isso mesmo.
+
+=============================== COMEÇAR A GRAVAR =================================
+
+PASSO 4 – Ligar a gravação de tela
+  • Aperte ao mesmo tempo:  Cmd  +  Shift  +  5
+  • Aparece uma barrinha na parte de baixo da tela.
+  • Clique no ícone "Gravar a tela inteira" (um retângulo com um círculo no canto).
+  • Clique no botão  "Gravar"  (à direita da barrinha).
+  • Pronto: está gravando. No topo da tela aparece um ícone ⏹ (quadrado).
+
+============================ PARTE 1 – RODAR E PARAR =============================
+
+PASSO 5 – Começar o processamento
+  • Copie a linha abaixo INTEIRA (é uma linha só):
+
+        .venv/bin/python -m pipeline.enrich_v2 --input data/raw/spotify_reviews_18months.csv --run-id full --workers 4
+
+  • Clique no Terminal, aperte  Cmd+V  e depois  Enter.
+
+PASSO 6 – Esperar começar
+  • Em uns 10 segundos aparece uma linha comprida que começa com a data
+    e contém  "enrich:start"  e  "phase=initial".
+  • Não faça nada. Só espere.
+
+PASSO 7 – Esperar aparecer progresso (≈ 1 minuto)
+  • Continue esperando até aparecer uma NOVA linha que contém  "enrich:progress".
+  • Pode demorar 1 ou 2 minutos. É normal a tela ficar parada nesse tempo.
+
+PASSO 8 – Interromper
+  • Assim que a linha "enrich:progress" aparecer:
+    aperte ao mesmo tempo  Control  e  C   (a tecla "control", NÃO a "command").
+  • Aperte UMA vez só.
+  • Aparece:  "[interrupt] finishing in-flight requests, saving, then exiting..."
+  • ESPERE (alguns segundos) até aparecerem várias linhas e, no final, de novo o  %  ou  $ .
+    Isso quer dizer que terminou de salvar.
+
+========================= PARTE 2 – MOSTRAR O QUE FOI SALVO ======================
+
+PASSO 9 – Ver o status
+  • Copie a linha abaixo, cole no Terminal (Cmd+V) e aperte Enter:
+
+        .venv/bin/python -m pipeline.status_v2 --run-id full
+
+  • Aparece uma tabelinha. Repare no número ao lado de  "completed"
+    (é quantas reviews já ficaram prontas) e na linha  "#1 initial".
+  • Espere uns 5 segundos parada nessa tela, para aparecer bem no vídeo.
+
+============================== PARTE 3 – RETOMAR =================================
+
+PASSO 10 – Rodar o mesmo comando de novo
+  • Copie de novo a linha comprida do PASSO 5, cole no Terminal (Cmd+V) e aperte Enter.
+
+PASSO 11 – Esperar começar
+  • Em uns 10 segundos aparece a linha com  "enrich:start".
+  • Agora ela diz  "phase=resume"  e  "completed_before="  com o número do passo 9.
+    (Isso prova que ele NÃO vai refazer o que já estava pronto.)
+
+PASSO 12 – Esperar progresso e interromper de novo
+  • Espere aparecer uma linha com  "enrich:progress"  (1 ou 2 minutos).
+  • Aperte  Control + C  UMA vez.
+  • Espere de novo até o  %  ou  $  voltar no final.
+
+======================== PARTE 4 – MOSTRAR QUE AUMENTOU ==========================
+
+PASSO 13 – Ver o status de novo
+  • Copie, cole e aperte Enter (mesma linha do passo 9):
+
+        .venv/bin/python -m pipeline.status_v2 --run-id full
+
+  • O número de "completed" agora é MAIOR que no passo 9.
+  • Aparecem as linhas  "#1 initial"  e  "#2 resume".
+  • Espere uns 5 segundos nessa tela.
+
+=============================== PARAR DE GRAVAR ==================================
+
+PASSO 14 – Desligar a gravação
+  • Clique no ícone ⏹ (quadrado) lá no topo da tela, na barra de menu.
+  • O vídeo é salvo na sua Mesa (Desktop) com o nome "Gravação de Tela ..." (ou "Screen Recording ...").
+
+PASSO 15 – Avisar o Claude
+  • Escreva no chat do Claude:  gravação feita
+
+================================ SE DER PROBLEMA =================================
+  • Apareceu texto vermelho ou a palavra "Error"/"Traceback":
+      pare a gravação (⏹) e cole esse texto no chat do Claude.
+  • Apertou Control+C duas vezes: tudo bem. Vá para o passo 9 normalmente.
+  • Apertou Command+C em vez de Control+C (nada aconteceu): aperte Control+C.
+  • Quer refazer o vídeo inteiro: NÃO rode de novo; avise o Claude primeiro.

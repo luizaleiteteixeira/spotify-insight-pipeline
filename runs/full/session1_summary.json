@@ -1,0 +1,17 @@
+{
+  "run_id": "full",
+  "session": 1,
+  "phase": "initial",
+  "stop_reason": "interrupted_by_user",
+  "input_rows": 660622,
+  "status_counts": {
+    "completed": 84022,
+    "pending": 576584,
+    "quarantined": 16
+  },
+  "requests_sent_this_session": 28,
+  "cache_hits_this_session": 0,
+  "wall_clock_s": 101.8,
+  "accounting_ok": true,
+  "label_config": "openai/gpt-6-luna/effort=none|enricher_v2@aa674cb6|enrich-schema-v2|labels-v2@0241cb18"
+}

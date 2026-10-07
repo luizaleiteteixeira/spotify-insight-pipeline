@@ -193,11 +193,9 @@ def run(input_path: Path, run_id: str, requests_per_batch: int = 1000, max_infli
             n_bad += len(bad)
             if bad:
                 retry_jobs.append(([r for r, _ in bad], {n: e for n, (_, e) in enumerate(bad, 1)}))
+        # Requests with no output line (whole batch failed validation/enqueue, expired, cancelled) are NOT
+        # retried at full price: their reviews simply stay 'pending' and are re-queued in a later batch.
         missing = [cid for cid in reqmap if cid not in seen]
-        for cid in missing:     # no line at all for a request (expired/cancelled): fresh attempt
-            rows_m = [by_id[i] for i in reqmap[cid] if i not in done_now]
-            if rows_m:
-                retry_jobs.append((rows_m, None))
         log.event("batch_collected", batch_id=batch_id, status=b.status, valid_first_try=n_ok,
                   invalid_items=n_bad, errored_requests=n_err, missing_requests=len(missing))
         for batch_rows, fb in retry_jobs:
@@ -208,6 +206,7 @@ def run(input_path: Path, run_id: str, requests_per_batch: int = 1000, max_infli
 
     stop_reason = None
     submitted_now = 0
+    failed_in_row = 0
     try:
         while True:
             open_b = [r[0] for r in state.q("SELECT batch_id FROM batches WHERE collected_at IS NULL")]
@@ -216,8 +215,15 @@ def run(input_path: Path, run_id: str, requests_per_batch: int = 1000, max_infli
                 b = client.batches.retrieve(bid)
                 if b.status in ("completed", "failed", "expired", "cancelled"):
                     if b.status == "failed":
-                        log.event("batch_failed", batch_id=bid, errors=str(getattr(b, "errors", ""))[:400])
+                        failed_in_row += 1
+                        log.event("batch_failed", batch_id=bid, errors=str(getattr(b, "errors", ""))[:400],
+                                  failed_in_row=failed_in_row)
+                    else:
+                        failed_in_row = 0
                     collect(bid)
+            if failed_in_row >= 2:
+                stop_reason = "two_consecutive_failed_batches (check account batch queue limits; rerun to retry)"
+                break
             open_b = [r[0] for r in state.q("SELECT batch_id FROM batches WHERE collected_at IS NULL")]
             in_flight = set()
             for (ids,) in state.q("SELECT r.review_ids FROM batch_requests r JOIN batches b USING(batch_id) "
