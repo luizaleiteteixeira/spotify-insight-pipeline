@@ -210,7 +210,7 @@ python3 cost/calculator.py pilot --execute                                      
 **Recordings** (release [`v1.0-final`](https://github.com/luizaleiteteixeira/spotify-insight-pipeline/releases/tag/v1.0-final) assets):
 
 - **Recording 1 (main): sessions 2→3** (`recording-1-main-sessions-2-3-resume.mov`). Resume from saved state (`phase=resume`, `completed_before=84,022`), a Ctrl-C interruption after saved progress, then a second resume that continues from 94,186 to 101,851 without reprocessing completed IDs. `pipeline.status_v2` is shown before and after.
-- **Session 1 (not in the release):** a first recording of the initial run and the first Ctrl-C was cut short when the laptop froze and went to sleep mid-recording, an unplanned interruption, and that file was not kept. When the machine came back, the saved state was intact: session 1 had committed 84,022 completed records (snapshot: `grading/checkpoint_before.json`), which recording 1 shows being resumed.
+- **Recording 2 (supplementary): session 1** (`recording-2-supplementary-session-1-initial.mov`). The initial run and the first Ctrl-C. This recording was cut short when the laptop froze and went to sleep mid-recording, an unplanned interruption. When the machine came back, the saved state was intact: session 1 had committed 84,022 completed records (snapshot: `grading/checkpoint_before.json`), which recording 1 shows being resumed. Both files are included so the full sequence is visible.
 
 The same sequence in the saved state:
 
