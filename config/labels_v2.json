@@ -1,0 +1,73 @@
+{
+  "version": "labels-v2",
+  "source": "Course GRADING_CONTRACT.md (common labels, intent precedence, shared severity) + our optional subtopics.",
+  "topics": {
+    "access": "Login, signup, password or account access (including hacked/locked accounts, app will not open or install).",
+    "usability": "Navigation, controls, layout, queue/playlist management, ad interruptions.",
+    "playback": "Playback failure, crashes, lag, connection failures, audio quality, resource use (battery/data/storage pressure while streaming), devices and casting.",
+    "downloads": "Downloading, saved music, offline listening, disappearing downloads.",
+    "catalog": "Missing songs/artists, search/discovery, recommendations, lyrics availability.",
+    "billing": "Price, charges, subscriptions, paywalls, premium entitlement. Explicitly premium-only controls go here (e.g. 'can't choose a song / only 6 skips unless I pay').",
+    "support": "Contacting support and the support response.",
+    "other": "General praise/criticism, unrelated content, or no supported specific topic."
+  },
+  "subtopics": {
+    "access.login": "cannot log in, logged out, login loop, password reset",
+    "access.account_compromised": "hacked, stolen, locked or suspended account",
+    "access.signup_email": "sign-up, email/phone verification, linking accounts",
+    "access.app_wont_open": "app will not install, open or start; unavailable on device/region",
+    "access.other": "other access problem",
+    "usability.ads": "ad frequency, length, loudness or content interrupting listening",
+    "usability.layout_redesign": "home screen, redesigns, layout, look and feel",
+    "usability.controls_navigation": "buttons, gestures, navigation, search UI, settings, shuffle/repeat behaviour not tied to paying",
+    "usability.library_queue": "playlists, library, queue, liked songs management",
+    "usability.other": "other usability problem",
+    "playback.stops_skips": "music stops, pauses, skips or repeats on its own",
+    "playback.crashes_freezes": "app crashes, freezes, lags, 'something went wrong' errors",
+    "playback.connection": "no internet / connection errors while online",
+    "playback.audio_quality": "sound quality, volume, equalizer",
+    "playback.devices": "Bluetooth, car, Android Auto, cast/Connect, widgets, lock screen, smartwatch",
+    "playback.resource_use": "battery, data, memory, storage use",
+    "playback.other": "other playback problem",
+    "downloads.fail_disappear": "downloads fail, disappear, or re-download",
+    "downloads.offline_mode": "offline mode not working",
+    "downloads.other": "other downloads problem",
+    "catalog.missing_content": "songs/artists/podcasts missing, removed or greyed out",
+    "catalog.recommendations": "recommendations, algorithm, radio, smart shuffle suggestions, repetitive content",
+    "catalog.search_discovery": "search results, finding music",
+    "catalog.lyrics": "lyrics missing or wrong",
+    "catalog.other": "other catalog problem",
+    "billing.premium_only_controls": "song choice, skips, rewind, order, lyrics etc. explicitly locked behind Premium; free tier restrictions",
+    "billing.price": "price too high, price increase",
+    "billing.charges_refunds": "unexpected/double charges, refunds, payment failures",
+    "billing.subscription_management": "plan not activating, cancel/change plan, family/student/duo plans, trials",
+    "billing.other": "other billing problem",
+    "support.unhelpful": "cannot reach support, slow or unhelpful response",
+    "support.other": "other support problem",
+    "other.general": "general praise, generic criticism, unrelated or unclear text"
+  },
+  "intents": {
+    "cancellation": "Explicitly leaving, uninstalling, cancelling, switching apps, or threatening to do so.",
+    "complaint": "Negative experience, including mixed praise and criticism; generic 'bad app'.",
+    "request": "Desired change or feature without a reported failure.",
+    "praise": "Positive feedback with no complaint.",
+    "unclear": "Meaningless, unrelated, unreadable text, or a bare boycott slogan without a product complaint or personal departure."
+  },
+  "intent_precedence": ["cancellation", "complaint", "request", "praise", "unclear"],
+  "severity": {
+    "1": "No reported problem: praise, neutral/unclear content, or a pure feature request.",
+    "2": "Dislike, generic criticism, minor annoyance, or a cosmetic issue; no supported functional loss.",
+    "3": "A degraded or restricted function; some use or workaround remains.",
+    "4": "A clearly blocked core task, such as inability to log in or play music.",
+    "5": "Explicit serious financial, privacy, or data harm; an expensive plan, a crash, or angry language alone is insufficient."
+  },
+  "rules": [
+    "Classify the review text only; do not use stars or metadata.",
+    "Choose the problem with the highest supported severity; on a tie, the first specific problem mentioned.",
+    "For a positive review, choose the first specific praised feature; general praise is other.",
+    "Mentioning a paid plan alone does not make the topic billing. A subscription failing to activate does; music crashing for a paying customer is playback.",
+    "Cancellation intent does not automatically raise severity.",
+    "General 'bad app' is a complaint with severity 2; do not infer a specific defect.",
+    "Missing context should set needs_review; do not invent impact."
+  ]
+}

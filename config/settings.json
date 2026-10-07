@@ -16,16 +16,80 @@
     "note": "API errors (429, 5xx, timeouts, connection) get bounded exponential backoff with jitter. An invalid model answer (schema, label, quote not in source) gets exactly one retry with the validation error fed back, then the record is quarantined."
   },
   "models": {
-    "enricher": {"model": "claude-haiku-4-5", "max_tokens": 600},
-    "verifier": {"model": "claude-sonnet-5", "max_tokens": 800, "thinking": {"type": "disabled"}},
-    "grouper_codebook": {"model": "claude-sonnet-5", "max_tokens": 4000, "thinking": {"type": "disabled"}},
-    "grouper_assign": {"model": "claude-haiku-4-5", "max_tokens": 2500},
-    "memo": {"model": "claude-sonnet-5", "max_tokens": 6000, "thinking": {"type": "disabled"}}
+    "enricher": {
+      "model": "claude-haiku-4-5",
+      "max_tokens": 600
+    },
+    "verifier": {
+      "model": "claude-sonnet-5",
+      "max_tokens": 800,
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "grouper_codebook": {
+      "model": "claude-sonnet-5",
+      "max_tokens": 4000,
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "grouper_assign": {
+      "model": "claude-haiku-4-5",
+      "max_tokens": 2500
+    },
+    "memo": {
+      "model": "claude-sonnet-5",
+      "max_tokens": 6000,
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "enricher_v2": {
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "effort": "none",
+      "batch_size": 50,
+      "workers": 1,
+      "max_output_tokens_per_review": 60,
+      "max_output_tokens_cap": 4000,
+      "reserve_usd_per_review": 0.0001,
+      "note": "<=50 reviews per request (course limit). Effort 'none' = cheapest supported setting; raise only if evals justify it."
+    },
+    "verifier_v2": {
+      "provider": "anthropic",
+      "model": "claude-haiku-4-5",
+      "max_tokens": 2500,
+      "batch_size": 20,
+      "note": "Different provider and model family from the enricher, for independence; sees only review text + rubric."
+    },
+    "grouper_v2": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5",
+      "max_tokens": 3000,
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "memo_v2": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5",
+      "max_tokens": 6000,
+      "thinking": {
+        "type": "disabled"
+      }
+    }
   },
   "pricing_usd_per_mtok": {
     "_source": "Anthropic list prices, checked 2026-09-29. cache write = 1.25x input (5-min TTL), cache read = 0.1x input.",
-    "claude-haiku-4-5": {"input": 1.0, "output": 5.0},
-    "claude-sonnet-5": {"input": 2.0, "output": 10.0}
+    "claude-haiku-4-5": {
+      "input": 1.0,
+      "output": 5.0
+    },
+    "claude-sonnet-5": {
+      "input": 2.0,
+      "output": 10.0
+    }
   },
   "verification": {
     "sample_size": 400,
@@ -34,7 +98,11 @@
   },
   "grouping": {
     "min_severity": 2,
-    "intents": ["complaint", "suggestion", "mixed"],
+    "intents": [
+      "complaint",
+      "suggestion",
+      "mixed"
+    ],
     "codebook_examples_per_topic": 80,
     "assign_batch_size": 25,
     "seed": "group-v1"

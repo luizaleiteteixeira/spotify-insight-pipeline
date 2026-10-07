@@ -1,0 +1,10 @@
+{
+  "file": "evals/golden_labeled_v2.csv",
+  "sha256": "95eac62c05aa3300b01ac9bbf1b52a63cc563475a982bb4081223e404c9c2b30",
+  "frozen_at_utc": "2026-10-07T00:01:21+00:00",
+  "derived_from": "evals/golden_labeled.csv (v1, frozen 2026-09-30, sha256 95f67820...)",
+  "method": "rule-based renames + labeler confirmed 17 rows (evals/convert_golden_v2.py); no model output shown",
+  "labels": "labels-v2 (course common labels)",
+  "n": 50,
+  "v2_model_outputs_seen_before_labeling": false
+}

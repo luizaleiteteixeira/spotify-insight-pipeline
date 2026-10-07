@@ -90,9 +90,10 @@ def main():
     selected = [entry[2] for entry in sorted(sample, key=lambda x: (-x[0], x[1]))]
     gold, analysis = selected[:50], selected[50:]
     write_csv(args.output / "golden_50_to_label.csv", gold, FIELDS + GOLD_FIELDS)
+    write_csv(args.output / "cost_100.csv", analysis[:100])
     write_csv(args.output / "checkpoint_500.csv", analysis[:500])
     write_csv(args.output / "analysis_10000.csv", analysis)
-    data_files = [full, args.output / "checkpoint_500.csv", args.output / "golden_50_to_label.csv", args.output / "analysis_10000.csv"]
+    data_files = [full, args.output / "cost_100.csv", args.output / "checkpoint_500.csv", args.output / "golden_50_to_label.csv", args.output / "analysis_10000.csv"]
     manifest = {
         "source": {"title": "3.4 Million Spotify Google Store Reviews", "creator": "BwandoWando", "url": SOURCE_URL,
                    "download_url": DOWNLOAD_URL, "version": 2, "publisher_license": "CC0: Public Domain",
@@ -105,9 +106,11 @@ def main():
                             "Write UTF-8 CSV with LF line endings; preserve quoted multiline review text."],
         "profile": dict(stats), "reviews_by_month": dict(sorted(months.items())), "reviews_by_rating": dict(sorted(stars.items())),
         "samples": {"seed": SEED, "method": "Lowest SHA-256(seed + ':' + review_id) values among unique nonempty valid-rating records.",
-                    "golden": "First 50; blank labels for students. Excluded from analysis and checkpoint.",
-                    "analysis": "Next 10,000; a uniform deterministic sample, not a full-corpus labeling run.",
-                    "checkpoint": "First 500 of the analysis sample."},
+                    "golden": "First 50; blank labels for students. Excluded from development checkpoints. Original texts remain in the full final run; human answer labels are never model inputs.",
+                    "analysis": "Next 10,000; uniform deterministic development and budget checkpoint before the required full-corpus run.",
+                    "checkpoint": "First 500 of the analysis sample.",
+                    "cost_pilot": "First 100 of the checkpoint sample; fixed input for the required measured cost/runtime calculator."},
+        "assignment_scope": {"input_records": stats["records"], "nonempty_to_classify": stats["records"] - stats["empty_review_text"], "empty_text_quarantines": stats["empty_review_text"], "final_input": "spotify_reviews_18months.csv", "development_only": ["cost_100.csv", "checkpoint_500.csv", "analysis_10000.csv"], "cost_calculator_spec": "COST_CALCULATOR.md", "grading_contract": "GRADING_CONTRACT.md"},
         "files": {p.name: {"bytes": p.stat().st_size, "sha256": digest(p)} for p in data_files},
     }
     (args.output / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
