@@ -26,7 +26,7 @@
 
 | Guidance (course announcement) | This project |
 |---|---|
-| Spend no more than **$10 per 100k-review run** | Classified the **full 660,622 rows for $9.88** in total, about **$1.50 per 100,000 reviews** ($1.17 per 100,000 for classification alone). See [`cost/full_run_actuals.json`](cost/full_run_actuals.json). |
+| Spend no more than **$10 per 100k-review run** | Classified the **full 660,622 rows for $9.88** in total, about **$1.50 per 100,000 reviews** ($1.17 per 100,000 for classification alone). Even counting all project spending, including the first design discarded before the common labels, the cost is **$1.66 per 100,000** ($10.94 in total; phases in §3.5). See [`cost/full_run_actuals.json`](cost/full_run_actuals.json). |
 | Use **caching** | Exact-text result cache: 484,189 distinct texts classified once, and 176,418 rows reuse a validated result. The warm pilot made 0 model calls. Provider prompt caching is also measured. |
 | Use **batching** | 50 reviews per request (the course maximum), plus the OpenAI **Batch API** at 50% price for the bulk run |
 | Use **parallelizing** | parallel workers and 4 Batch API jobs in flight; validation retries on 8 parallel workers. **Measured** on the same 500 reviews from an empty cache: 1 worker 118.9 s, 2 workers 58.3 s (2.0×), 4 workers 35.7 s (3.3×), at the same cost ([`cost/worker_comparison.json`](cost/worker_comparison.json)). Each parallel call reserves its worst-case cost before dispatch, so workers cannot jointly overshoot the cap (§3.6). |
@@ -143,6 +143,16 @@ Caveat: 50 cases is a diagnostic sample. A single case moves topic accuracy by 2
 | 4 | 35.7 s | 3.33× | 839 | $0.0102 | $0.00204 |
 
   More workers cut wall-clock time almost linearly; cost does not grow, because the work is the same. The small cost drop for later arms is the provider's own prompt cache: cached input tokens went from 48k to 69k, since the arms ran back to back. This is one run per arm, so the timings include network noise. The bulk run used the Batch API instead (half price, but hours of queueing). Sync workers suit small or urgent runs.
+- **Where the money went (whole project, $10.94).** The spending happened in phases ([`runs/ledger.jsonl`](runs/ledger.jsonl), grouped by run ID):
+
+| Phase | Runs | API cost |
+|---|---|---|
+| 1. First design, before the course published the common labels (own taxonomy, Claude Haiku, first one review per call) | `smoke-5`, `synthetic-tests`, `golden-eval`, `checkpoint-500` | $0.62 |
+| 2. Rebuild on the common labels: tests and the cold pilot | `smoke-luna`, `devtest-10`, `golden-v2`, `pilot-cold`, `devbatch-100`, `fulltest` | $0.16 |
+| 3. Full run on all 660,622 rows, including the fallback, verification, grouping, memo and improvement iteration | `full` | $9.88 |
+| 4. Evaluations after the run (advisor test, injection tests, 500/10,000 replication, worker comparison) | `golden-v2-adv`, `synthetic-v2`, `repl-*`, `workers-*` | $0.27 |
+
+  Phase 1 was spent before the design changed. One review per call cost about $0.00085 per review, which would have been about $410 for the corpus. That measurement is what led to 50 reviews per request, a smaller model and the Batch API (§8, iteration 3). **The guidance limit is met either way.** The full run cost **$1.50 per 100,000 reviews** ($9.88 / 660,622 rows). Counting every dollar spent on the project, including the discarded first design, gives **$1.66 per 100,000** ($10.94 / 660,622). Both are well under $10 per 100,000. The brief requires classifying the full corpus (`GRADING_CONTRACT.md`: "Classify every nonempty review: 660,609 rows"), so the run covers 6.6× the 100,000-review reference volume.
 - **Projection vs actual:** the batch-tier projection was $7.08 and the actual full run cost $9.88. Validation retries (9–16% of items per batch) ran at standard price, and the improvement iteration (fallback, evidence checker, memo regenerations) is included.
 
 ### 3.6 Retry, spending and recovery controls, and a clean-environment test
