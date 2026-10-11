@@ -22,6 +22,17 @@
 
 ---
 
+## Instructor guidance check
+
+| Guidance (course announcement) | This project |
+|---|---|
+| Spend no more than **$10 per 100k-review run** | Classified the **full 660,622 rows for $9.88** in total, about **$1.50 per 100,000 reviews** ($1.17 per 100,000 for classification alone). See [`cost/full_run_actuals.json`](cost/full_run_actuals.json). |
+| Use **caching** | Exact-text result cache: 484,189 distinct texts classified once, and 176,418 rows reuse a validated result. The warm pilot made 0 model calls. Provider prompt caching is also measured. |
+| Use **batching** | 50 reviews per request (the course maximum), plus the OpenAI **Batch API** at 50% price for the bulk run |
+| Use **parallelizing** | parallel workers and 4 Batch API jobs in flight; validation retries on 8 parallel workers |
+| Use **queues** | one shared queue of pending IDs (first occurrence of each distinct text), with atomic saves through a single writer lock, so no review is processed or counted twice |
+| Combine **Jev or GPT decisions** with a model like **Luna or Haiku** | **GPT-6 Luna** (effort none) makes the fixed label decisions. **Claude Haiku 4.5** independently re-labels a 2,000-review sample and checks memo evidence, and Claude Sonnet 5 adjudicates disagreements under a cap. Jev was not used; the brief makes it optional ("equivalent tools are acceptable when justified and evaluated"). |
+
 ## 1. Results summary
 
 Measured results are kept separate from estimates. "Accounted" rows (every ID has a final status) are kept separate from "completed classifications".
