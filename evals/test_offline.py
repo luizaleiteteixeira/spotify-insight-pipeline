@@ -167,10 +167,6 @@ class TestEnrichControl(Base):
         self.assertEqual((len(done), stale), (0, 2))
 
 
-if __name__ == "__main__":
-    unittest.main()
-
-
 class FakeBatchClient(FakeClient):
     """Adds a fake messages.batches surface. `batch_answer(rid)` -> dict | "bad" | "errored"."""
     def __init__(self, script, batch_answer):
@@ -231,3 +227,69 @@ class TestBatchControl(Base):
         s3 = self.eb.run(None, "b1", rows=rows, poll_seconds=0)           # rerun after completion: no-op
         self.assertEqual(fake.created, 1)
         self.assertEqual(len(common.read_jsonl(self.tmp / "b1" / "enriched.jsonl")), 5)
+
+
+class TestInFlightReservation(unittest.TestCase):
+    """Parallel workers must not jointly overshoot the cap: each call holds its worst-case cost while in flight."""
+
+    def test_budget_reserve_settle_release(self):
+        b = common.Budget(cap=1.0, spent=0.5)
+        k1 = b.reserve(0.3)
+        with self.assertRaises(common.BudgetExceeded):      # 0.5 spent + 0.3 in flight + 0.3 > 1.0
+            b.reserve(0.3)
+        b.settle(k1, 0.1)                                   # real cost replaces the hold
+        self.assertAlmostEqual(b.spent, 0.6)
+        self.assertEqual(b.reserved, 0)
+        k2 = b.reserve(0.3)
+        b.release(k2)                                       # failed call: hold dropped, nothing spent
+        self.assertAlmostEqual(b.spent, 0.6)
+        self.assertEqual(b.reserved, 0)
+
+    def test_parallel_calls_never_exceed_cap(self):
+        import threading
+        from pipeline import llm
+        sys_p, user_p = "You label reviews.", "review text " * 50
+        hold = llm.worst_case_cost("openai", "gpt-6-luna", sys_p, user_p, None, 500)
+        budget = common.Budget(cap=3.5 * hold, spent=0.0)  # room for exactly 3 holds
+        go, lock, n = threading.Event(), threading.Lock(), {"sent": 0, "refused": 0}
+
+        def create(**kw):
+            with lock:
+                n["sent"] += 1
+            go.wait(5)
+            u = SimpleNamespace(input_tokens=200, input_tokens_details=SimpleNamespace(cached_tokens=0),
+                                output_tokens=100, output_tokens_details=SimpleNamespace(reasoning_tokens=0))
+            return SimpleNamespace(usage=u, output_text="ok", output=[], status="completed", id="resp-x",
+                                   model="gpt-6-luna")
+
+        fake = SimpleNamespace(responses=SimpleNamespace(create=create))
+
+        def worker():
+            try:
+                llm.call(role="enrich", provider="openai", model="gpt-6-luna", system=sys_p, user=user_p, schema=None,
+                         max_output_tokens=500, run_id="t", stage="enrich", budget=budget, reserve=0.0)
+            except common.BudgetExceeded:
+                with lock:
+                    n["refused"] += 1
+
+        tmp = Path(tempfile.mkdtemp())
+        with mock.patch.object(llm, "client", lambda p: fake), mock.patch.object(llm, "LEDGER", tmp / "l.jsonl"):
+            ts = [threading.Thread(target=worker) for _ in range(8)]
+            for t in ts:
+                t.start()
+            for _ in range(500):                            # wait until all 8 workers have been admitted or refused
+                if n["sent"] + n["refused"] == 8:
+                    break
+                go.wait(0.01)
+            self.assertEqual((n["sent"], n["refused"]), (3, 5))
+            self.assertAlmostEqual(budget.reserved, 3 * hold)
+            go.set()
+            for t in ts:
+                t.join()
+        self.assertEqual(budget.reserved, 0)                # every hold settled
+        self.assertLessEqual(budget.spent, budget.cap)
+        self.assertLessEqual(budget.peak_reserved + 0, budget.cap)
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -211,7 +211,8 @@ def write_report(out, runs, rates, calls):
           "× rate of the tier; verification = measured cost per verified review × declared sample; adjudication = "
           "measured cost per case × capped cases; group and memo are fixed overhead counted ONCE. Exact-text reuse "
           "reduces first-pass work from 660,609 to 484,189 texts. Batch-tier rows are estimates (the pilot used the "
-          "standard tier). Times are modeled from 1-worker throughput × workers (no extra cold experiment was run).", "",
+          "standard tier). Times are modeled from 1-worker throughput × workers; the worker scaling was later "
+          "measured on 500 reviews (see 'Parallel workers, measured' below: 4 workers = 3.33×, not 4×).", "",
           "Local compute (orchestration, SQLite on a laptop) is not metered: **unknown**, excluded from API spend.", "",
           "Replay: `python3 cost/calculator.py` · Change `rates.csv` or `assumptions.json` and rerun; doubling all rates "
           "doubles every API figure while measured times are unchanged."]
@@ -231,6 +232,17 @@ def write_report(out, runs, rates, calls):
             for r in z["formal_replication"]:
                 L.append(f"| {r['run']} | {r['input_rows']:,} | {r['completed']:,} | {r['quarantined']} | {r['calls']} | "
                          f"{r['cost_usd']} | {r['cost_per_input_row']} | {r['wall_clock_s']} |")
+    wc = HERE / "worker_comparison.json"
+    if wc.exists():
+        w = json.loads(wc.read_text())
+        L += ["", "## Parallel workers, measured (same 500 reviews, empty cache per arm)", "", f"{w['model']}. {w['method']}.", "",
+              "| Workers | Wall clock s | Speed-up vs 1 | Reviews/min | API calls (first pass + re-asks) | Completed | "
+              "Quarantined | API cost USD | Cost per 100 reviews | Cached input tok |", "|---|---|---|---|---|---|---|---|---|---|"]
+        for r in w["arms"]:
+            L.append(f"| {r['workers']} | {r['wall_clock_s']} | {r['speedup_vs_1']}x | {r['reviews_per_min']} | {r['api_calls']} "
+                     f"({r['first_pass_requests']} + {r['validation_retry_calls']}) | {r['completed']} | {r['quarantined']} | "
+                     f"{r['cost_usd']} | {r['cost_per_100_reviews_usd']} | {r['input_cached_tokens']:,} |")
+        L += ["", "Caveats:"] + [f"- {c}" for c in w["caveats"]]
     fa = HERE / "full_run_actuals.json"
     if fa.exists():
         a = json.loads(fa.read_text())

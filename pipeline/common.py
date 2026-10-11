@@ -10,6 +10,7 @@ import random
 import subprocess
 import sys
 import threading
+import uuid
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -187,17 +188,49 @@ def total_spend() -> float:
 
 
 class Budget:
-    """Thread-safe spend tracker seeded from the persistent ledger."""
+    """Thread-safe spend tracker seeded from the persistent ledger.
 
-    def __init__(self, cap: float | None = None):
+    In-flight reservation: before a call is sent, reserve() holds its worst-case cost; the hold counts
+    against the cap until settle() swaps it for the real cost (or release() drops it on failure). So N
+    parallel workers can never jointly overshoot the cap: dispatch is refused when
+    spent + already-reserved + this reservation > cap."""
+
+    def __init__(self, cap: float | None = None, spent: float | None = None):
         self.cap = cap if cap is not None else settings()["budget"]["total_spend_cap_usd"]
-        self.spent = total_spend()
+        self.spent = total_spend() if spent is None else spent
+        self.holds: dict[str, float] = {}
+        self.peak_reserved = 0.0
         self.lock = threading.Lock()
+
+    @property
+    def reserved(self) -> float:
+        return sum(self.holds.values())
 
     def check(self, reserve: float = 0.0):
         with self.lock:
-            if self.spent + reserve > self.cap:
-                raise BudgetExceeded(f"spend ${self.spent:.4f} + reserve ${reserve:.4f} > cap ${self.cap:.2f}")
+            if self.spent + self.reserved + reserve > self.cap:
+                raise BudgetExceeded(f"spend ${self.spent:.4f} + in-flight ${self.reserved:.4f} + reserve "
+                                     f"${reserve:.4f} > cap ${self.cap:.2f}")
+
+    def reserve(self, amount: float, key: str | None = None, enforce: bool = True) -> str:
+        """enforce=False records a hold for work ALREADY in flight (e.g. open batches found on resume)."""
+        key = key or uuid.uuid4().hex
+        with self.lock:
+            if enforce and self.spent + self.reserved + amount > self.cap:
+                raise BudgetExceeded(f"spend ${self.spent:.4f} + in-flight ${self.reserved:.4f} + reserve "
+                                     f"${amount:.4f} > cap ${self.cap:.2f}")
+            self.holds[key] = self.holds.get(key, 0.0) + amount
+            self.peak_reserved = max(self.peak_reserved, self.reserved)
+        return key
+
+    def release(self, key: str):
+        with self.lock:
+            self.holds.pop(key, None)
+
+    def settle(self, key: str, actual: float):
+        with self.lock:
+            self.holds.pop(key, None)
+            self.spent += actual
 
     def add(self, amount: float):
         with self.lock:

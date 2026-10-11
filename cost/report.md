@@ -1,6 +1,6 @@
 # 100-review cost & runtime report
 
-Generated 2026-10-07T06:32:59+00:00 by `python3 cost/calculator.py` (offline replay; no API calls).
+Generated 2026-10-11T20:39:50+00:00 by `python3 cost/calculator.py` (offline replay; no API calls).
 
 Input `data/raw/cost_100.csv` · SHA-256 `c884ac3b9be5066995d5063f96ad9af6e5e082975788c1684c4f6b6ea661dd0e` · 100 rows · 100 distinct texts · pilot run on 2026-10-07T00:20:22+00:00
 
@@ -62,7 +62,7 @@ Budget $15.0 · max workers 4 · output-token cap per review 60 · max fallback 
 | conservative: reuse, standard, higher retries/fallbacks | 484,189 | standard | 0.27 | 13.89 | 0.61 | 2.25 | 0.0227 | 0.0293 | **16.81** | 11.89 h | ⚠️ YES |
 | no-reuse comparison, standard tier | 660,609 | standard | 0.09 | 16.27 | 0.61 | 0.45 | 0.0227 | 0.0293 | **17.39** | 13.93 h | ⚠️ YES |
 
-Projection method: measured per-review token usage of the cold enrichment calls × texts × (1 + retry rate) × rate of the tier; verification = measured cost per verified review × declared sample; adjudication = measured cost per case × capped cases; group and memo are fixed overhead counted ONCE. Exact-text reuse reduces first-pass work from 660,609 to 484,189 texts. Batch-tier rows are estimates (the pilot used the standard tier). Times are modeled from 1-worker throughput × workers (no extra cold experiment was run).
+Projection method: measured per-review token usage of the cold enrichment calls × texts × (1 + retry rate) × rate of the tier; verification = measured cost per verified review × declared sample; adjudication = measured cost per case × capped cases; group and memo are fixed overhead counted ONCE. Exact-text reuse reduces first-pass work from 660,609 to 484,189 texts. Batch-tier rows are estimates (the pilot used the standard tier). Times are modeled from 1-worker throughput × workers; the worker scaling was later measured on 500 reviews (see 'Parallel workers, measured' below: 4 workers = 3.33×, not 4×).
 
 Local compute (orchestration, SQLite on a laptop) is not metered: **unknown**, excluded from API spend.
 
@@ -89,6 +89,22 @@ Post-hoc formal checkpoint runs (2026-10-07): checkpoint_500.csv then analysis_1
 |---|---|---|---|---|---|---|---|
 | repl-500 | 500 | 499 | 1 | 18 | 0.01218 | 0.00002435 | 38.4 |
 | repl-10000 | 10,000 | 9,983 | 17 | 315 | 0.20296 | 0.00002030 | 566.4 |
+
+## Parallel workers, measured (same 500 reviews, empty cache per arm)
+
+openai/gpt-6-luna effort=none, sync Responses API. same 500 reviews, empty result cache + fresh run dir per arm, arms run back to back in the listed order; every request is reserved against the spend cap before dispatch.
+
+| Workers | Wall clock s | Speed-up vs 1 | Reviews/min | API calls (first pass + re-asks) | Completed | Quarantined | API cost USD | Cost per 100 reviews | Cached input tok |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | 118.87 | 1.0x | 251.9 | 20 (10 + 10) | 499 | 1 | 0.012075 | 0.00242 | 48,450 |
+| 2 | 58.3 | 2.04x | 513.5 | 19 (10 + 9) | 499 | 1 | 0.010345 | 0.002073 | 65,576 |
+| 4 | 35.69 | 3.33x | 838.9 | 20 (10 + 10) | 499 | 1 | 0.010188 | 0.002042 | 69,392 |
+
+Caveats:
+- api_calls = first-pass requests (<=50 reviews) + validation re-asks that resend only the invalid items
+- one run per arm: wall clock includes network and provider-load noise
+- arms ran sequentially, so the provider's own prompt cache may favour later arms (see input_cached_tokens)
+- the full run used the Batch API (50% price, hours of queueing), not these sync workers
 
 ## Actual full run vs projection (measured after the run)
 

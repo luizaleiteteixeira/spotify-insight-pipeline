@@ -219,6 +219,10 @@ def run(input_path: Path, run_id: str, requests_per_batch: int = 1000, max_infli
     try:
         while True:
             open_b = [r[0] for r in state.q("SELECT batch_id FROM batches WHERE collected_at IS NULL")]
+            # batches already in flight (incl. ones found on resume) hold their estimate against the cap
+            for bid, n_req in state.q("SELECT batch_id, n_requests FROM batches WHERE collected_at IS NULL"):
+                if bid not in budget.holds:
+                    budget.reserve(cfg["reserve_usd_per_review"] * 0.5 * 50 * n_req, key=bid, enforce=False)
             # collect finished batches
             for bid in open_b:
                 b = client.batches.retrieve(bid)
@@ -230,6 +234,7 @@ def run(input_path: Path, run_id: str, requests_per_batch: int = 1000, max_infli
                     else:
                         failed_in_row = 0
                     collect(bid)
+                    budget.release(bid)           # its real cost was added line by line in collect()
             if failed_in_row >= 2:
                 stop_reason = "two_consecutive_failed_batches (check account batch queue limits; rerun to retry)"
                 break
@@ -252,7 +257,8 @@ def run(input_path: Path, run_id: str, requests_per_batch: int = 1000, max_infli
                 take = queue[:requests_per_batch * 50]
                 queue = queue[requests_per_batch * 50:]
                 chunks = [take[i:i + 50] for i in range(0, len(take), 50)]
-                budget.check(cfg["reserve_usd_per_review"] * 0.5 * len(take))
+                est = cfg["reserve_usd_per_review"] * 0.5 * len(take)
+                budget.check(est)                  # counts spend + every in-flight hold
                 buf, reqs = io.StringIO(), []
                 for ch in chunks:
                     cid = "req-" + sha256_text("|".join(r["review_id"] for r in ch))[:32]
@@ -268,6 +274,7 @@ def run(input_path: Path, run_id: str, requests_per_batch: int = 1000, max_infli
                     db.executemany("INSERT INTO batch_requests VALUES (?,?,?)",
                                    [(cid, b.id, json.dumps(ids)) for cid, ids in reqs])
                 state.tx(reg)                      # saved before any waiting => resumable
+                budget.reserve(est, key=b.id, enforce=False)
                 open_b.append(b.id)
                 submitted_now += 1
                 log.event("batch_submitted", batch_id=b.id, requests=len(reqs), reviews=len(take), phase=phase)

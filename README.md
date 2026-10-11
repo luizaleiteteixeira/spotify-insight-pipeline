@@ -29,7 +29,7 @@
 | Spend no more than **$10 per 100k-review run** | Classified the **full 660,622 rows for $9.88** in total, about **$1.50 per 100,000 reviews** ($1.17 per 100,000 for classification alone). See [`cost/full_run_actuals.json`](cost/full_run_actuals.json). |
 | Use **caching** | Exact-text result cache: 484,189 distinct texts classified once, and 176,418 rows reuse a validated result. The warm pilot made 0 model calls. Provider prompt caching is also measured. |
 | Use **batching** | 50 reviews per request (the course maximum), plus the OpenAI **Batch API** at 50% price for the bulk run |
-| Use **parallelizing** | parallel workers and 4 Batch API jobs in flight; validation retries on 8 parallel workers |
+| Use **parallelizing** | parallel workers and 4 Batch API jobs in flight; validation retries on 8 parallel workers. **Measured** on the same 500 reviews from an empty cache: 1 worker 118.9 s, 2 workers 58.3 s (2.0×), 4 workers 35.7 s (3.3×), at the same cost ([`cost/worker_comparison.json`](cost/worker_comparison.json)). Each parallel call reserves its worst-case cost before dispatch, so workers cannot jointly overshoot the cap (§3.6). |
 | Use **queues** | one shared queue of pending IDs (first occurrence of each distinct text), with atomic saves through a single writer lock, so no review is processed or counted twice |
 | Combine **Jev or GPT decisions** with a model like **Luna or Haiku** | **GPT-6 Luna** (effort none) makes the fixed label decisions. **Claude Haiku 4.5** independently re-labels a 2,000-review sample and checks memo evidence, and Claude Sonnet 5 adjudicates disagreements under a cap. Jev was not used; the brief makes it optional ("equivalent tools are acceptable when justified and evaluated"). |
 
@@ -52,7 +52,7 @@ Measured results are kept separate from estimates. "Accounted" rows (every ID ha
 | 100-review pilot (real run) | cold **$0.0786, 79.0 s**; warm **$0.00, 0.049 s, 0 new calls** | [`cost/report.md`](cost/report.md) |
 | **Full-run API cost (actual)** | **$9.88** (the pilot-based batch projection was $7.08; [why they differ](cost/report.md)) | [`cost/full_run_actuals.json`](cost/full_run_actuals.json) |
 | Full-run wall clock | enrichment 3 h 03 min (5 sessions including recorded interruptions; OpenAI Batch API) + capped fallback 10 min; verify + adjudicate 22 min; group 31 s; rank 6 s; memo ~1 min | [`runs/full/`](runs/full/) |
-| All API spend for the project (development, evals, pilot, full run, improvements) | $10.90 across both providers | `runs/ledger.jsonl` |
+| All API spend for the project (development, evals, pilot, full run, improvements) | $10.94 across both providers | `runs/ledger.jsonl` |
 
 ## 2. Rubric → evidence map
 
@@ -88,7 +88,7 @@ Measured results are kept separate from estimates. "Accounted" rows (every ID ha
 | Intent | **0.88**; macro-F1 0.697 |
 | Severity | exact **0.78**, MAE **0.28**, within ±1: 0.96 |
 | Sentiment | MAE 0.198; 0.88 within the predeclared tolerance of ±0.4 |
-| Evidence quote | 1.00 exact substrings (checked by code); human check that the quote *supports* the label: 49/50 (v1, [`quote_support_human.csv`](evals/golden/quote_support_human.csv)) |
+| Evidence quote | 1.00 exact substrings (checked by code); human check that the quote *supports* the model's label: **50/50** for the final v2 classifier, including all 21 cases where the model disagreed with the author's label ([`check_quotes_v2.py`](evals/check_quotes_v2.py) → [`quote_support_human_v2.csv`](evals/golden_v2/quote_support_human_v2.csv)); 49/50 in the earlier v1 check ([`quote_support_human.csv`](evals/golden/quote_support_human.csv)) |
 | `needs_review` as a predictor of the human "ambiguous" flag | precision 0.44, recall 0.50 |
 | Independent verifier (Claude Haiku 4.5) vs human | topic 0.653, intent 0.857, severity MAE 0.286 |
 
@@ -134,14 +134,23 @@ Caveat: 50 cases is a diagnostic sample. A single case moves topic accuracy by 2
 | API cost | **$0.078641** | **$0.000000** (0 new calls in every stage; every model output is cached by inputs + config) |
 
 - **Scaling 100 → 500 → 10,000:** the estimate was not paused and refreshed at 500 and 10,000 *before* scaling. Two kinds of evidence take its place, both labelled honestly in [`cost/report.md`](cost/report.md): the full run's own log at 500, 10,000 and 100,000 distinct texts (retrospective), and **formal post-hoc checkpoint runs** of `checkpoint_500.csv` and `analysis_10000.csv` from an empty cache, at $0.0000244 and $0.0000203 per input row.
+- **Parallel workers, measured** ([`worker_comparison.py`](cost/worker_comparison.py) → [`worker_comparison.json`](cost/worker_comparison.json)): the same `checkpoint_500.csv`, an empty result cache and a fresh run for each arm, through the sync API (GPT-6 Luna, effort none). Each arm made 10 first-pass requests of up to 50 reviews, plus 9–10 small re-asks that resent only the items that failed validation. Each arm completed 499 reviews and quarantined 1.
+
+| Workers | Wall clock | Speed-up | Reviews/min | API cost | Cost per 100 reviews |
+|---|---|---|---|---|---|
+| 1 | 118.9 s | 1.0× | 252 | $0.0121 | $0.00242 |
+| 2 | 58.3 s | 2.04× | 514 | $0.0103 | $0.00207 |
+| 4 | 35.7 s | 3.33× | 839 | $0.0102 | $0.00204 |
+
+  More workers cut wall-clock time almost linearly; cost does not grow, because the work is the same. The small cost drop for later arms is the provider's own prompt cache: cached input tokens went from 48k to 69k, since the arms ran back to back. This is one run per arm, so the timings include network noise. The bulk run used the Batch API instead (half price, but hours of queueing). Sync workers suit small or urgent runs.
 - **Projection vs actual:** the batch-tier projection was $7.08 and the actual full run cost $9.88. Validation retries (9–16% of items per batch) ran at standard price, and the improvement iteration (fallback, evidence checker, memo regenerations) is included.
 
 ### 3.6 Retry, spending and recovery controls, and a clean-environment test
 
 - **Retry:** an invalid answer gets exactly one retry with the validation errors fed back, then goes to quarantine with its reason and attempt count. Transient API errors get bounded exponential backoff with jitter. A failed or expired batch is re-queued, never re-run at full price, and two failed batches in a row stop the run. A **declared, capped fallback** (GPT-6 Luna at effort `low`, 10 reviews per request, cap 2,000) handles first-pass failures once.
-- **Spending:** one shared ledger (`runs/ledger.jsonl`) records every attempt, including failures. Before each dispatch, a reservation is checked against the hard cap in `config/settings.json`.
+- **Spending:** one shared ledger (`runs/ledger.jsonl`) records every attempt, including failures. **In-flight reservation:** before a call is sent, `Budget.reserve()` holds its worst-case cost (UTF-8 bytes of the prompt as an upper bound on input tokens, plus `max_output_tokens`). The call is refused if spent + every in-flight hold + this hold would pass the hard cap in `config/settings.json`. On completion the hold becomes the real cost (`settle`); on failure it is dropped (`release`). Open Batch API jobs hold their estimate until collected, including jobs found on resume. So parallel workers cannot jointly overshoot the cap ([`common.py`](pipeline/common.py), [`llm.py`](pipeline/llm.py)).
 - **Recovery:** SQLite state with one atomic transaction per batch. Batch IDs are saved **before waiting**, and resume re-polls them. Changing the prompt, schema or model changes `label_config`, which invalidates cached results.
-- **Offline control tests** (fake client, logic only): [`test_offline.py`](evals/test_offline.py), **9/9 pass**.
+- **Offline control tests** (fake client, logic only): [`test_offline.py`](evals/test_offline.py), **11/11 pass**. They include a concurrency test: 8 parallel workers, with room under the cap for exactly 3 holds, gave 3 dispatched calls and 5 refused, and spend stayed under the cap.
 - **Clean-environment test:** fresh `git clone` → `pip install -r requirements.txt` → download `full-state.db.gz` from the release → `python -m pipeline.run_v2 --run-id full --offline` with no API keys. Two rebuilds came out identical, SQL matched Python, and `ranking.csv` was byte-identical to the committed file. `python3 cost/calculator.py` reproduced the pilot, and the course checker on the cloned `grading/` matched. The live dashboard API was also compared with the saved files: the ranking, status, topic and intent counts, and claims all match.
 
 ### 3.7 Mechanical self-check
@@ -346,6 +355,8 @@ The pipeline was improved in measured iterations. Each one applies a concept fro
 | 11 | A code rule corrected 3,350 contract violations; the course checker exposed 259 double-logged calls, now handled by a de-duplicating ledger view | agents must be contained by code | `postprocess_severity_rule.json`, `common.py` |
 | 12 | A capped fallback rescued 1,499 of 1,583 first-pass failures for $0.15 | declared fallback quota | `fallback_report.json` |
 | 13 | 10,000 reviews re-classified from an empty cache gave 93–96% identical labels; this run also serves as the formal 500/10k checkpoint | LLMs are probabilistic; evals across runs | `replication_report.json` |
+| 14 | Parallel work measured instead of assumed: the same 500 reviews on 1, 2 and 4 workers took 118.9 s, 58.3 s and 35.7 s at the same cost; each call now reserves its worst-case cost while in flight, so workers cannot jointly overshoot the cap | run work in parallel; every loop has a cost | `cost/worker_comparison.json`, `test_offline.py` |
+| 15 | The author re-checked the final classifier's evidence quotes on the 50 golden reviews: 50/50 support the model's label, including the 21 disagreements | human in the loop; a valid record can still be wrong | `evals/golden_v2/quote_support_human_v2.csv` |
 
 ## 9. Learnings (author's reflections)
 

@@ -97,6 +97,16 @@ def _transient(provider, e) -> bool:
     return isinstance(e, anthropic.APIStatusError) and e.status_code in (408, 409, 429, 500, 502, 503, 504, 529)
 
 
+def worst_case_cost(provider: str, model: str, system: str, user: str, schema: dict | None,
+                    max_output_tokens: int) -> float:
+    """Upper bound on one call's cost, used as its in-flight reservation. Byte-level BPE never yields more
+    tokens than UTF-8 bytes, so bytes bound the input; max_output_tokens bounds output (reasoning included);
+    input is priced at the dearest input item (Anthropic cache write)."""
+    n_in = len((system + user + (json.dumps(schema) if schema else "")).encode("utf-8"))
+    item = "input_cache_write" if provider == "anthropic" else "input_uncached"
+    return cost_of(provider, model, "standard", {item: n_in, "output": max_output_tokens})
+
+
 def call(*, role: str, provider: str, model: str, system: str, user: str, schema: dict | None,
          schema_name: str = "result", max_output_tokens: int, effort: str | None = None, run_id: str,
          stage: str, budget: Budget, reserve: float, phase: str = "initial", review_ids: list[str] | None = None,
@@ -108,8 +118,9 @@ def call(*, role: str, provider: str, model: str, system: str, user: str, schema
             "effort": effort, "tier": "standard", "phase": phase, "label_config": label_config,
             "review_ids": review_ids or [], **(meta or {})}
     last = None
+    hold_amount = max(reserve, worst_case_cost(provider, model, system, user, schema, max_output_tokens))
     for attempt in range(1, rcfg["api_max_attempts"] + 1):
-        budget.check(reserve)
+        hold = budget.reserve(hold_amount)      # in-flight reservation; raises BudgetExceeded before dispatch
         local_id = f"local-{uuid.uuid4().hex[:16]}"
         t0 = time.time()
         try:
@@ -143,6 +154,7 @@ def call(*, role: str, provider: str, model: str, system: str, user: str, schema
                 status = {"refusal": "refusal", "max_tokens": "incomplete"}.get(resp.stop_reason, "ok")
                 request_id, served = resp.id, resp.model
         except Exception as e:  # noqa: BLE001 - classified below
+            budget.release(hold)
             if not _transient(provider, e):
                 append_jsonl(LEDGER, {"ts": now(), **base, "request_id": local_id, "attempt": attempt,
                                       "outcome": "failed", "status": "api_error_fatal",
@@ -158,8 +170,12 @@ def call(*, role: str, provider: str, model: str, system: str, user: str, schema
             time.sleep(delay * (0.5 + random.random()))
             continue
         latency = round(time.time() - t0, 3)
-        cost = cost_of(provider, model, "standard", items)
-        budget.add(cost)
+        try:
+            cost = cost_of(provider, model, "standard", items)
+        except Exception:
+            budget.release(hold)
+            raise
+        budget.settle(hold, cost)
         data = None
         if schema is not None and status == "ok":
             try:

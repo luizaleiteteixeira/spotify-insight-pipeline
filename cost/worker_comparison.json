@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-10-11T20:38:49+00:00",
+  "input": "data/raw/checkpoint_500.csv",
+  "model": "openai/gpt-6-luna effort=none, sync Responses API",
+  "method": "same 500 reviews, empty result cache + fresh run dir per arm, arms run back to back in the listed order; every request is reserved against the spend cap before dispatch",
+  "arms": [
+    {
+      "workers": 1,
+      "run_id": "workers-1-20261011T2035",
+      "wall_clock_s": 118.87,
+      "api_calls": 20,
+      "first_pass_requests": 10,
+      "validation_retry_calls": 10,
+      "api_failures": 0,
+      "completed": 499,
+      "quarantined": 1,
+      "reviews_per_min": 251.9,
+      "cost_usd": 0.012075,
+      "cost_per_100_reviews_usd": 0.00242,
+      "input_cached_tokens": 48450,
+      "median_request_latency_s": 5.806,
+      "stop_reason": "complete",
+      "accounting_ok": true,
+      "speedup_vs_1": 1.0
+    },
+    {
+      "workers": 2,
+      "run_id": "workers-2-20261011T2035",
+      "wall_clock_s": 58.3,
+      "api_calls": 19,
+      "first_pass_requests": 10,
+      "validation_retry_calls": 9,
+      "api_failures": 0,
+      "completed": 499,
+      "quarantined": 1,
+      "reviews_per_min": 513.5,
+      "cost_usd": 0.010345,
+      "cost_per_100_reviews_usd": 0.002073,
+      "input_cached_tokens": 65576,
+      "median_request_latency_s": 5.568,
+      "stop_reason": "complete",
+      "accounting_ok": true,
+      "speedup_vs_1": 2.04
+    },
+    {
+      "workers": 4,
+      "run_id": "workers-4-20261011T2035",
+      "wall_clock_s": 35.69,
+      "api_calls": 20,
+      "first_pass_requests": 10,
+      "validation_retry_calls": 10,
+      "api_failures": 0,
+      "completed": 499,
+      "quarantined": 1,
+      "reviews_per_min": 838.9,
+      "cost_usd": 0.010188,
+      "cost_per_100_reviews_usd": 0.002042,
+      "input_cached_tokens": 69392,
+      "median_request_latency_s": 5.773,
+      "stop_reason": "complete",
+      "accounting_ok": true,
+      "speedup_vs_1": 3.33
+    }
+  ],
+  "caveats": [
+    "api_calls = first-pass requests (<=50 reviews) + validation re-asks that resend only the invalid items",
+    "one run per arm: wall clock includes network and provider-load noise",
+    "arms ran sequentially, so the provider's own prompt cache may favour later arms (see input_cached_tokens)",
+    "the full run used the Batch API (50% price, hours of queueing), not these sync workers"
+  ]
+}
